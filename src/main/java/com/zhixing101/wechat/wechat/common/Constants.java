@@ -2,7 +2,7 @@ package com.zhixing101.wechat.wechat.common;
 
 /**
  * 常量类
- *
+ * 
  */
 public class Constants {
 

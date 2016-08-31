@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * HelloWorldController
- *
+ * 
  */
 @Controller
 @RequestMapping("/hello")

@@ -15,7 +15,7 @@ import com.zhixing101.wechat.wechat.service.AccessValidationService;
 
 /**
  * 微信分发Controller
- *
+ * 
  */
 @Controller
 @RequestMapping("/wechat")
