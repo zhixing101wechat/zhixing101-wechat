@@ -14,7 +14,7 @@ import java.io.Writer;
 
 /**
  * 微信解析所用的工具类
- * Created by adam on 1/9/16.
+ * Created by adam on 1/9/16 .
  */
 @Component("wechatUtils")
 public class WechatUtils {

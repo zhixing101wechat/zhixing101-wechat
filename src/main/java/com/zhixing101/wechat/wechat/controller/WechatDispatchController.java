@@ -75,7 +75,7 @@ public class WechatDispatchController {
     public String replyMsg(HttpServletRequest request){
         logger.debug("收到微信消息,验证是否来自微信服务器");
         if (accessValidationService.checkWeixinReques(request)){
-
+            //业务处理
         }
         return "";
     }

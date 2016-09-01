@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 用户的过滤器 似乎不需要
  * Created by adam on 1/9/16.
  */
 public class ManagerInterceptor extends HandlerInterceptorAdapter{

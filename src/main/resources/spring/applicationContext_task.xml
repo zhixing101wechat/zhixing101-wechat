@@ -6,7 +6,7 @@
 	">
 
 
-	<!-- 微信token -->
+	<!-- 微信token的定时任务 -->
 	<bean id="wechatTask" class="com.zhixing101.wechat.wechat.job.WechatTask"></bean>
 	<bean id="wechatTarget" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject">
