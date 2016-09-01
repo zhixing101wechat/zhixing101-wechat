@@ -110,4 +110,5 @@ public class Constants {
      * 事件
      */
     public static final String EVENT = "event";
+
 }
