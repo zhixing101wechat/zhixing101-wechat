@@ -1,7 +1,7 @@
 package com.zhixing101.wechat.wechat.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.zhixing101.wechat.wechat.common.Constants;
+import com.zhixing101.wechat.wechat.service.AccessValidationService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zhixing101.wechat.wechat.common.Constants;
-import com.zhixing101.wechat.wechat.service.AccessValidationService;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 微信分发Controller
@@ -25,7 +24,7 @@ public class WechatDispatchController {
      * 日志记录器
      * 
      */
-    private Logger log = Logger.getLogger(WechatDispatchController.class);
+    private Logger logger = Logger.getLogger(WechatDispatchController.class);
 
     /**
      * 接入验证Service
@@ -54,20 +53,30 @@ public class WechatDispatchController {
             @RequestParam(Constants.STR_ACCESS_NONCE) String nonce,
             @RequestParam(Constants.STR_ACCESS_ECHOSTR) String echostr, HttpServletRequest request) {
 
-        log.info("access validate begins!!!");
-        log.info(Constants.STR_URL + Constants.STR_EQUAL + request.getRequestURL() + request.getQueryString());
-        log.info(Constants.STR_ACCESS_SIGNATURE + Constants.STR_EQUAL + signature);
-        log.info(Constants.STR_ACCESS_TIMESTAMP + Constants.STR_EQUAL + timestamp);
-        log.info(Constants.STR_ACCESS_NONCE + Constants.STR_EQUAL + nonce);
-        log.info(Constants.STR_ACCESS_ECHOSTR + Constants.STR_EQUAL + echostr);
+        logger.info("access validate begins!!!");
+        logger.info(Constants.STR_URL + Constants.STR_EQUAL + request.getRequestURL() + request.getQueryString());
+        logger.info(Constants.STR_ACCESS_SIGNATURE + Constants.STR_EQUAL + signature);
+        logger.info(Constants.STR_ACCESS_TIMESTAMP + Constants.STR_EQUAL + timestamp);
+        logger.info(Constants.STR_ACCESS_NONCE + Constants.STR_EQUAL + nonce);
+        logger.info(Constants.STR_ACCESS_ECHOSTR + Constants.STR_EQUAL + echostr);
 
         // 接入验证
         String validateResult = accessValidationService.doAccessValidation(signature, timestamp, nonce, echostr);
 
-        log.info(Constants.STR_RESULT + Constants.STR_EQUAL + validateResult);
-        log.info("access validate ends!!!");
+        logger.info(Constants.STR_RESULT + Constants.STR_EQUAL + validateResult);
+        logger.info("access validate ends!!!");
 
         // 返回接入验证结果
         return validateResult;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+    @ResponseBody
+    public String replyMsg(HttpServletRequest request){
+        logger.debug("收到微信消息,验证是否来自微信服务器");
+        if (accessValidationService.checkWeixinReques(request)){
+
+        }
+        return "";
     }
 }

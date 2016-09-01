@@ -1,12 +1,14 @@
 package com.zhixing101.wechat.wechat.service;
 
-import java.util.Arrays;
-
+import com.sun.javafx.fxml.expression.Expression;
+import com.zhixing101.wechat.wechat.common.Constants;
+import com.zhixing101.wechat.wechat.util.SHA1EncryptionUtil;
+import com.zhixing101.wechat.wechat.util.WechatUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.zhixing101.wechat.wechat.common.Constants;
-import com.zhixing101.wechat.wechat.util.SHA1EncryptionUtil;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 
 /**
  * 接入验证Service
@@ -44,6 +46,28 @@ public class AccessValidationService {
             return echostr;
         } else {
             return Constants.STR_FAILED;
+        }
+    }
+
+    /**
+     * 根据token计算signature验证是否为weixin服务端发送的消息
+     */
+    public boolean checkWeixinReques(HttpServletRequest request) {
+        System.out.println("验证微信");
+        String signature = request.getParameter("signature");
+        String timestamp = request.getParameter("timestamp");
+        String nonce = request.getParameter("nonce");
+        if (signature != null && timestamp != null && nonce != null) {
+            String[] strSet = new String[]{token, timestamp, nonce};
+            java.util.Arrays.sort(strSet);
+            String key = "";
+            for (String string : strSet) {
+                key = key + string;
+            }
+            String pwd = SHA1EncryptionUtil.SHA1(key);
+            return pwd.equals(signature);
+        } else {
+            return true;
         }
     }
 

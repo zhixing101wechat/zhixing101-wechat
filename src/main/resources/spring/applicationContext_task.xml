@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	">
+
+
+	<!-- 微信token -->
+	<bean id="wechatTask" class="com.zhixing101.wechat.wechat.job.WechatTask"></bean>
+	<bean id="wechatTarget" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="wechatTask" />
+		</property>
+		<property name="targetMethod">
+			<value>executeTask</value>
+		</property>
+	</bean>
+	<bean id="wechatTaskTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		<property name="jobDetail">
+			<ref bean="wechatTarget" /><!--执行详情task为上面那个配置的bean -->
+		</property>
+		<property name="startDelay"><!--开始延时时间 -->
+			<value>100</value>
+		</property>
+		<property name="repeatInterval">
+			<!-- 轮询时间间隔 -->
+			<value>300000</value>
+		</property>
+	</bean>
+
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="wechatTaskTrigger" />
+			</list>
+		</property>
+	</bean>
+</beans>

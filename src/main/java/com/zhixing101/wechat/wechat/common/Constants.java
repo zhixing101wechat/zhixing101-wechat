@@ -60,4 +60,54 @@ public class Constants {
      * 失败
      */
     public static final String STR_FAILED = "failed";
+
+    /**
+     * 连接符
+     */
+    public static String CONNECTOR = "-";
+
+    /**
+     * 文字消息
+     */
+    public static final String TEXT = "text";
+
+    /**
+     * 音乐
+     */
+    public static final String MUSIC = "music";
+
+    /**
+     * 图文
+     */
+    public static final String NEWS = "news";
+
+    /**
+     * 图片
+     */
+    public static final String IMAGE = "image";
+
+    /**
+     * 语音
+     */
+    public static final String VOICE = "voice";
+
+    /**
+     * 视频
+     */
+    public static final String VIDEO = "video";
+
+    /**
+     * 位置
+     */
+    public static final String LOCATION = "location";
+
+    /**
+     * 链接
+     */
+    public static final String LINK = "link";
+
+    /**
+     * 事件
+     */
+    public static final String EVENT = "event";
 }
