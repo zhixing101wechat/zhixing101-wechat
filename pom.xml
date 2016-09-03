@@ -257,5 +257,21 @@
   
   <build>
     <finalName>wechat</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources/</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>*.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources/</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>*.xml</include>
+        </includes>
+      </resource>
+    </resources>
   </build>
 </project>
