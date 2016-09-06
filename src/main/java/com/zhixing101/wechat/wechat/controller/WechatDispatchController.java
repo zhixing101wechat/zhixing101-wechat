@@ -81,8 +81,8 @@ public class WechatDispatchController {
         return "";
     }
 
-    @RequestMapping(value="findBook", method = RequestMethod.GET)
-    public String findBook() {
-        return "findBook";
-    }
+//    @RequestMapping(value="findBook", method = RequestMethod.GET)
+//    public String findBook() {
+//        return "findBook";
+//    }
 }

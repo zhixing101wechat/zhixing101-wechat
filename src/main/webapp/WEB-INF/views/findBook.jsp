@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ include file="common.jsp"%>
 <html>
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -9,8 +10,6 @@ html{height:100%}
 body{height:100%;margin:0px;padding:0px}
 #container{height:100%}
 </style>
-<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=N32lyWhU7RfjrFD76cYt6jmCHGWbicbd">
-</script>
 </head>
 <body>
 <div id="container"></div> 
