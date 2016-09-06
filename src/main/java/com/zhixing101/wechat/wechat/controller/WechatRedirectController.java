@@ -50,4 +50,9 @@ public class WechatRedirectController {
     public String findBook(HttpServletRequest request, HttpServletResponse response) {
         return "findBook";
     }
+
+    @RequestMapping(value = "getLoc", method = RequestMethod.GET)
+    public String getLoc(HttpServletRequest request, HttpServletResponse response) {
+        return "getLoc";
+    }
 }

@@ -4,7 +4,7 @@
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>findBook</title>
+<title>找书</title>
 <style type="text/css">
 html{height:100%}
 body{height:100%;margin:0px;padding:0px}
