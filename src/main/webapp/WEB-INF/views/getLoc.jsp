@@ -42,5 +42,6 @@ wx.error(function (res) {
 </script>
 <span class="desc">获取地理位置接口</span>
 <button id="getLocation">getLocation</button>
+alert(location.href);
 </body>
 </html>
