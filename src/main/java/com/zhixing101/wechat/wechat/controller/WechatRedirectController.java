@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.zhixing101.wechat.wechat.common.Constants;
 
@@ -53,7 +53,7 @@ public class WechatRedirectController {
     }
 
     @RequestMapping(value = "getLoc", method = RequestMethod.GET)
-    public String getLoc(@PathVariable("code") String code, @PathVariable("state") String state) {
+    public String getLoc(@RequestParam("code") String code, @RequestParam("state") String state) {
         logger.info(code);
         logger.info(state);
         return "getLoc";
