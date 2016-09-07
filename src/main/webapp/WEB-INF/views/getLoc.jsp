@@ -16,8 +16,6 @@ wx.config({
     signature: '6e6951cadf0ccdcc8600f003fb7f089b0633c2da',// 必填，签名，见附录1
     jsApiList: ['getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 });
-
-
 wx.ready(function () {
       // 7.2 获取当前地理位置
       document.querySelector('#getLocation').onclick = function () {
