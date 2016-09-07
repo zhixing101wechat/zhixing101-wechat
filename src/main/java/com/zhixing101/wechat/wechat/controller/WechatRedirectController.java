@@ -34,6 +34,9 @@ public class WechatRedirectController {
     @Value("#{configProperties['weixin.findBookUrl']}")
     private String findBookUrl;
 
+    @Value("#{configProperties['weixin.rootUrl']}")
+    private String rootUrl;
+
     @RequestMapping(value = "redirectFindBook", method = RequestMethod.GET)
     public String redirectFindBook() throws UnsupportedEncodingException {
 
@@ -53,9 +56,11 @@ public class WechatRedirectController {
     }
 
     @RequestMapping(value = "getLoc", method = RequestMethod.GET)
-    public String getLoc(@RequestParam("code") String code, @RequestParam("state") String state, HttpServletRequest request) {
-        
-        logger.info(request.getRequestURL() + request.getQueryString());
+    public String getLoc(@RequestParam("code") String code, @RequestParam("state") String state,
+            HttpServletRequest request) {
+
+        String url = rootUrl + "getLoc" + "?" + request.getQueryString();
+        logger.info(url);
         logger.info(code);
         logger.info(state);
         return "getLoc";
