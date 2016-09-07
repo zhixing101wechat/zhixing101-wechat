@@ -1,7 +1,6 @@
 package com.zhixing101.wechat.wechat.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.zhixing101.wechat.wechat.common.Constants;
+import com.zhixing101.wechat.wechat.util.JsSdkUtil;
 
 /**
  * 微信重定向Controller
@@ -28,41 +27,49 @@ public class WechatRedirectController {
      */
     private Logger logger = Logger.getLogger(WechatRedirectController.class);
 
-    @Value("#{configProperties['weixin.webGrantRequestUrl']}")
-    private String webGrantRequestUrl;
-
-    @Value("#{configProperties['weixin.findBookUrl']}")
-    private String findBookUrl;
-
     @Value("#{configProperties['weixin.rootUrl']}")
     private String rootUrl;
 
-    @RequestMapping(value = "redirectFindBook", method = RequestMethod.GET)
-    public String redirectFindBook() throws UnsupportedEncodingException {
-
-        String tmpUrl = webGrantRequestUrl.replaceFirst(Constants.STR_REDIRECT_URI,
-                URLEncoder.encode(findBookUrl, Constants.STR_ENCODING_UTF_8).replace(Constants.STR_ASTERISK,
-                        Constants.STR_PER_CENT_TWO_A));
-        tmpUrl = tmpUrl.replaceFirst(Constants.STR_SCOPE, Constants.STR_SNSAPI_USERINFO);
-        tmpUrl = tmpUrl.replaceFirst(Constants.STR_STATE, "123");
-        tmpUrl = Constants.STR_REDIRECT_COLON + tmpUrl;
-        logger.info(tmpUrl);
-        return tmpUrl;
-    }
-
+    // @RequestMapping(value = "redirectFindBook", method = RequestMethod.GET)
+    // public String redirectFindBook() throws UnsupportedEncodingException {
+    //
+    // String tmpUrl =
+    // webGrantRequestUrl.replaceFirst(Constants.STR_REDIRECT_URI,
+    // URLEncoder.encode(findBookUrl,
+    // Constants.STR_ENCODING_UTF_8).replace(Constants.STR_ASTERISK,
+    // Constants.STR_PER_CENT_TWO_A));
+    // tmpUrl = tmpUrl.replaceFirst(Constants.STR_SCOPE,
+    // Constants.STR_SNSAPI_USERINFO);
+    // tmpUrl = tmpUrl.replaceFirst(Constants.STR_STATE, "123");
+    // tmpUrl = Constants.STR_REDIRECT_COLON + tmpUrl;
+    // logger.info(tmpUrl);
+    // return tmpUrl;
+    // }
+    //
     @RequestMapping(value = "findBook", method = RequestMethod.GET)
     public String findBook(HttpServletRequest request, HttpServletResponse response) {
         return "findBook";
     }
 
     @RequestMapping(value = "getLoc", method = RequestMethod.GET)
-    public String getLoc(@RequestParam("code") String code, @RequestParam("state") String state,
-            HttpServletRequest request) {
+    public String getLoc(Model model, HttpServletRequest request) {
 
-        String url = rootUrl + "getLoc" + "?" + request.getQueryString();
+        String url = rootUrl + "/getLoc?" + request.getQueryString();
+        String noncestr = UUID.randomUUID().toString();
+        String jsapi_ticket = "kgt8ON7yVITDhtdwci0qeZPRzKNUOwbX6lWlJbLh5kgxRhwFbAA1egtFHDyyV3mEV6YmlIQzHACOT69GqMe4Lw";
+        String timestamp = String.valueOf(System.currentTimeMillis());
+        String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
+
         logger.info(url);
-        logger.info(code);
-        logger.info(state);
+        logger.info(noncestr);
+        logger.info(jsapi_ticket);
+        logger.info(timestamp);
+        logger.info(signature);
+
+        model.addAttribute("noncestr", noncestr);
+        model.addAttribute("timestamp", timestamp);
+        model.addAttribute("signature", signature);
+
         return "getLoc";
     }
 }

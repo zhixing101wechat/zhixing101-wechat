@@ -23,4 +23,12 @@ public class JsSdkUtil {
         System.out.println("url=" + url);
         System.out.println("signature=" + signature);
     }
+    
+    public static String getJsSdkSignature(String noncestr, String jsapi_ticket, String timestamp, String url) {
+
+        String para = "jsapi_ticket=" + jsapi_ticket + "&" + "noncestr=" + noncestr + "&" + "timestamp=" + timestamp
+                + "&" + "url=" + url;
+        String signature = SHA1EncryptionUtil.SHA1(para);
+        return signature;
+    }
 }
