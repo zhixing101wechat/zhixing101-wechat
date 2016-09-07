@@ -14,6 +14,7 @@ $(document).ready(function(){
 	var noncestrPara = document.getElementById("noncestr").getValue();
 	var timestampPara = document.getElementById("timestamp").getValue();
 	var signaturePara = document.getElementById("signature").getValue();
+	alert(signaturePara);
 	
 	wx.config({
 	    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -45,39 +46,9 @@ $(document).ready(function(){
 	wx.error(function (res) {
 	      alert(res.errMsg);
 	});
-	
-	function showHref()
-	{
-		alert(location.href);
-	}
-	
-	function showLoc()
-	{
-        wx.getLocation({
-            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-            success: function (res) {
-                //var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-                //var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-                //var speed = res.speed; // 速度，以米/每秒计
-                //var accuracy = res.accuracy; // 位置精度
-                alert(JSON.stringify(res));
-            },
-            cancel: function (res) {
-                alert('用户拒绝授权获取地理位置');
-              }
-        });
-	}
 })
-
-
-
-
-
 </script>
-<span class="desc">获取地理位置接口</span>
 <button id="getLocation">getLocation</button>
-<button onclick="showHref()">showHref</button>
-<button onclick="showLoc()">showLoc</button>
 <input id="noncestr" type="hidden" value="${noncestr}"/>
 <input id="timestamp" type="hidden" value="${timestamp}"/>
 <input id="signature" type="hidden" value="${signature}"/>
