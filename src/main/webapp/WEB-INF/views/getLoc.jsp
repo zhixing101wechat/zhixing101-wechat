@@ -13,9 +13,9 @@
 wx.config({
     debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
     appId: 'wx5155a0dbe312a20e', // 必填，公众号的唯一标识
-    timestamp: 1473169028193, // 必填，生成签名的时间戳
+    timestamp: 1473257340950, // 必填，生成签名的时间戳
     nonceStr: 'Wm3WZYTPz0wzccnW', // 必填，生成签名的随机串
-    signature: '6e6951cadf0ccdcc8600f003fb7f089b0633c2da',// 必填，签名，见附录1
+    signature: '02e325565534a9be9dcb4eb6131441f3e6cb7511',// 必填，签名，见附录1
     jsApiList: ['getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 });
 wx.ready(function () {

@@ -8,7 +8,7 @@ public class JsSdkUtil {
 
     public static void main(String[] args) {
 
-        String jsapi_ticket = "kgt8ON7yVITDhtdwci0qeZPRzKNUOwbX6lWlJbLh5kgXlO7cP_9E7yyCCJH9J-Ep24iT05Cq6ddJnBJg87WooQ";
+        String jsapi_ticket = "kgt8ON7yVITDhtdwci0qeZPRzKNUOwbX6lWlJbLh5kgxRhwFbAA1egtFHDyyV3mEV6YmlIQzHACOT69GqMe4Lw";
         String noncestr = "Wm3WZYTPz0wzccnW";
         String timestamp = String.valueOf(System.currentTimeMillis());
         String url = "http://www.mikko.tech/wechat/getLoc";
