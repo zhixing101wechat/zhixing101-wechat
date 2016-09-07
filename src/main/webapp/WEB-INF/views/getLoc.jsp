@@ -10,7 +10,7 @@
 </head>
 <body>
 <script>
-$(document).ready(function(){
+$(function() {
 	var noncestrPara = document.getElementById("noncestr").getValue();
 	var timestampPara = document.getElementById("timestamp").getValue();
 	var signaturePara = document.getElementById("signature").getValue();
@@ -43,10 +43,12 @@ $(document).ready(function(){
 	            });
 	      };
 	});
+
 	wx.error(function (res) {
 	      alert(res.errMsg);
 	});
-})
+});
+
 </script>
 <button id="getLocation">getLocation</button>
 <input id="noncestr" type="hidden" value="${noncestr}"/>
