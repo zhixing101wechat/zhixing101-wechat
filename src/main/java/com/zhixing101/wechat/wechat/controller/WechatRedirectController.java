@@ -30,6 +30,9 @@ public class WechatRedirectController {
     @Value("#{configProperties['weixin.rootUrl']}")
     private String rootUrl;
 
+    @Value("#{configProperties['weixin.appId']}")
+    private String appId;
+
     // @RequestMapping(value = "redirectFindBook", method = RequestMethod.GET)
     // public String redirectFindBook() throws UnsupportedEncodingException {
     //
@@ -66,6 +69,7 @@ public class WechatRedirectController {
         logger.info(timestamp);
         logger.info(signature);
 
+        model.addAttribute("appId", appId);
         model.addAttribute("noncestr", noncestr);
         model.addAttribute("timestamp", timestamp);
         model.addAttribute("signature", signature);
