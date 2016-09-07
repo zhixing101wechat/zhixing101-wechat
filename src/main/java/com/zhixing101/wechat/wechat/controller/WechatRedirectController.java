@@ -42,7 +42,7 @@ public class WechatRedirectController {
         tmpUrl = tmpUrl.replaceFirst(Constants.STR_SCOPE, Constants.STR_SNSAPI_USERINFO);
         tmpUrl = tmpUrl.replaceFirst(Constants.STR_STATE, "123");
         tmpUrl = Constants.STR_REDIRECT_COLON + tmpUrl;
-
+        logger.info(tmpUrl);
         return tmpUrl;
     }
 
