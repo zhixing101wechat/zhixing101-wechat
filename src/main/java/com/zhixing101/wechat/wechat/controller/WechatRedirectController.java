@@ -53,7 +53,9 @@ public class WechatRedirectController {
     }
 
     @RequestMapping(value = "getLoc", method = RequestMethod.GET)
-    public String getLoc(@RequestParam("code") String code, @RequestParam("state") String state) {
+    public String getLoc(@RequestParam("code") String code, @RequestParam("state") String state, HttpServletRequest request) {
+        
+        logger.info(request.getRequestURL() + request.getQueryString());
         logger.info(code);
         logger.info(state);
         return "getLoc";
