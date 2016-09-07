@@ -39,9 +39,13 @@ wx.ready(function () {
 wx.error(function (res) {
       alert(res.errMsg);
 });
+function showHref()
+{
+	alert(location.href);
+}
 </script>
 <span class="desc">获取地理位置接口</span>
 <button id="getLocation">getLocation</button>
-alert(location.href);
+<button onclick="showHref()">showHref</button>
 </body>
 </html>
