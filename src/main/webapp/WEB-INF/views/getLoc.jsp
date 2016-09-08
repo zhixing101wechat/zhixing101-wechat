@@ -20,7 +20,7 @@ body{height:100%;margin:0px;padding:0px}
 <input id="signature" type="hidden" value="${signature }" />
 <div id="container"></div>
 <script type="text/javascript">
-var map = new BMap.Map("container");          // 创建地图实例
+// var map = new BMap.Map("container");          // 创建地图实例
 // var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
 // map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
 var latitudeWgs84;
@@ -56,9 +56,43 @@ var longitudeWgs84;
 
  					//alert(JSON.stringify(res));
 					
-					var point = new BMap.Point(parseFloat(longitudeWgs84), parseFloat(latitudeWgs84));  // 创建点坐标
-					map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
- 					
+// 					var pointWgs84 = new BMap.Point(parseFloat(longitudeWgs84), parseFloat(latitudeWgs84));  // 创建点坐标
+// 					map.centerAndZoom(pointWgs84, 15);                 // 初始化地图，设置中心点坐标和地图级别
+
+				    // 百度地图API功能
+				    //GPS坐标
+				    var x = parseFloat(longitudeWgs84);
+				    var y = parseFloat(latitudeWgs84);
+				    var ggPoint = new BMap.Point(x,y);
+
+				    //地图初始化
+				    var bm = new BMap.Map("container");
+				    bm.centerAndZoom(ggPoint, 15);
+				    bm.addControl(new BMap.NavigationControl());
+
+				    //添加gps marker和label
+				    var markergg = new BMap.Marker(ggPoint);
+				    bm.addOverlay(markergg); //添加GPS marker
+				    var labelgg = new BMap.Label("未转换的GPS坐标（错误）",{offset:new BMap.Size(20,-10)});
+				    markergg.setLabel(labelgg); //添加GPS label
+
+				    //坐标转换完之后的回调函数
+				    translateCallback = function (data){
+				      if(data.status === 0) {
+				        var marker = new BMap.Marker(data.points[0]);
+				        bm.addOverlay(marker);
+				        var label = new BMap.Label("转换后的百度坐标（正确）",{offset:new BMap.Size(20,-10)});
+				        marker.setLabel(label); //添加百度label
+				        bm.setCenter(data.points[0]);
+				      }
+				    }
+
+				    setTimeout(function(){
+				        var convertor = new BMap.Convertor();
+				        var pointArr = [];
+				        pointArr.push(ggPoint);
+				        convertor.translate(pointArr, 1, 5, translateCallback)
+				    }, 1000);
 				},
 				cancel : function(res) {
 					alert('用户拒绝授权获取地理位置');
