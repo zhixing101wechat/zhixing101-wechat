@@ -10,6 +10,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 <script>
+	$(document).ready(function() {
 		var appIdValue = document.getElementById("appId").value;
 		var noncestrValue = document.getElementById("noncestr").value;
 		var timestampValue = document.getElementById("timestamp").value;
@@ -51,6 +52,7 @@ pageEncoding="UTF-8"%>
 		// 			alert(res.errMsg);
 		// 		});
 
+	});
 </script>
 <input id="appId" type="hidden" value="${appId }" />
 <input id="noncestr" type="hidden" value="${noncestr }" />
