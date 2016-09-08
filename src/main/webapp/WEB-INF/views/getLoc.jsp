@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%>
 					latitudeWgs84 = res.latitude;
 					longitudeWgs84 = res.longitude;
 
-//					alert(JSON.stringify(res));
+					alert(JSON.stringify(res));
 				},
 				cancel : function(res) {
 					alert('用户拒绝授权获取地理位置');
@@ -60,18 +60,21 @@ pageEncoding="UTF-8"%>
 <input id="signature" type="hidden" value="${signature }" />
 <div id="container"></div>
 <script type="text/javascript">
-var gpsPoint = new BMap.Point(longitudeWgs84,latitudeWgs84);
+var map = new BMap.Map("container");          // 创建地图实例
+var point = new BMap.Point(longitudeWgs84, latitudeWgs84);  // 创建点坐标
+map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+// var gpsPoint = new BMap.Point(longitudeWgs84,latitudeWgs84);
 
-setTimeout(function(){
-    BMap.Convertor.translate(gpsPoint,0,translateCallback);     //真实经纬度转成百度坐标
-}, 10);
+// setTimeout(function(){
+//     BMap.Convertor.translate(gpsPoint,0,translateCallback);     //真实经纬度转成百度坐标
+// }, 10);
 
-//坐标转换完之后的回调函数
-translateCallback = function (point){
-    var map = new BMap.Map("container");          // 创建地图实例
-    var point = new BMap.Point(point.lng, point.lat);  // 创建点坐标
-    map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
-}
+// //坐标转换完之后的回调函数
+// translateCallback = function (point){
+//     var map = new BMap.Map("container");          // 创建地图实例
+//     var point = new BMap.Point(point.lng, point.lat);  // 创建点坐标
+//     map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+// }
 </script>
 </body>
 </html>
