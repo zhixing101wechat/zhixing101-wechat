@@ -7,6 +7,11 @@ pageEncoding="UTF-8"%>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <title>获取地理位置</title>
+<style type="text/css">
+html{height:100%}
+body{height:100%;margin:0px;padding:0px}
+#container{height:100%}
+</style>
 </head>
 <body>
 <script type="text/javascript">
