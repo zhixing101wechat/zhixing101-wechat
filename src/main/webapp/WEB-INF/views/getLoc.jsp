@@ -19,7 +19,7 @@ pageEncoding="UTF-8"%>
 		var longitudeWgs84;
 
 		wx.config({
-			debug : true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+			debug : false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
 			appId : appIdValue, // 必填，公众号的唯一标识
 			timestamp : timestampValue, // 必填，生成签名的时间戳
 			nonceStr : noncestrValue, // 必填，生成签名的随机串
@@ -52,24 +52,27 @@ pageEncoding="UTF-8"%>
 		// 			alert(res.errMsg);
 		// 		});
 
-		// 创建地图实例
-		var map = new BMap.Map("container");
-		// 创建点坐标
-		var gpsPointWgs84 = new BMap.Point(longitudeWgs84, latitudeWgs84);
+// 		// 创建地图实例
+// 		var map = new BMap.Map("container");
+// 		// 创建点坐标
+// 		var gpsPointWgs84 = new BMap.Point(longitudeWgs84, latitudeWgs84);
 
-		//坐标转换完之后的回调函数
-		translateCallback = function(point) {
-			// 创建点坐标
-			var point = new BMap.Point(point.lng, point.lat);
-			// 初始化地图，设置中心点坐标和地图级别
-			map.centerAndZoom(point, 15);
-		}
+// 		//坐标转换完之后的回调函数
+// 		translateCallback = function(point) {
+// 			// 创建点坐标
+// 			var point = new BMap.Point(point.lng, point.lat);
+// 			// 初始化地图，设置中心点坐标和地图级别
+// 			map.centerAndZoom(point, 15);
+// 		}
 
-		setTimeout(function() {
-			//真实经纬度转成百度坐标
-			BMap.Convertor.translate(gpsPointWgs84, 0, translateCallback);
-		}, 500);
+// 		setTimeout(function() {
+// 			//真实经纬度转成百度坐标
+// 			BMap.Convertor.translate(gpsPointWgs84, 0, translateCallback);
+// 		}, 500);
 
+var map = new BMap.Map("container");          // 创建地图实例
+var point = new BMap.Point(longitudeWgs84, latitudeWgs84);  // 创建点坐标
+map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
 	});
 	
 </script>
