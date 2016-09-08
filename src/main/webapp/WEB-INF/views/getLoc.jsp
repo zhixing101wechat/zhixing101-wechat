@@ -26,8 +26,6 @@ $(document).ready(function(){
 	});
 	
 	wx.ready(function () {
-		  // 7.2 获取当前地理位置
-		  document.querySelector('#getLocation').onclick = function () {
 		    wx.getLocation({
 		      success: function (res) {
 		        alert(JSON.stringify(res));
@@ -36,7 +34,6 @@ $(document).ready(function(){
 		        alert('用户拒绝授权获取地理位置');
 		      }
 		    });
-		  };
 	});
 
 	wx.error(function (res) {
@@ -50,6 +47,5 @@ $(document).ready(function(){
 <input id="noncestr" type="hidden" value="${noncestr }"/>
 <input id="timestamp" type="hidden" value="${timestamp }"/>
 <input id="signature" type="hidden" value="${signature }"/>
-<button id="getLocation">getLocation</button>
 </body>
 </html>
