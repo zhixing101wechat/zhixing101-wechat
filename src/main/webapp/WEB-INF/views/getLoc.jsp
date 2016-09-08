@@ -70,7 +70,7 @@ var longitudeWgs84;
 // 		// 			alert(res.errMsg);
 // 		// 		});
 
-// 	});
+ 	});
 </script>
 </body>
 </html>
