@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <%@ include file="common.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -10,42 +10,68 @@
 </head>
 <body>
 <script>
-$(document).ready(function(){
-	var appIdValue = document.getElementById("appId").value;
-	var noncestrValue = document.getElementById("noncestr").value;
-	var timestampValue = document.getElementById("timestamp").value;
-	var signatureValue = document.getElementById("signature").value;
-	
-	wx.config({
-	    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-	    appId: appIdValue, // 必填，公众号的唯一标识
-	    timestamp: timestampValue, // 必填，生成签名的时间戳
-	    nonceStr: noncestrValue, // 必填，生成签名的随机串
-	    signature: signatureValue,// 必填，签名，见附录1
-	    jsApiList: ['getLocation'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-	});
-	
-	wx.ready(function () {
-		    wx.getLocation({
-		      success: function (res) {
-		        alert(JSON.stringify(res));
-		      },
-		      cancel: function (res) {
-		        alert('用户拒绝授权获取地理位置');
-		      }
-		    });
-	});
+	$(document).ready(function() {
+		var appIdValue = document.getElementById("appId").value;
+		var noncestrValue = document.getElementById("noncestr").value;
+		var timestampValue = document.getElementById("timestamp").value;
+		var signatureValue = document.getElementById("signature").value;
+		var latitudeWgs84;
+		var longitudeWgs84;
 
-	wx.error(function (res) {
-	      alert(res.errMsg);
+		wx.config({
+			debug : true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+			appId : appIdValue, // 必填，公众号的唯一标识
+			timestamp : timestampValue, // 必填，生成签名的时间戳
+			nonceStr : noncestrValue, // 必填，生成签名的随机串
+			signature : signatureValue,// 必填，签名，见附录1
+			jsApiList : [ 'getLocation' ]
+		// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+		});
+
+		wx.ready(function() {
+			wx.getLocation({
+				type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+				success : function(res) {
+					var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+					var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180
+					var speed = res.speed; // 速度，以米/每秒计
+					var accuracy = res.accuracy; // 位置精度
+
+					latitudeWgs84 = res.latitude;
+					longitudeWgs84 = res.longitude;
+
+					alert(JSON.stringify(res));
+				},
+				cancel : function(res) {
+					alert('用户拒绝授权获取地理位置');
+				}
+			});
+		});
+
+		// 		wx.error(function(res) {
+		// 			alert(res.errMsg);
+		// 		});
+
 	});
-
-});
-
 </script>
-<input id="appId" type="hidden" value="${appId }"/>
-<input id="noncestr" type="hidden" value="${noncestr }"/>
-<input id="timestamp" type="hidden" value="${timestamp }"/>
-<input id="signature" type="hidden" value="${signature }"/>
+<input id="appId" type="hidden" value="${appId }" />
+<input id="noncestr" type="hidden" value="${noncestr }" />
+<input id="timestamp" type="hidden" value="${timestamp }" />
+<input id="signature" type="hidden" value="${signature }" />
+<div id="container"></div>
+<script type="text/javascript">
+var gpsPoint = new BMap.Point(longitudeWgs84,latitudeWgs84);
+
+setTimeout(function(){
+    BMap.Convertor.translate(gpsPoint,0,translateCallback);     //真实经纬度转成百度坐标
+}, 2000);
+
+//坐标转换完之后的回调函数
+translateCallback = function (point){
+    var map = new BMap.Map("container");          // 创建地图实例
+    var point = new BMap.Point(point.lng, point.lat);  // 创建点坐标
+    map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+}
+</script>
 </body>
 </html>
