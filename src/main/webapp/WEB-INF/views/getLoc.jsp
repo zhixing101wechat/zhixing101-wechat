@@ -10,13 +10,17 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 <script>
+var map = new BMap.Map("container");          // 创建地图实例
+var point = new BMap.Point(116.404, 39.915);  // 创建点坐标
+map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+var latitudeWgs84;
+var longitudeWgs84;
+
 	$(document).ready(function() {
 		var appIdValue = document.getElementById("appId").value;
 		var noncestrValue = document.getElementById("noncestr").value;
 		var timestampValue = document.getElementById("timestamp").value;
 		var signatureValue = document.getElementById("signature").value;
-		var latitudeWgs84;
-		var longitudeWgs84;
 
 		wx.config({
 			debug : false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -41,10 +45,7 @@ pageEncoding="UTF-8"%>
 					longitudeWgs84 = res.longitude;
 
  					//alert(JSON.stringify(res));
-
- 					var map = new BMap.Map("container");          // 创建地图实例
- 					var point = new BMap.Point(parseFloat(longitudeWgs84), parseFloat(latitudeWgs84));  // 创建点坐标
- 					map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
+					map.panTo(new BMap.Point(parseFloat(longitudeWgs84), parseFloat(latitudeWgs84)));
  					
 				},
 				cancel : function(res) {
