@@ -21,11 +21,11 @@
 			<ref bean="wechatTarget" /><!--执行详情task为上面那个配置的bean -->
 		</property>
 		<property name="startDelay"><!--开始延时时间 -->
-			<value>100</value>
+			<value>100</value><!--从0.1ms开始 -->
 		</property>
 		<property name="repeatInterval">
 			<!-- 轮询时间间隔 -->
-			<value>300000</value>
+			<value>7000000</value><!--每7000s执行一次 -->
 		</property>
 	</bean>
 
