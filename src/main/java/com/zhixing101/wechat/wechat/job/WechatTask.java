@@ -3,6 +3,7 @@ package com.zhixing101.wechat.wechat.job;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -38,68 +39,61 @@ public class WechatTask {
     @Value("#{configProperties['weixin.accessTokenRequestUrl']}")
     private String accessTokenRequestUrl;
 
-    public void executeTask() {
+    public void executeTask() throws Exception {
 
         // 获取access_token
-        GetAccessToken getAccessToken = new GetAccessToken();
-        taskExecutor.execute(getAccessToken);
-
+        getAccessToken();
     }
 
-    class GetAccessToken implements Runnable {
+    public void getAccessToken() throws Exception {
+        // 修改appId,appSecret
+        String requestUrl = new String(accessTokenRequestUrl);
+        requestUrl = requestUrl.replaceFirst("APPID", appId);
+        requestUrl = requestUrl.replaceFirst("APPSECRET", appSecret);
 
-        public void run() {
-            // 修改appId,appSecret
-            String requestUrl = new String(accessTokenRequestUrl);
-            requestUrl = requestUrl.replaceFirst("APPID", appId);
-            requestUrl = requestUrl.replaceFirst("APPSECRET", appSecret);
+        logger.info("------------------------------------------------------");
+        logger.info("get access_token url: " + requestUrl);
 
-            try {
-                logger.info("------------------------------------------------------");
-                logger.info("get access_token url: " + requestUrl);
-                // 建立连接
-                URL url = new URL(requestUrl);
-                HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
+        // 建立连接
+        URL url = new URL(requestUrl);
+        HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
 
-                // 创建SSLContext对象，并使用我们指定的信任管理器初始化
-                TrustManager[] tm = { new MyX509TrustManager() };
-                SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
-                sslContext.init(null, tm, new java.security.SecureRandom());
+        // 创建SSLContext对象，并使用我们指定的信任管理器初始化
+        TrustManager[] tm = { new MyX509TrustManager() };
+        SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
+        sslContext.init(null, tm, new java.security.SecureRandom());
 
-                // 从上述SSLContext对象中得到SSLSocketFactory对象
-                SSLSocketFactory ssf = sslContext.getSocketFactory();
+        // 从上述SSLContext对象中得到SSLSocketFactory对象
+        SSLSocketFactory ssf = sslContext.getSocketFactory();
 
-                httpUrlConn.setSSLSocketFactory(ssf);
-                httpUrlConn.setDoOutput(true);
-                httpUrlConn.setDoInput(true);
+        httpUrlConn.setSSLSocketFactory(ssf);
+        httpUrlConn.setDoOutput(true);
+        httpUrlConn.setDoInput(true);
 
-                // 设置请求方式（GET/POST）
-                httpUrlConn.setRequestMethod("GET");
+        // 设置请求方式（GET/POST）
+        httpUrlConn.setRequestMethod("GET");
 
-                // 取得输入流
-                InputStream inputStream = httpUrlConn.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Constants.STR_ENCODING_UTF_8);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        // 取得输入流
+        InputStream inputStream = httpUrlConn.getInputStream();
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Constants.STR_ENCODING_UTF_8);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-                // 读取响应内容
-                StringBuffer buffer = new StringBuffer();
-                String str = null;
-                while ((str = bufferedReader.readLine()) != null) {
-                    buffer.append(str);
-                }
-                bufferedReader.close();
-                inputStreamReader.close();
-
-                // 释放资源
-                inputStream.close();
-                httpUrlConn.disconnect();
-
-                // 输出返回结果
-                logger.info("get access_token : " + buffer.toString());
-                logger.info("------------------------------------------------------");
-            } catch (Exception e) {
-                logger.error(e.getMessage());
-            }
+        // 读取响应内容
+        StringBuffer buffer = new StringBuffer();
+        String str = null;
+        while ((str = bufferedReader.readLine()) != null) {
+            buffer.append(str);
         }
+        bufferedReader.close();
+        inputStreamReader.close();
+
+        // 释放资源
+        inputStream.close();
+        httpUrlConn.disconnect();
+
+        // 输出返回结果
+        logger.info("get access_token : " + buffer.toString());
+        logger.info("------------------------------------------------------");
     }
+
 }
