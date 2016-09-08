@@ -1,18 +1,10 @@
 package com.zhixing101.wechat.wechat.common;
 
-import org.apache.log4j.Logger;
-
 /**
  * 常量类
  * 
  */
 public class Constants {
-
-    /**
-     * 日志记录器
-     * 
-     */
-    private static Logger logger = Logger.getLogger(Constants.class);
 
     /**
      * 空字符串
@@ -158,33 +150,5 @@ public class Constants {
      * %2A
      */
     public static final String STR_PER_CENT_TWO_A = "%2A";
-
-    /**
-     * access_token
-     */
-    private static String access_token;
-
-    /**
-     * jsapi_ticket
-     */
-    private static String jsapi_ticket;
-
-    public static String getAccess_token() {
-        return access_token;
-    }
-
-    public static void setAccess_token(String access_token) {
-        Constants.access_token = access_token;
-        logger.info("access_token is set to : " + Constants.access_token);
-    }
-
-    public static String getJsapi_ticket() {
-        return jsapi_ticket;
-    }
-
-    public static void setJsapi_ticket(String jsapi_ticket) {
-        Constants.jsapi_ticket = jsapi_ticket;
-        logger.info("jsapi_ticket is set to : " + Constants.jsapi_ticket);
-    }
 
 }

@@ -16,7 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.zhixing101.wechat.wechat.common.Constants;
+import com.zhixing101.wechat.wechat.token.TokenCache;
 import com.zhixing101.wechat.wechat.util.MyX509TrustManager;
 
 /**
@@ -28,6 +31,9 @@ public class WechatTask {
 
     @Autowired
     ThreadPoolTaskExecutor taskExecutor;
+
+    @Autowired
+    TokenCache tokenCache;
 
     @Value("#{configProperties['weixin.appId']}")
     private String appId;
@@ -42,7 +48,6 @@ public class WechatTask {
 
         // 获取access_token
         GetAccessToken getAccessToken = new GetAccessToken();
-        logger.info("GetAccessToken Job runs!!!");
         taskExecutor.execute(getAccessToken);
 
     }
@@ -57,8 +62,6 @@ public class WechatTask {
             requestUrl = requestUrl.replaceFirst("APPSECRET", appSecret);
 
             try {
-                logger.info("get access_token url: " + requestUrl);
-
                 // 建立连接
                 URL url = new URL(requestUrl);
                 HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
@@ -97,7 +100,9 @@ public class WechatTask {
                 httpUrlConn.disconnect();
 
                 // 输出返回结果
-                logger.info("get access_token : " + buffer.toString());
+                JSONObject obj = JSON.parseObject(buffer.toString());
+                String accessToken = obj.getString("access_token");
+                tokenCache.setAccess_token(accessToken);
             } catch (Exception e) {
                 logger.error(e.getMessage());
             }

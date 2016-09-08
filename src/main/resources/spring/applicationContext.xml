@@ -63,4 +63,6 @@
   <!-- 缓存 -->
   <!--<import resource="applicationContext_redis.xml"/>-->
 
+  <!-- token缓存 -->
+  <bean id="tokenCache" class="com.zhixing101.wechat.wechat.token.TokenCache" scope="singleton"/>
 </beans>

@@ -51,84 +51,83 @@
   </properties>
 
   <dependencies>
-    <!-- spring-core -->
+
+    <!-- spring start -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-context -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-beans -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-web -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-webmvc -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-oxm -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-oxm</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-orm -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-tx -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-jdbc -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-aop -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-aop</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-context-support -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- spring-test -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- mybatis -->
+    <!-- spring end -->
+
+    <!-- mybatis start -->
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
       <version>${mybatis.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>${mybatis.spring.version}</version>
+    </dependency>
+    <!-- mybatis end -->
+
     <!-- mysql-connector-java -->
     <dependency>
       <groupId>mysql</groupId>
@@ -141,12 +140,7 @@
       <artifactId>druid</artifactId>
       <version>${druid.version}</version>
     </dependency>
-    <!-- mybatis-spring -->
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis-spring</artifactId>
-      <version>${mybatis.spring.version}</version>
-    </dependency>
+
     <!-- jstl -->
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -171,13 +165,14 @@
       <artifactId>slf4j-nop</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
-    <!-- fastjson -->
+
+    <!-- json start -->
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
       <version>${fastjson.version}</version>
     </dependency>
-
+    <!-- json end -->
 
     <!-- commoms start -->
     <dependency>
@@ -219,18 +214,20 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- servlet start -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>servlet-api</artifactId>
       <version>2.5</version>
     </dependency>
-
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>jsp-api</artifactId>
       <version>2.1</version>
       <scope>provided</scope>
     </dependency>
+    <!-- servlet end -->
 
     <dependency>
       <groupId>jstl</groupId>
