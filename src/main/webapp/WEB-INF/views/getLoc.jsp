@@ -10,7 +10,6 @@ pageEncoding="UTF-8"%>
 </head>
 <body>
 <script>
-	$(document).ready(function() {
 		var appIdValue = document.getElementById("appId").value;
 		var noncestrValue = document.getElementById("noncestr").value;
 		var timestampValue = document.getElementById("timestamp").value;
@@ -40,7 +39,7 @@ pageEncoding="UTF-8"%>
 					latitudeWgs84 = res.latitude;
 					longitudeWgs84 = res.longitude;
 
-// 					alert(JSON.stringify(res));
+ 					alert(JSON.stringify(res));
 				},
 				cancel : function(res) {
 					alert('用户拒绝授权获取地理位置');
@@ -52,29 +51,6 @@ pageEncoding="UTF-8"%>
 		// 			alert(res.errMsg);
 		// 		});
 
-// 		// 创建地图实例
-// 		var map = new BMap.Map("container");
-// 		// 创建点坐标
-// 		var gpsPointWgs84 = new BMap.Point(longitudeWgs84, latitudeWgs84);
-
-// 		//坐标转换完之后的回调函数
-// 		translateCallback = function(point) {
-// 			// 创建点坐标
-// 			var point = new BMap.Point(point.lng, point.lat);
-// 			// 初始化地图，设置中心点坐标和地图级别
-// 			map.centerAndZoom(point, 15);
-// 		}
-
-// 		setTimeout(function() {
-// 			//真实经纬度转成百度坐标
-// 			BMap.Convertor.translate(gpsPointWgs84, 0, translateCallback);
-// 		}, 500);
-
-var map = new BMap.Map("container");          // 创建地图实例
-var point = new BMap.Point(parseFloat(longitudeWgs84), parseFloat(latitudeWgs84));  // 创建点坐标
-map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
-	});
-	
 </script>
 <input id="appId" type="hidden" value="${appId }" />
 <input id="noncestr" type="hidden" value="${noncestr }" />
