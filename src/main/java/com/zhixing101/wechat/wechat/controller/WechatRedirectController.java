@@ -71,7 +71,7 @@ public class WechatRedirectController {
 
         logger.info("url = " + url);
         logger.info("noncestr = " + noncestr);
-        logger.info("jsapi_ticket" + jsapi_ticket);
+        logger.info("jsapi_ticket = " + jsapi_ticket);
         logger.info("timestamp = " + timestamp);
         logger.info("signature = " + signature);
 
