@@ -55,6 +55,8 @@ public class WechatTask {
             requestUrl = requestUrl.replaceFirst("APPSECRET", appSecret);
 
             try {
+                logger.info("------------------------------------------------------");
+                logger.info("get access_token url: " + requestUrl);
                 // 建立连接
                 URL url = new URL(requestUrl);
                 HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
@@ -94,6 +96,7 @@ public class WechatTask {
 
                 // 输出返回结果
                 logger.info("get access_token : " + buffer.toString());
+                logger.info("------------------------------------------------------");
             } catch (Exception e) {
                 logger.error(e.getMessage());
             }
