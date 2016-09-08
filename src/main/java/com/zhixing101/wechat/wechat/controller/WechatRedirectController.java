@@ -6,12 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.zhixing101.wechat.wechat.token.TokenCache;
 import com.zhixing101.wechat.wechat.util.JsSdkUtil;
 
 /**
@@ -26,6 +28,9 @@ public class WechatRedirectController {
      * 
      */
     private Logger logger = Logger.getLogger(WechatRedirectController.class);
+
+    @Autowired
+    TokenCache tokenCache;
 
     @Value("#{configProperties['weixin.rootUrl']}")
     private String rootUrl;
@@ -59,7 +64,8 @@ public class WechatRedirectController {
 
         String url = rootUrl + "/getLoc?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
-        String jsapi_ticket = "kgt8ON7yVITDhtdwci0qeZPRzKNUOwbX6lWlJbLh5kgxRhwFbAA1egtFHDyyV3mEV6YmlIQzHACOT69GqMe4Lw";
+        String jsapi_ticket = tokenCache.getJsapi_ticket();
+//        System.out.println("@getLoc jsapi_ticket : " + jsapi_ticket);
         String timestamp = String.valueOf(System.currentTimeMillis());
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
 
