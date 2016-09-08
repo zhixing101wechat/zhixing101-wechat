@@ -50,6 +50,6 @@ $(document).ready(function(){
 <input id="noncestr" type="hidden" value="${noncestr }"/>
 <input id="timestamp" type="hidden" value="${timestamp }"/>
 <input id="signature" type="hidden" value="${signature }"/>
-<button class="btn btn_primary" id="getLocation">getLocation</button>
+<button id="getLocation">getLocation</button>
 </body>
 </html>
