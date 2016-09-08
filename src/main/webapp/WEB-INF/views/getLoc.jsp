@@ -30,7 +30,7 @@ pageEncoding="UTF-8"%>
 
 		wx.ready(function() {
 			wx.getLocation({
-				type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+				type : 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
 				success : function(res) {
 					var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
 					var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180
@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%>
 					latitudeWgs84 = res.latitude;
 					longitudeWgs84 = res.longitude;
 
-					alert(JSON.stringify(res));
+// 					alert(JSON.stringify(res));
 				},
 				cancel : function(res) {
 					alert('用户拒绝授权获取地理位置');
@@ -52,29 +52,31 @@ pageEncoding="UTF-8"%>
 		// 			alert(res.errMsg);
 		// 		});
 
+		// 创建地图实例
+		var map = new BMap.Map("container");
+		// 创建点坐标
+		var gpsPointWgs84 = new BMap.Point(longitudeWgs84, latitudeWgs84);
+
+		//坐标转换完之后的回调函数
+		translateCallback = function(point) {
+			// 创建点坐标
+			var point = new BMap.Point(point.lng, point.lat);
+			// 初始化地图，设置中心点坐标和地图级别
+			map.centerAndZoom(point, 15);
+		}
+
+		setTimeout(function() {
+			//真实经纬度转成百度坐标
+			BMap.Convertor.translate(gpsPointWgs84, 0, translateCallback);
+		}, 500);
+
 	});
+	
 </script>
 <input id="appId" type="hidden" value="${appId }" />
 <input id="noncestr" type="hidden" value="${noncestr }" />
 <input id="timestamp" type="hidden" value="${timestamp }" />
 <input id="signature" type="hidden" value="${signature }" />
 <div id="container"></div>
-<script type="text/javascript">
-var map = new BMap.Map("container");          // 创建地图实例
-var point = new BMap.Point(longitudeWgs84, latitudeWgs84);  // 创建点坐标
-map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
-// var gpsPoint = new BMap.Point(longitudeWgs84,latitudeWgs84);
-
-// setTimeout(function(){
-//     BMap.Convertor.translate(gpsPoint,0,translateCallback);     //真实经纬度转成百度坐标
-// }, 10);
-
-// //坐标转换完之后的回调函数
-// translateCallback = function (point){
-//     var map = new BMap.Map("container");          // 创建地图实例
-//     var point = new BMap.Point(point.lng, point.lat);  // 创建点坐标
-//     map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别
-// }
-</script>
 </body>
 </html>
