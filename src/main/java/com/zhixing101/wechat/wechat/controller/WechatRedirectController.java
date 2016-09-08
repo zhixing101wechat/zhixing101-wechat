@@ -65,15 +65,15 @@ public class WechatRedirectController {
         String url = rootUrl + "/getLoc?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
         String jsapi_ticket = tokenCache.getJsapi_ticket();
-//        System.out.println("@getLoc jsapi_ticket : " + jsapi_ticket);
+        System.out.println("@getLoc jsapi_ticket : " + jsapi_ticket);
         String timestamp = String.valueOf(System.currentTimeMillis());
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
 
-        logger.info(url);
-        logger.info(noncestr);
-        logger.info(jsapi_ticket);
-        logger.info(timestamp);
-        logger.info(signature);
+        logger.info("url = " + url);
+        logger.info("noncestr = " + noncestr);
+        logger.info("jsapi_ticket" + jsapi_ticket);
+        logger.info("timestamp = " + timestamp);
+        logger.info("signature = " + signature);
 
         model.addAttribute("appId", appId);
         model.addAttribute("noncestr", noncestr);
