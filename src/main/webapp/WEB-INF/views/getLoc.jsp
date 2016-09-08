@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%>
 					latitudeWgs84 = res.latitude;
 					longitudeWgs84 = res.longitude;
 
-					alert(JSON.stringify(res));
+//					alert(JSON.stringify(res));
 				},
 				cancel : function(res) {
 					alert('用户拒绝授权获取地理位置');
