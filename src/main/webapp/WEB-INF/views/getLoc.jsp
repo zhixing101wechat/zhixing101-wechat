@@ -64,7 +64,7 @@ var gpsPoint = new BMap.Point(longitudeWgs84,latitudeWgs84);
 
 setTimeout(function(){
     BMap.Convertor.translate(gpsPoint,0,translateCallback);     //真实经纬度转成百度坐标
-}, 2000);
+}, 10);
 
 //坐标转换完之后的回调函数
 translateCallback = function (point){
