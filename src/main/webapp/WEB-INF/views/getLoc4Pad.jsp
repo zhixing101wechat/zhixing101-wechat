@@ -96,6 +96,9 @@ var longitudeWgs84;
 				},
 				cancel : function(res) {
 					alert('用户拒绝授权获取地理位置');
+				},
+				fail : function(res) {
+					alert(res);
 				}
 			});
 		});
