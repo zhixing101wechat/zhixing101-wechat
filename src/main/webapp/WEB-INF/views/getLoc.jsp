@@ -92,7 +92,7 @@ var longitudeWgs84;
 				        var pointArr = [];
 				        pointArr.push(ggPoint);
 				        convertor.translate(pointArr, 1, 5, translateCallback)
-				    }, 1000);
+				    }, 0);
 				},
 				cancel : function(res) {
 					alert('用户拒绝授权获取地理位置');
