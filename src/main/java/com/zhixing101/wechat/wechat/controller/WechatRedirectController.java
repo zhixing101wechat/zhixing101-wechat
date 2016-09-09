@@ -82,4 +82,28 @@ public class WechatRedirectController {
 
         return "getLoc";
     }
+
+    @RequestMapping(value = "getLoc4Pad", method = RequestMethod.GET)
+    public String getLoc4Pad(Model model, HttpServletRequest request) {
+
+        String url = rootUrl + "/getLoc?" + request.getQueryString();
+        String noncestr = UUID.randomUUID().toString();
+        String jsapi_ticket = tokenCache.getJsapi_ticket();
+//        System.out.println("@getLoc jsapi_ticket : " + jsapi_ticket);
+        String timestamp = Long.toString(System.currentTimeMillis() / 1000);
+        String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
+
+        logger.info("url = " + url);
+        logger.info("noncestr = " + noncestr);
+        logger.info("jsapi_ticket = " + jsapi_ticket);
+        logger.info("timestamp = " + timestamp);
+        logger.info("signature = " + signature);
+
+        model.addAttribute("appId", appId);
+        model.addAttribute("noncestr", noncestr);
+        model.addAttribute("timestamp", timestamp);
+        model.addAttribute("signature", signature);
+
+        return "getLoc4Pad";
+    }
 }

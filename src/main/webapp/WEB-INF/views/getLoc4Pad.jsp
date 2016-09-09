@@ -6,7 +6,7 @@ pageEncoding="UTF-8"%>
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<title>获取地理位置</title>
+<title>获取地理位置4Pad</title>
 <style type="text/css">
 html{height:100%}
 body{height:100%;margin:0px;padding:0px}
@@ -54,7 +54,7 @@ var longitudeWgs84;
 					latitudeWgs84 = res.latitude;
 					longitudeWgs84 = res.longitude;
 
- 					//alert(JSON.stringify(res));
+ 					alert(JSON.stringify(res));
 					
 // 					var pointWgs84 = new BMap.Point(parseFloat(longitudeWgs84), parseFloat(latitudeWgs84));  // 创建点坐标
 // 					map.centerAndZoom(pointWgs84, 15);                 // 初始化地图，设置中心点坐标和地图级别
