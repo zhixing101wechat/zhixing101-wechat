@@ -81,7 +81,7 @@ var longitudeWgs84;
 				      if(data.status === 0) {
 				        var marker = new BMap.Marker(data.points[0]);
 				        bm.addOverlay(marker);
-				        var label = new BMap.Label("转换后的百度坐标（正确）",{offset:new BMap.Size(20,-10)});
+				        var label = new BMap.Label("当前位置",{offset:new BMap.Size(20,-10)});
 				        marker.setLabel(label); //添加百度label
 				        bm.setCenter(data.points[0]);
 				      }
