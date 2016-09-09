@@ -86,7 +86,7 @@ public class WechatRedirectController {
     @RequestMapping(value = "getLoc4Pad", method = RequestMethod.GET)
     public String getLoc4Pad(Model model, HttpServletRequest request) {
 
-        String url = rootUrl + "/getLoc?" + request.getQueryString();
+        String url = rootUrl + "/getLoc4Pad?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
         String jsapi_ticket = tokenCache.getJsapi_ticket();
 //        System.out.println("@getLoc jsapi_ticket : " + jsapi_ticket);
