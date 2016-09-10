@@ -117,7 +117,7 @@ $(document).ready(function() {
                 	};
                 	var localSearch = new BMap.LocalSearch(map, options);
                 	map.addEventListener("load", function() {
-                		var circle = new BMap.Circle(point, new Number(searchBookStoragePlaceRadiusValue), {
+                		var circle = new BMap.Circle(point, 1000, {
                 			fillColor: "blue",
                 			strokeWeight: 1,
                 			fillOpacity: 0.3,
