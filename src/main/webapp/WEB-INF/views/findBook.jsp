@@ -29,12 +29,12 @@ body{height:100%;margin:0px;padding:0px}
 <div id="map_container"></div>
 
 <script type="text/javascript">
-$(document).ready(function() {
-	// wgs84类型GPS坐标-纬度
-	var latitudeWgs84;
-	// wgs84类型GPS坐标-经度
-	var longitudeWgs84;
+// wgs84类型GPS坐标-纬度
+var latitudeWgs84;
+// wgs84类型GPS坐标-经度
+var longitudeWgs84;
 
+$(document).ready(function() {
 	// 从hidden字段获取config接口注入权限验证参数
     var appIdValue = document.getElementById("appId").value;
     var noncestrValue = document.getElementById("noncestr").value;
@@ -43,6 +43,7 @@ $(document).ready(function() {
 
     // 从hidden字段获取图书存放点geotableId
     var bookStoragePlaceGeotableIdValue = document.getElementById("bookStoragePlaceGeotableId").value;
+    alert(bookStoragePlaceGeotableIdValue);
 
     // 通过config接口注入权限验证配置
     wx.config({
@@ -74,7 +75,9 @@ $(document).ready(function() {
                 //alert(JSON.stringify(res));
 
                 // 根据wgs84坐标创建地理坐标点
-                var pointWgs84 = new BMap.Point(parseFloat(longitudeWgs84), parseFloat(latitudeWgs84));
+				    var x = parseFloat(longitudeWgs84);
+				    var y = parseFloat(latitudeWgs84);
+                var pointWgs84 = new BMap.Point(x, y);
 
                 // 创建地图实例
                 var map = new BMap.Map("map_container");
@@ -97,7 +100,7 @@ $(document).ready(function() {
 
                 // 根据databox_id创建自定义图层  
                 var customLayer=new BMap.CustomLayer({
-                    geotableId: parseInt(bookStoragePlaceGeotableIdValue),
+                    geotableId: bookStoragePlaceGeotableIdValue,
                     q: '', // 检索关键字
                     tags: '', // 空格分隔的多字符串
                     filter: '' // 过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
