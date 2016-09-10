@@ -49,7 +49,6 @@ public class WechatRedirectController {
         String url = rootUrl + "/getLoc?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
         String jsapi_ticket = tokenCache.getJsapi_ticket();
-//        System.out.println("@getLoc jsapi_ticket : " + jsapi_ticket);
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
 
@@ -73,7 +72,6 @@ public class WechatRedirectController {
         String url = rootUrl + "/getLoc4Pad?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
         String jsapi_ticket = tokenCache.getJsapi_ticket();
-//        System.out.println("@getLoc jsapi_ticket : " + jsapi_ticket);
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
 

@@ -45,7 +45,7 @@
     <!-- jackson -->
     <jackson.version>1.8.4</jackson.version>
     <!-- httpclient -->
-    <httpclient.version>4.4</httpclient.version>
+    <httpclient.version>4.5.2</httpclient.version>
     <!-- quartz -->
     <quartz.version>2.1.7</quartz.version>
   </properties>
@@ -247,6 +247,13 @@
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
       <version>1.4.9</version>
+    </dependency>
+
+    <!-- httpclient -->
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpclient.version}</version>
     </dependency>
 
   </dependencies>
