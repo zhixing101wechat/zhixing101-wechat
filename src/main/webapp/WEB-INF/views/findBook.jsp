@@ -49,11 +49,11 @@ $(document).ready(function() {
     var noncestrValue = document.getElementById("noncestr").value;
     var timestampValue = document.getElementById("timestamp").value;
     var signatureValue = document.getElementById("signature").value;
-
     // 从hidden字段获取图书存放点geotableId
     bookStoragePlaceGeotableIdValue = document.getElementById("bookStoragePlaceGeotableId").value;
     // 从hidden字段获取检索图书存放点的半径(单位m)
     searchBookStoragePlaceRadiusValue = document.getElementById("searchBookStoragePlaceRadius").value;
+    alert(typeof searchBookStoragePlaceRadiusValue);
 
     // 通过config接口注入权限验证配置
     wx.config({
@@ -111,7 +111,7 @@ $(document).ready(function() {
                 			map: map
                 		},
                 		onSearchComplete: function(results) {
-                			alert('Search Completed');
+//                 			alert('Search Completed');
                 			//可添加自定义回调函数
                 		}
                 	};
