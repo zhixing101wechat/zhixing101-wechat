@@ -116,7 +116,7 @@ $(document).ready(function() {
                 			strokeOpacity: 0.3
                 		});		
                 		map.addOverlay(circle);
-                		localSearch.searchNearby('', point, 5000, {
+                		localSearch.searchNearby('图书馆', point, 5000, {
                 			customData: {
                 				geotableId: bookStoragePlaceGeotableIdValue
                 			}
@@ -150,7 +150,7 @@ $(document).ready(function() {
                 		var radius = parseInt(e.getRadius());
                 		var center = e.getCenter();
                 		drawingManager.close();
-                		localSearch.searchNearby('', center, radius, {
+                		localSearch.searchNearby('图书馆', center, radius, {
                 			customData: {
                 				geotableId: bookStoragePlaceGeotableIdValue
                 			}
