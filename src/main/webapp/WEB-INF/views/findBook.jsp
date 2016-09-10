@@ -43,7 +43,6 @@ $(document).ready(function() {
 
     // 从hidden字段获取图书存放点geotableId
     var bookStoragePlaceGeotableIdValue = document.getElementById("bookStoragePlaceGeotableId").value;
-    alert(bookStoragePlaceGeotableIdValue);
 
     // 通过config接口注入权限验证配置
     wx.config({
@@ -85,7 +84,7 @@ $(document).ready(function() {
                 map.centerAndZoom(pointWgs84, 15);
                 // 向地图添加控件
                 map.addControl(new BMap.NavigationControl());
-                map.addControl(new BMap.ScaleControl());
+                //map.addControl(new BMap.ScaleControl());
 
                 // 坐标转换完之后的回调函数
                 translateCallback = function (data){
@@ -98,16 +97,16 @@ $(document).ready(function() {
                   }
                 }
 
-                // 根据databox_id创建自定义图层  
-                var customLayer=new BMap.CustomLayer({
-                    geotableId: bookStoragePlaceGeotableIdValue,
-                    q: '', // 检索关键字
-                    tags: '', // 空格分隔的多字符串
-                    filter: '' // 过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
-                });
+//                 // 根据databox_id创建自定义图层  
+//                 var customLayer=new BMap.CustomLayer({
+//                     geotableId: bookStoragePlaceGeotableIdValue,
+//                     q: '', // 检索关键字
+//                     tags: '', // 空格分隔的多字符串
+//                     filter: '' // 过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
+//                 });
 
-                // 添加自定义图层
-                map.addTileLayer(customLayer);
+//                 // 添加自定义图层
+//                 map.addTileLayer(customLayer);
 
                 setTimeout(function(){
                     var convertor = new BMap.Convertor();
