@@ -74,9 +74,9 @@ $(document).ready(function() {
                 //alert(JSON.stringify(res));
 
                 // 根据wgs84坐标创建地理坐标点
-				    var x = parseFloat(longitudeWgs84);
-				    var y = parseFloat(latitudeWgs84);
-                var pointWgs84 = new BMap.Point(x, y);
+// 				    var x = parseFloat(longitudeWgs84);
+// 				    var y = parseFloat(latitudeWgs84);
+                var pointWgs84 = new BMap.Point(parseFloat(longitudeWgs84), parseFloat(latitudeWgs84));
 
                 // 创建地图实例
                 var map = new BMap.Map("container");
