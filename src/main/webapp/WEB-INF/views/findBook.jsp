@@ -97,16 +97,16 @@ $(document).ready(function() {
                   }
                 }
 
-//                 // 根据databox_id创建自定义图层  
-//                 var customLayer=new BMap.CustomLayer({
-//                     geotableId: bookStoragePlaceGeotableIdValue,
-//                     q: '', // 检索关键字
-//                     tags: '', // 空格分隔的多字符串
-//                     filter: '' // 过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
-//                 });
+                // 根据databox_id创建自定义图层  
+                var customLayer=new BMap.CustomLayer({
+                    geotableId: bookStoragePlaceGeotableIdValue,
+                    q: '', // 检索关键字
+                    tags: '', // 空格分隔的多字符串
+                    filter: '' // 过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
+                });
 
-//                 // 添加自定义图层
-//                 map.addTileLayer(customLayer);
+                // 添加自定义图层
+                map.addTileLayer(customLayer);
 
                 setTimeout(function(){
                     var convertor = new BMap.Convertor();
