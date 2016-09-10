@@ -53,7 +53,6 @@ $(document).ready(function() {
     bookStoragePlaceGeotableIdValue = document.getElementById("bookStoragePlaceGeotableId").value;
     // 从hidden字段获取检索图书存放点的半径(单位m)
     searchBookStoragePlaceRadiusValue = document.getElementById("searchBookStoragePlaceRadius").value;
-    const searchBookStoragePlaceRadiusValueNumber = parseInt(searchBookStoragePlaceRadiusValue);
 
     // 通过config接口注入权限验证配置
     wx.config({
@@ -117,7 +116,7 @@ $(document).ready(function() {
                 	};
                 	var localSearch = new BMap.LocalSearch(map, options);
                 	map.addEventListener("load", function() {
-                		var circle = new BMap.Circle(point, searchBookStoragePlaceRadiusValueNumber, {
+                		var circle = new BMap.Circle(point, 1000, {
                 			fillColor: "blue",
                 			strokeWeight: 1,
                 			fillOpacity: 0.3,
