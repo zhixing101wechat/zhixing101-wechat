@@ -53,7 +53,7 @@ $(document).ready(function() {
     bookStoragePlaceGeotableIdValue = document.getElementById("bookStoragePlaceGeotableId").value;
     // 从hidden字段获取检索图书存放点的半径(单位m)
     searchBookStoragePlaceRadiusValue = document.getElementById("searchBookStoragePlaceRadius").value;
-	var searchBookStoragePlaceRadiusValueNumber = parseInt(searchBookStoragePlaceRadiusValue);
+    const searchBookStoragePlaceRadiusValueNumber = parseInt(searchBookStoragePlaceRadiusValue);
 
     // 通过config接口注入权限验证配置
     wx.config({
