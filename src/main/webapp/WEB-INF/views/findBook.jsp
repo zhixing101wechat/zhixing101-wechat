@@ -26,7 +26,7 @@ body{height:100%;margin:0px;padding:0px}
 <input id="bookStoragePlaceGeotableId" type="hidden" value="${bookStoragePlaceGeotableId }" />
 
 <%-- 地图容器 --%>
-<div id="map_container"></div>
+<div id="container"></div>
 
 <script type="text/javascript">
 // wgs84类型GPS坐标-纬度
@@ -79,7 +79,7 @@ $(document).ready(function() {
                 var pointWgs84 = new BMap.Point(x, y);
 
                 // 创建地图实例
-                var map = new BMap.Map("map_container");
+                var map = new BMap.Map("container");
                 // 初始化地图，设置中心点坐标和地图级别
                 map.centerAndZoom(pointWgs84, 15);
                 // 向地图添加控件
