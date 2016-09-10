@@ -73,6 +73,8 @@ var longitudeWgs84;
 				        filter: '' //过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
 				    });
 
+				    bm.addTileLayer(customLayer);//添加自定义图层
+
 				    //坐标转换完之后的回调函数
 				    translateCallback = function (data){
 				      if(data.status === 0) {
