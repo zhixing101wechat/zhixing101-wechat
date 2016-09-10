@@ -13,6 +13,9 @@ html{height:100%}
 body{height:100%;margin:0px;padding:0px}
 #container{height:100%}
 </style>
+	<!--加载鼠标绘制工具-->
+	<script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+	<link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
 
 </head>
 <body>
@@ -79,32 +82,94 @@ $(document).ready(function() {
                 // 创建地图实例
                 var map = new BMap.Map("container");
                 // 初始化地图，设置中心点坐标和地图级别
-                map.centerAndZoom(pointWgs84, 15);
+//                 map.centerAndZoom(pointWgs84, 15);
                 // 向地图添加控件
-                map.addControl(new BMap.NavigationControl());
-                map.addControl(new BMap.ScaleControl());
+//                 map.addControl(new BMap.NavigationControl());
 
                 // 坐标转换完之后的回调函数
                 translateCallback = function (data){
                   if(data.status === 0) {
-                    var marker = new BMap.Marker(data.points[0]);
+
+                	var point = data.points[0];
+
+                	var marker = new BMap.Marker(point);
                     map.addOverlay(marker);
                     var label = new BMap.Label("当前位置", {offset:new BMap.Size(20, -10)});
                     marker.setLabel(label);
-                    map.setCenter(data.points[0]);
+                    map.setCenter(point);
+
+                	var options = {
+                		renderOptions: {
+                			map: map
+                		},
+                		onSearchComplete: function(results) {
+                			alert('Search Completed');
+                			//可添加自定义回调函数
+                		}
+                	};
+                	var localSearch = new BMap.LocalSearch(map, options);
+                	map.addEventListener("load", function() {
+                		var circle = new BMap.Circle(point, 5000, {
+                			fillColor: "blue",
+                			strokeWeight: 1,
+                			fillOpacity: 0.3,
+                			strokeOpacity: 0.3
+                		});		
+                		map.addOverlay(circle);
+                		localSearch.searchNearby('', point, 5000, {
+                			customData: {
+                				geotableId: bookStoragePlaceGeotableIdValue
+                			}
+                		});
+                	});
+
+                	// 初始化地图，设置中心点坐标和地图级别
+                	map.centerAndZoom(point, 12);
+                	map.enableScrollWheelZoom();
+                	//添加默认缩放平移控件
+                	map.addControl(new BMap.NavigationControl());
+
+                	var drawingManager = new BMapLib.DrawingManager(map, {
+                		isOpen: false, //是否开启绘制模式
+                		enableDrawingTool: true, //是否显示工具栏
+                		drawingToolOptions: {
+                			anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
+                			offset: new BMap.Size(5, 5), //偏离值
+                			scale: 0.8, //工具栏缩放比例
+                			drawingModes: [
+                				BMAP_DRAWING_CIRCLE
+                			]
+                		}
+                	});
+                	var circle = null;
+                	drawingManager.addEventListener('circlecomplete', function(e, overlay) {
+                	//	circlecomplete
+                	    map.clearOverlays();
+                		circle = e;
+                		map.addOverlay(overlay);		
+                		var radius = parseInt(e.getRadius());
+                		var center = e.getCenter();
+                		drawingManager.close();
+                		localSearch.searchNearby('', center, radius, {
+                			customData: {
+                				geotableId: bookStoragePlaceGeotableIdValue
+                			}
+                		});
+                	});
+
                   }
                 }
 
-                // 根据databox_id创建自定义图层  
-                var customLayer=new BMap.CustomLayer({
-                    geotableId: bookStoragePlaceGeotableIdValue,
-                    q: '', // 检索关键字
-                    tags: '', // 空格分隔的多字符串
-                    filter: '' // 过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
-                });
+//                 // 根据databox_id创建自定义图层  
+//                 var customLayer=new BMap.CustomLayer({
+//                     geotableId: bookStoragePlaceGeotableIdValue,
+//                     q: '', // 检索关键字
+//                     tags: '', // 空格分隔的多字符串
+//                     filter: '' // 过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
+//                 });
 
-                // 添加自定义图层
-                map.addTileLayer(customLayer);
+//                 // 添加自定义图层
+//                 map.addTileLayer(customLayer);
 
                 setTimeout(function(){
                     var convertor = new BMap.Convertor();
