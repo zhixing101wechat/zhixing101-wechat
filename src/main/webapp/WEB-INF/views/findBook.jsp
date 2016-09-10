@@ -116,7 +116,7 @@ $(document).ready(function() {
                 			strokeOpacity: 0.3
                 		});		
                 		map.addOverlay(circle);
-                		localSearch.searchNearby('图书馆', point, 5000, {
+                		localSearch.searchNearby('图书馆', point, 1000, {
                 			customData: {
                 				geotableId: bookStoragePlaceGeotableIdValue
                 			}
