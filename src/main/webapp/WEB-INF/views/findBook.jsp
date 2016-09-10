@@ -27,6 +27,8 @@ body{height:100%;margin:0px;padding:0px}
 <input id="signature" type="hidden" value="${signature }" />
 <%-- 从后台获取图书存放点geotableId --%>
 <input id="bookStoragePlaceGeotableId" type="hidden" value="${bookStoragePlaceGeotableId }" />
+<%-- 从后台获取检索图书存放点的半径(单位m) --%>
+<input id="searchBookStoragePlaceRadius" type="hidden" value="${searchBookStoragePlaceRadius }" />
 
 <%-- 地图容器 --%>
 <div id="container"></div>
@@ -36,6 +38,10 @@ body{height:100%;margin:0px;padding:0px}
 var latitudeWgs84;
 // wgs84类型GPS坐标-经度
 var longitudeWgs84;
+// 图书存放点geotableId
+var bookStoragePlaceGeotableIdValue;
+// 检索图书存放点的半径(单位m)
+var searchBookStoragePlaceRadiusValue;
 
 $(document).ready(function() {
 	// 从hidden字段获取config接口注入权限验证参数
@@ -45,7 +51,9 @@ $(document).ready(function() {
     var signatureValue = document.getElementById("signature").value;
 
     // 从hidden字段获取图书存放点geotableId
-    var bookStoragePlaceGeotableIdValue = document.getElementById("bookStoragePlaceGeotableId").value;
+    bookStoragePlaceGeotableIdValue = document.getElementById("bookStoragePlaceGeotableId").value;
+    // 从hidden字段获取检索图书存放点的半径(单位m)
+    searchBookStoragePlaceRadiusValue = document.getElementById("searchBookStoragePlaceRadius").value;
 
     // 通过config接口注入权限验证配置
     wx.config({
@@ -109,14 +117,14 @@ $(document).ready(function() {
                 	};
                 	var localSearch = new BMap.LocalSearch(map, options);
                 	map.addEventListener("load", function() {
-                		var circle = new BMap.Circle(point, 5000, {
+                		var circle = new BMap.Circle(point, searchBookStoragePlaceRadiusValue, {
                 			fillColor: "blue",
                 			strokeWeight: 1,
                 			fillOpacity: 0.3,
                 			strokeOpacity: 0.3
                 		});		
                 		map.addOverlay(circle);
-                		localSearch.searchNearby('图书馆', point, 1000, {
+                		localSearch.searchNearby('图书馆', point, searchBookStoragePlaceRadiusValue, {
                 			customData: {
                 				geotableId: bookStoragePlaceGeotableIdValue
                 			}
