@@ -3,7 +3,6 @@ package com.zhixing101.wechat.wechat.controller;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +37,9 @@ public class WechatRedirectController {
     @Value("#{configProperties['weixin.appId']}")
     private String appId;
 
+    @Value("#{configProperties['baidu.bookStoragePlaceGeotableId']}")
+    private String bookStoragePlaceGeotableId;
+
     @RequestMapping(value = "findBook", method = RequestMethod.GET)
     public String findBook(Model model, HttpServletRequest request) {
 
@@ -57,6 +59,7 @@ public class WechatRedirectController {
         model.addAttribute("noncestr", noncestr);
         model.addAttribute("timestamp", timestamp);
         model.addAttribute("signature", signature);
+        model.addAttribute("bookStoragePlaceGeotableId", bookStoragePlaceGeotableId);
 
         return "findBook";
     }
