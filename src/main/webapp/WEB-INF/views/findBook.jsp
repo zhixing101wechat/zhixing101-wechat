@@ -74,8 +74,6 @@ $(document).ready(function() {
                 //alert(JSON.stringify(res));
 
                 // 根据wgs84坐标创建地理坐标点
-// 				    var x = parseFloat(longitudeWgs84);
-// 				    var y = parseFloat(latitudeWgs84);
                 var pointWgs84 = new BMap.Point(parseFloat(longitudeWgs84), parseFloat(latitudeWgs84));
 
                 // 创建地图实例
@@ -84,7 +82,7 @@ $(document).ready(function() {
                 map.centerAndZoom(pointWgs84, 15);
                 // 向地图添加控件
                 map.addControl(new BMap.NavigationControl());
-                //map.addControl(new BMap.ScaleControl());
+                map.addControl(new BMap.ScaleControl());
 
                 // 坐标转换完之后的回调函数
                 translateCallback = function (data){
