@@ -9,19 +9,9 @@ pageEncoding="UTF-8"%>
 <title>找书</title>
 
 <style type="text/css">
-html {
-	height: 100%
-}
-
-body {
-	height: 100%;
-	margin: 0px;
-	padding: 0px
-}
-
-#container {
-	height: 100%
-}
+html{height:100%}
+body{height:100%;margin:0px;padding:0px}
+#container{height:100%}
 </style>
 
 </head>
@@ -33,8 +23,7 @@ body {
 <input id="noncestr" type="hidden" value="${noncestr }" />
 <input id="signature" type="hidden" value="${signature }" />
 <%-- 从后台获取图书存放点geotableId --%>
-<input id="bookStoragePlaceGeotableId" type="hidden"
-value="${bookStoragePlaceGeotableId }" />
+<input id="bookStoragePlaceGeotableId" type="hidden" value="${bookStoragePlaceGeotableId }" />
 
 <%-- 地图容器 --%>
 <div id="container"></div>
@@ -87,19 +76,13 @@ $(document).ready(function() {
                 // 根据wgs84坐标创建地理坐标点
                 var pointWgs84 = new BMap.Point(parseFloat(longitudeWgs84), parseFloat(latitudeWgs84));
 
-                // 把原始坐标转换成百度坐标
-                var convertor = new BMap.Convertor();
-                var pointArr = [];
-                pointArr.push(pointWgs84);
-                convertor.translate(pointArr, 1, 5, translateCallback)
-
                 // 创建地图实例
                 var map = new BMap.Map("container");
                 // 初始化地图，设置中心点坐标和地图级别
-//                 map.centerAndZoom(pointWgs84, 15);
+                map.centerAndZoom(pointWgs84, 15);
                 // 向地图添加控件
-//                 map.addControl(new BMap.NavigationControl());
-//                 map.addControl(new BMap.ScaleControl());
+                map.addControl(new BMap.NavigationControl());
+                map.addControl(new BMap.ScaleControl());
 
                 // 坐标转换完之后的回调函数
                 translateCallback = function (data){
@@ -108,16 +91,11 @@ $(document).ready(function() {
                     map.addOverlay(marker);
                     var label = new BMap.Label("当前位置", {offset:new BMap.Size(20, -10)});
                     marker.setLabel(label);
-//                     map.setCenter(data.points[0]);
-                    // 初始化地图，设置中心点坐标和地图级别
-                    map.centerAndZoom(data.points[0], 15);
-                    // 向地图添加控件
-                    map.addControl(new BMap.NavigationControl());
-                    map.addControl(new BMap.ScaleControl());
+                    map.setCenter(data.points[0]);
                   }
                 }
 
-                // 根据databox_id创建自定义图层
+                // 根据databox_id创建自定义图层  
                 var customLayer=new BMap.CustomLayer({
                     geotableId: bookStoragePlaceGeotableIdValue,
                     q: '', // 检索关键字
@@ -125,42 +103,15 @@ $(document).ready(function() {
                     filter: '' // 过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
                 });
 
-//                 // 单击图层事件
-//                 customLayer.addEventListener('onhotspotclick',hotspotclickCallback);
-//                 // 单击热点图层
-//                 function hotspotclickCallback(e) {
-//                 	// 获取poi对象
-//                 	var customPoi = e.customPoi;
-//                     var str = [];
-//                     str.push("address = " + customPoi.address);
-//                     str.push("phoneNumber = " + customPoi.phoneNumber);
-//                     var content = '<p style="width:280px;margin:0;line-height:20px;">地址：' + customPoi.address + '<br>电话：' + customPoi.phoneNumber + '</p>';
-//                     var searchInfoWindow = new BMapLib.SearchInfoWindow(map, content, {  //带检索的信息窗口
-//                     	title: customPoi.title, //标题
-//                         width: 290, //宽度
-//                         height: 40, //高度
-//                         panel : "panel", //检索结果面板
-//                         enableAutoPan : true, //自动平移
-//                         enableSendToPhone: true, //是否显示发送到手机按钮
-//                         searchTypes :[
-//                         	BMAPLIB_TAB_SEARCH,   //周边检索
-//                             BMAPLIB_TAB_TO_HERE,  //到这里去
-//                             BMAPLIB_TAB_FROM_HERE //从这里出发
-//                         ]
-//                     });
-//                     var point = new BMap.Point(customPoi.point.lng, customPoi.point.lat);
-//                     searchInfoWindow.open(point);}
-//                 }
-
                 // 添加自定义图层
                 map.addTileLayer(customLayer);
 
-//                 setTimeout(function(){
-//                     var convertor = new BMap.Convertor();
-//                     var pointArr = [];
-//                     pointArr.push(pointWgs84);
-//                     convertor.translate(pointArr, 1, 5, translateCallback)
-//                 }, 0);
+                setTimeout(function(){
+                    var convertor = new BMap.Convertor();
+                    var pointArr = [];
+                    pointArr.push(pointWgs84);
+                    convertor.translate(pointArr, 1, 5, translateCallback)
+                }, 0);
             },
             cancel : function(res) {
                 alert('用户拒绝授权获取地理位置');
