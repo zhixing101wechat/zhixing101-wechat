@@ -42,7 +42,7 @@ $(document).ready(function() {
     var signatureValue = document.getElementById("signature").value;
 
     // 从hidden字段获取图书存放点geotableId
-    var bookStoragePlaceGeotableId = document.getElementById("bookStoragePlaceGeotableId").value;
+    var bookStoragePlaceGeotableIdValue = document.getElementById("bookStoragePlaceGeotableId").value;
 
     // 通过config接口注入权限验证配置
     wx.config({
@@ -97,7 +97,7 @@ $(document).ready(function() {
 
                 // 根据databox_id创建自定义图层  
                 var customLayer=new BMap.CustomLayer({
-                    geotableId: bookStoragePlaceGeotableId,
+                    geotableId: parseInt(bookStoragePlaceGeotableIdValue),
                     q: '', // 检索关键字
                     tags: '', // 空格分隔的多字符串
                     filter: '' // 过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
