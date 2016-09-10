@@ -39,7 +39,25 @@ public class WechatRedirectController {
     private String appId;
 
     @RequestMapping(value = "findBook", method = RequestMethod.GET)
-    public String findBook(HttpServletRequest request, HttpServletResponse response) {
+    public String findBook(Model model, HttpServletRequest request) {
+
+        String url = rootUrl + "/findBook?" + request.getQueryString();
+        String noncestr = UUID.randomUUID().toString();
+        String jsapi_ticket = tokenCache.getJsapi_ticket();
+        String timestamp = Long.toString(System.currentTimeMillis() / 1000);
+        String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
+
+        logger.info("url = " + url);
+        logger.info("noncestr = " + noncestr);
+        logger.info("jsapi_ticket = " + jsapi_ticket);
+        logger.info("timestamp = " + timestamp);
+        logger.info("signature = " + signature);
+
+        model.addAttribute("appId", appId);
+        model.addAttribute("noncestr", noncestr);
+        model.addAttribute("timestamp", timestamp);
+        model.addAttribute("signature", signature);
+
         return "findBook";
     }
 
