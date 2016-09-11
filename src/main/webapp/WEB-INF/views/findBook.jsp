@@ -164,6 +164,12 @@ $(document).ready(function() {
                 		});
                 	});
 
+                	// 添加地图单击事件
+                	function showInfo(e){
+                		alert(e.point.lng + ", " + e.point.lat);
+                	}
+                	map.addEventListener("click", showInfo);
+
                   }
                 }
 
