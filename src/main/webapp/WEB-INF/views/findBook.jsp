@@ -34,16 +34,17 @@ body{height:100%;margin:0px;padding:0px}
 <div id="container"></div>
 
 <script type="text/javascript">
-// wgs84类型GPS坐标-纬度
-var latitudeWgs84;
-// wgs84类型GPS坐标-经度
-var longitudeWgs84;
-// 图书存放点geotableId
-var bookStoragePlaceGeotableIdValue;
-// 检索图书存放点的半径(单位m)
-var searchBookStoragePlaceRadiusValue;
-
 $(document).ready(function() {
+
+	// wgs84类型GPS坐标-纬度
+	var latitudeWgs84;
+	// wgs84类型GPS坐标-经度
+	var longitudeWgs84;
+	// 图书存放点geotableId
+	var bookStoragePlaceGeotableIdValue;
+	// 检索图书存放点的半径(单位m)
+	var searchBookStoragePlaceRadiusValue;
+	
 	// 从hidden字段获取config接口注入权限验证参数
     var appIdValue = document.getElementById("appId").value;
     var noncestrValue = document.getElementById("noncestr").value;
@@ -172,17 +173,6 @@ $(document).ready(function() {
 
                   }
                 }
-
-//                 // 根据databox_id创建自定义图层  
-//                 var customLayer=new BMap.CustomLayer({
-//                     geotableId: bookStoragePlaceGeotableIdValue,
-//                     q: '', // 检索关键字
-//                     tags: '', // 空格分隔的多字符串
-//                     filter: '' // 过滤条件,参考http://developer.baidu.com/map/lbs-geosearch.htm#.search.nearby
-//                 });
-
-//                 // 添加自定义图层
-//                 map.addTileLayer(customLayer);
 
                 setTimeout(function(){
                     var convertor = new BMap.Convertor();
