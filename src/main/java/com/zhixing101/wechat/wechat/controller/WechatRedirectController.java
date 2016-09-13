@@ -60,6 +60,7 @@ public class WechatRedirectController {
         model.addAttribute("timestamp", timestamp);
         model.addAttribute("signature", signature);
         model.addAttribute("bookStoragePlaceGeotableId", bookStoragePlaceGeotableId);
+        model.addAttribute("searchBookStoragePlaceRadius", 1000);
 
         return "findBook";
     }
