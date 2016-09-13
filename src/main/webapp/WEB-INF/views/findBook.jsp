@@ -190,7 +190,7 @@ value="${searchBookStoragePlaceRadius }" />
 									//alert(JSON.stringify(res));
 
 									// 初始化地图
-									initMap(lng, lat, searchRadius, storagePlaceGeotableId);
+									initMap(parseFloat(longitude), parseFloat(latitude), searchRadius, storagePlaceGeotableId);
 								},
 								cancel : function(res) {
 									alert('用户拒绝授权获取地理位置');
