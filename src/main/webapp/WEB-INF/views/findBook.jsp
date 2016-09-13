@@ -129,7 +129,8 @@ value="${searchBookStoragePlaceRadius }" />
 
 				// 添加地图单击事件
 				function showInfo(e) {
-					alert(e.point.lng + ", " + e.point.lat);
+// 					alert(e.point.lng + ", " + e.point.lat);
+					initMap(e.point.lng, e.point.lat, searchRadius, storagePlaceGeotableId)
 				}
 				map.addEventListener("click", showInfo);
 
