@@ -40,6 +40,9 @@ public class WechatRedirectController {
     @Value("#{configProperties['baidu.bookStoragePlaceGeotableId']}")
     private String bookStoragePlaceGeotableId;
 
+    @Value("#{configProperties['baidu.searchBookStoragePlaceRadius']}")
+    private String searchBookStoragePlaceRadius;
+
     @RequestMapping(value = "findBook", method = RequestMethod.GET)
     public String findBook(Model model, HttpServletRequest request) {
 
@@ -60,7 +63,7 @@ public class WechatRedirectController {
         model.addAttribute("timestamp", timestamp);
         model.addAttribute("signature", signature);
         model.addAttribute("bookStoragePlaceGeotableId", bookStoragePlaceGeotableId);
-        model.addAttribute("searchBookStoragePlaceRadius", 1000);
+        model.addAttribute("searchBookStoragePlaceRadius", searchBookStoragePlaceRadius);
 
         return "findBook";
     }
