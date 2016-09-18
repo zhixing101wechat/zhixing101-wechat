@@ -98,11 +98,11 @@ value="${searchBookStoragePlaceRadius }" />
 				map.centerAndZoom(point, 12);
 				map.enableScrollWheelZoom();
 				//添加默认缩放平移控件
-				//map.addControl(new BMap.NavigationControl());
+				map.addControl(new BMap.NavigationControl());
 
 				var drawingManager = new BMapLib.DrawingManager(map, {
 					isOpen : false, //是否开启绘制模式
-					enableDrawingTool : true, //是否显示工具栏
+					enableDrawingTool : false, //是否显示工具栏
 					drawingToolOptions : {
 						anchor : BMAP_ANCHOR_TOP_RIGHT, //位置
 						offset : new BMap.Size(5, 5), //偏离值
