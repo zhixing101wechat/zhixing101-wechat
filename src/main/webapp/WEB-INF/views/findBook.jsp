@@ -19,8 +19,14 @@ body {
 	padding: 0px
 }
 
-#container {
-	height: 100%
+#statisticsBar {
+	height: 10%
+}
+#searchBar {
+	height: 10%
+}
+#mapContainer {
+	height: 80%
 }
 </style>
 <!--加载鼠标绘制工具-->
@@ -44,8 +50,12 @@ value="${bookStoragePlaceGeotableId }" />
 <input id="searchBookStoragePlaceRadius" type="hidden"
 value="${searchBookStoragePlaceRadius }" />
 
+<%-- 统计工具条 --%>
+<div id="statisticsBar"></div>
+<%-- 搜索工具条 --%>
+<div id="searchBar"></div>
 <%-- 地图容器 --%>
-<div id="container"></div>
+<div id="mapContainer"></div>
 
 <script type="text/javascript">
 	// 初始化地图
@@ -54,7 +64,7 @@ value="${searchBookStoragePlaceRadius }" />
 		var pointWgs84 = new BMap.Point(lng, lat);
 
 		// 创建地图实例
-		var map = new BMap.Map("container");
+		var map = new BMap.Map("mapContainer");
 
 		// 坐标转换完之后的回调函数
 		translateCallback = function(data) {
