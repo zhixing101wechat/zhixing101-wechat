@@ -52,14 +52,11 @@ value="${searchBookStoragePlaceRadius }" />
 
 <%-- 统计工具条 --%>
 <div id="statisticsBar">
-<div class="col-xs-4"></div>
-<div class="col-xs-4"><span class="help-block">收录书籍XXX本，可借阅书籍XXX本，存书点XXX处</span></div>
-<div class="col-xs-4"></div>
+<span class="help-block">收录书籍XXX本，可借阅书籍XXX本，存书点XXX处</span>
 </div>
 <%-- 搜索工具条 --%>
 <div id="searchBar" class="form-group">
-<div class="col-xs-4"></div>
-<div class="col-xs-4"><input type="text" class="form-control"></div>
+<div class="col-xs-6"><input type="text" class="form-control"></div>
 <div class="col-xs-4"><button type="submit" class="btn btn-primary">知行一下</button></div>
 </div>
 <%-- 地图容器 --%>
