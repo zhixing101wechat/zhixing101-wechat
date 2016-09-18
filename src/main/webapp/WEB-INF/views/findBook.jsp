@@ -132,7 +132,7 @@ value="${searchBookStoragePlaceRadius }" />
 // 					alert(e.point.lng + ", " + e.point.lat);
 					initMap(e.point.lng, e.point.lat, searchRadius, storagePlaceGeotableId)
 				}
-				map.addEventListener("click", showInfo);
+				map.addEventListener("dblclick", showInfo);
 
 			}
 		}
