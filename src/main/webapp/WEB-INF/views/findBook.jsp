@@ -55,6 +55,7 @@ value="${searchBookStoragePlaceRadius }" />
 
 		// 创建地图实例
 		var map = new BMap.Map("container");
+		setZoom(12);
 
 		// 坐标转换完之后的回调函数
 		translateCallback = function(data) {
