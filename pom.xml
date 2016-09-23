@@ -10,6 +10,19 @@
   <name>wechat Maven Webapp</name>
   <url>http://maven.apache.org</url>
 
+	<!-- zhixing101 nexus -->
+	<repositories>
+		<repository>
+			<id>zhixing101</id>
+			<name>zhixing101 nexus</name>
+			<layout>default</layout>
+			<url>http://www.ntjoytech.com:8081/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+  
   <!-- 依赖库的版本的设置 -->
   <properties>
     <!-- spring -->
@@ -51,6 +64,13 @@
   </properties>
 
   <dependencies>
+
+	<!-- zhixing101-api -->
+	<dependency>
+		<groupId>com.zhixing101.wechat</groupId>
+		<artifactId>api</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</dependency>
 
     <!-- spring start -->
     <dependency>
