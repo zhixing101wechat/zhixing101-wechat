@@ -26,7 +26,7 @@ body {
 	height: 10%
 }
 #mapContainer {
-	height: 80%
+	height: 70%
 }
 #scanQRCode{
 	height:10%;
@@ -58,6 +58,8 @@ value="${searchBookStoragePlaceRadius }" />
 <div id="statisticsBar">
 <span class="help-block">收录书籍XXX本，可借阅书籍XXX本，存书点YYY处</span>
 </div>
+<%-- 扫一扫--%>
+<div id="scanQRCode"><button class="btn btn-primary">扫一扫</button></div>
 <%-- 搜索工具条 --%>
 <div id="searchBar" class="form-group">
 <div class="col-xs-6"><input type="text" class="form-control"></div>
@@ -65,8 +67,7 @@ value="${searchBookStoragePlaceRadius }" />
 </div>
 <%-- 地图容器 --%>
 <div id="mapContainer"></div>
-<%-- 扫一扫--%>
-<div id="scanQRCode"><button class="btn btn-primary">扫一扫</button></div>
+
 
 <script type="text/javascript">
 	// 初始化地图
