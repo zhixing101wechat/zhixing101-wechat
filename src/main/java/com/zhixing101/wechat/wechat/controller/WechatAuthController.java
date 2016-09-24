@@ -14,18 +14,18 @@ import com.zhixing101.wechat.wechat.common.Constants;
 import com.zhixing101.wechat.wechat.service.AccessValidationService;
 
 /**
- * 微信分发Controller
+ * 微信认证Controller
  * 
  */
 @Controller
 @RequestMapping("/wechat")
-public class WechatDispatchController {
+public class WechatAuthController {
 
     /**
      * 日志记录器
      * 
      */
-    private Logger logger = Logger.getLogger(WechatDispatchController.class);
+    private Logger logger = Logger.getLogger(WechatAuthController.class);
 
     /**
      * 接入验证Service

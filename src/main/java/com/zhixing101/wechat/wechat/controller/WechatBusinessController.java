@@ -16,7 +16,7 @@ import com.zhixing101.wechat.wechat.token.TokenCache;
 import com.zhixing101.wechat.wechat.util.JsSdkUtil;
 
 /**
- * 微信重定向Controller
+ * 微信业务Controller
  * 
  */
 @Controller
