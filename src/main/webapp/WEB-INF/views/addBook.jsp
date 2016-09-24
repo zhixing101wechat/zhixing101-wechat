@@ -61,6 +61,8 @@ value="${searchBookStoragePlaceRadius }" />
 </div>
 <%-- 地图容器 --%>
 <div id="mapContainer"></div>
+<%-- 扫一扫--%>
+<div id="scanQRCode"><button>扫一扫</button></div>
 
 <script type="text/javascript">
 	// 初始化地图
@@ -121,7 +123,7 @@ value="${searchBookStoragePlaceRadius }" />
 							timestamp : timestampValue, // 必填，生成签名的时间戳
 							nonceStr : noncestrValue, // 必填，生成签名的随机串
 							signature : signatureValue, // 必填，签名，见附录1
-							jsApiList : [ 'getLocation' ]
+							jsApiList : [ 'getLocation','scanQRCode' ]
 						// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
 						});
 
@@ -147,6 +149,18 @@ value="${searchBookStoragePlaceRadius }" />
 									alert('用户拒绝授权获取地理位置');
 								}
 							});
+							
+							//扫一扫
+							$("#scanQRCode").click(function(){
+								wx.scanQRCode({
+								    needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+								    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+								    success: function (res) {
+								    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+								    	alert('error:'+res);
+									}
+								});
+							})
 						});
 
 						// 通过error接口处理失败验证
