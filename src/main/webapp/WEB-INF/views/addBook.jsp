@@ -28,6 +28,10 @@ body {
 #mapContainer {
 	height: 80%
 }
+#scanQRCode{
+	height:10%;
+	margin-left:10%;
+}
 </style>
 <!--加载鼠标绘制工具-->
 <script type="text/javascript"
@@ -62,7 +66,7 @@ value="${searchBookStoragePlaceRadius }" />
 <%-- 地图容器 --%>
 <div id="mapContainer"></div>
 <%-- 扫一扫--%>
-<div id="scanQRCode"><button>扫一扫</button></div>
+<div id="scanQRCode"><button class="btn btn-primary">扫一扫</button></div>
 
 <script type="text/javascript">
 	// 初始化地图
