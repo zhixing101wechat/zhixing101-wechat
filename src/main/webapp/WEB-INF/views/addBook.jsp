@@ -52,7 +52,7 @@ value="${searchBookStoragePlaceRadius }" />
 
 <%-- 统计工具条 --%>
 <div id="statisticsBar">
-<span class="help-block">收录书籍XXX本，可借阅书籍XXX本，存书点XXX处</span>
+<span class="help-block">收录书籍XXX本，可借阅书籍XXX本，存书点YYY处</span>
 </div>
 <%-- 搜索工具条 --%>
 <div id="searchBar" class="form-group">
