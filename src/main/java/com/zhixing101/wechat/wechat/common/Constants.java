@@ -107,6 +107,11 @@ public class Constants {
     public static final String LINK = "link";
 
     /**
+     * 小视频
+     */
+    public static final String SHORTVIDEO = "shortvideo";
+
+    /**
      * 事件
      */
     public static final String EVENT = "event";

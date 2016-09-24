@@ -57,7 +57,7 @@
 
   <!-- 定时任务 -->
   <import resource="applicationContext_task.xml"/>
-
+<import resource="applicationContext_consumer.xml"/>
   <!-- aop -->
   <!--<import resource="applicationContext_aop.xml"/>-->
   <!-- 缓存 -->

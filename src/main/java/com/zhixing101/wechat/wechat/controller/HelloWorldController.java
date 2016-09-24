@@ -16,4 +16,5 @@ public class HelloWorldController {
     public String index() {
         return "index";
     }
+
 }

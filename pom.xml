@@ -3,7 +3,6 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.zhixing101.wechat</groupId>
-
   <artifactId>wechat</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
@@ -51,6 +50,14 @@
   </properties>
 
   <dependencies>
+
+    <!-- own -->
+    <dependency>
+      <groupId>com.zhixing101.wechat</groupId>
+      <artifactId>api</artifactId>
+      <version>1.0-snapshot</version>
+    </dependency>
+
     <!-- spring-core -->
     <dependency>
       <groupId>org.springframework</groupId>
@@ -250,6 +257,34 @@
       <groupId>com.thoughtworks.xstream</groupId>
       <artifactId>xstream</artifactId>
       <version>1.4.9</version>
+    </dependency>
+
+    <!-- dubbo jar -->
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>dubbo</artifactId>
+      <version>2.5.3</version>
+      <!-- 去除重复jar包 -->
+      <exclusions>
+        <exclusion>
+          <groupId>org.jboss.netty</groupId>
+          <artifactId>netty</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.zookeeper</groupId>
+      <artifactId>zookeeper</artifactId>
+      <version>3.4.6</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.sgroschupf</groupId>
+      <artifactId>zkclient</artifactId>
+      <version>0.1</version>
     </dependency>
 
   </dependencies>
