@@ -1,7 +1,7 @@
 package com.zhixing101.wechat.wechat.controller;
 
-import com.zhixing101.wechat.wechat.common.Constants;
-import com.zhixing101.wechat.wechat.service.AccessValidationService;
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,21 +10,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
+import com.zhixing101.wechat.wechat.common.Constants;
+import com.zhixing101.wechat.wechat.service.AccessValidationService;
 
 /**
- * 微信分发Controller
+ * 微信认证Controller
  * 
  */
 @Controller
 @RequestMapping("/wechat")
-public class WechatDispatchController {
+public class WechatAuthController {
 
     /**
      * 日志记录器
      * 
      */
-    private Logger logger = Logger.getLogger(WechatDispatchController.class);
+    private Logger logger = Logger.getLogger(WechatAuthController.class);
 
     /**
      * 接入验证Service

@@ -1,76 +1,176 @@
 package com.zhixing101.wechat.wechat.job;
 
-import com.zhixing101.wechat.wechat.util.WechatUtils;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.zhixing101.wechat.wechat.common.Constants;
+import com.zhixing101.wechat.wechat.token.TokenCache;
+import com.zhixing101.wechat.wechat.util.MyX509TrustManager;
+
 /**
- * 定时同步微信公众号的token
- * Created by adam on 1/9/16.
+ * 定时同步微信公众号的token Created by adam on 1/9/16.
  */
 public class WechatTask {
 
     private static final Logger logger = LoggerFactory.getLogger(WechatTask.class);
 
-//    @Autowired
-//    WechatService wechatService;
-
-    @Autowired
-    WechatUtils wechatUtils;
-
     @Autowired
     ThreadPoolTaskExecutor taskExecutor;
 
-    public void executeTask(){
-        //定时同步微信公众号的token
+    @Autowired
+    TokenCache tokenCache;
 
-        //获取accessToken
-        /**
-         * 1.先获取本地库中的accesstoken
-         * 2.判断accesstoken是否失效
-         * 3.如果accesstoken距离失效时间少于15分钟则进行accesstoken重新获取
-         * 4.将最新的accesstoken保存到数据库中
-         * 注意:后期将修改为本地缓存文件
-         */
-        CheckAccessToken checkAccessToken = new CheckAccessToken();
-        taskExecutor.execute(checkAccessToken);
+    @Value("#{configProperties['weixin.appId']}")
+    private String appId;
 
+    @Value("#{configProperties['weixin.appSecret']}")
+    private String appSecret;
+
+    @Value("#{configProperties['weixin.accessTokenRequestUrl']}")
+    private String accessTokenRequestUrl;
+
+    @Value("#{configProperties['weixin.jsapiTicketRequestUrl']}")
+    private String jsapiTicketRequestUrl;
+
+    public void executeTask() throws InterruptedException {
+
+        // 获取access_token
+        GetAccessToken getAccessToken = new GetAccessToken();
+        taskExecutor.execute(getAccessToken);
+
+        // 暂停2s
+        Thread.sleep(2000);
+
+        // 获取jsapi_ticket
+        GetJsapiTicket getJsapiTicket = new GetJsapiTicket();
+        taskExecutor.execute(getJsapiTicket);
     }
 
-    class CheckAccessToken implements Runnable{
+    class GetAccessToken implements Runnable {
 
         public void run() {
-            //获取本地数据库中的accesstoken
-//            List<Wechat> wechatList = wechatService.queryWechatList();
-//            for (Wechat wechat : wechatList){
-//                //判断当前accesstoken是否超时
-//                try {
-//                    int between = 0;
-//                    if (!EmptyUtil.isEmpty(wechat.getOverDate())){
-//                        between = DateUtil.checkDateBetween(DateUtil.dateToString(wechat.getOverDate()));
-//                        logger.debug("输出between"+between);
-//                    }
-//                    logger.debug("当前时间与微信{}的accesstoken失效时间差为{}",new Object[]{wechat.getCname(),between+""});
-//                    if (between < 15) {
-//                        logger.debug("当前微信需要重新获取accesstoken");
-//                        TokenVO tokenVO = wechatUtils.getAccessToken(wechat);
-//                        logger.debug("tokenVO========="+tokenVO.getAccess_token());
-//                        wechat.setToken(tokenVO.getAccess_token());
-//                        String jstoken = wechatUtils.getJSToken(tokenVO.getAccess_token());
-//                        logger.debug("jstoken====现在的==="+jstoken);
-//                        wechat.setJstoken(jstoken);
-//                        //获取当前时间2小时后的时间
-//                        Timestamp expires = DateUtil.getDateByExpires(tokenVO.getExpires_in());
-//                        wechat.setOverDate(expires);
-//                        logger.debug("更新jstoken");
-//                        wechatService.updateWechat(wechat);
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
+
+            // 修改appId,appSecret
+            String requestUrl = new String(accessTokenRequestUrl);
+            requestUrl = requestUrl.replaceFirst("APPID", appId);
+            requestUrl = requestUrl.replaceFirst("APPSECRET", appSecret);
+
+            try {
+                // 建立连接
+                URL url = new URL(requestUrl);
+                HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
+
+                // 创建SSLContext对象，并使用我们指定的信任管理器初始化
+                TrustManager[] tm = { new MyX509TrustManager() };
+                SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
+                sslContext.init(null, tm, new java.security.SecureRandom());
+
+                // 从上述SSLContext对象中得到SSLSocketFactory对象
+                SSLSocketFactory ssf = sslContext.getSocketFactory();
+
+                httpUrlConn.setSSLSocketFactory(ssf);
+                httpUrlConn.setDoOutput(true);
+                httpUrlConn.setDoInput(true);
+
+                // 设置请求方式（GET/POST）
+                httpUrlConn.setRequestMethod("GET");
+
+                // 取得输入流
+                InputStream inputStream = httpUrlConn.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Constants.STR_ENCODING_UTF_8);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                // 读取响应内容
+                StringBuffer buffer = new StringBuffer();
+                String str = null;
+                while ((str = bufferedReader.readLine()) != null) {
+                    buffer.append(str);
+                }
+                bufferedReader.close();
+                inputStreamReader.close();
+
+                // 释放资源
+                inputStream.close();
+                httpUrlConn.disconnect();
+
+                // 输出返回结果
+                JSONObject obj = JSON.parseObject(buffer.toString());
+                String accessToken = obj.getString("access_token");
+                tokenCache.setAccess_token(accessToken);
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+            }
+        }
+    }
+
+    class GetJsapiTicket implements Runnable {
+
+        public void run() {
+
+            // 修改appId,appSecret
+            String requestUrl = new String(jsapiTicketRequestUrl);
+            requestUrl = requestUrl.replaceFirst("ACCESS_TOKEN", tokenCache.getAccess_token());
+
+            try {
+                // 建立连接
+                URL url = new URL(requestUrl);
+                HttpsURLConnection httpUrlConn = (HttpsURLConnection) url.openConnection();
+
+                // 创建SSLContext对象，并使用我们指定的信任管理器初始化
+                TrustManager[] tm = { new MyX509TrustManager() };
+                SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
+                sslContext.init(null, tm, new java.security.SecureRandom());
+
+                // 从上述SSLContext对象中得到SSLSocketFactory对象
+                SSLSocketFactory ssf = sslContext.getSocketFactory();
+
+                httpUrlConn.setSSLSocketFactory(ssf);
+                httpUrlConn.setDoOutput(true);
+                httpUrlConn.setDoInput(true);
+
+                // 设置请求方式（GET/POST）
+                httpUrlConn.setRequestMethod("GET");
+
+                // 取得输入流
+                InputStream inputStream = httpUrlConn.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Constants.STR_ENCODING_UTF_8);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                // 读取响应内容
+                StringBuffer buffer = new StringBuffer();
+                String str = null;
+                while ((str = bufferedReader.readLine()) != null) {
+                    buffer.append(str);
+                }
+                bufferedReader.close();
+                inputStreamReader.close();
+
+                // 释放资源
+                inputStream.close();
+                httpUrlConn.disconnect();
+
+                // 输出返回结果
+                JSONObject obj = JSON.parseObject(buffer.toString());
+                String ticket = obj.getString("ticket");
+                tokenCache.setJsapi_ticket(ticket);
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+            }
         }
     }
 }

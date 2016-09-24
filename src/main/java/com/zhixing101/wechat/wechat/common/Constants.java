@@ -116,4 +116,44 @@ public class Constants {
      */
     public static final String EVENT = "event";
 
+    /**
+     * snsapi_base
+     */
+    public static final String STR_SNSAPI_BASE = "snsapi_base";
+
+    /**
+     * snsapi_userinfo
+     */
+    public static final String STR_SNSAPI_USERINFO = "snsapi_userinfo";
+
+    /**
+     * REDIRECT_URI
+     */
+    public static final String STR_REDIRECT_URI = "REDIRECT_URI";
+
+    /**
+     * SCOPE
+     */
+    public static final String STR_SCOPE = "SCOPE";
+
+    /**
+     * STATE
+     */
+    public static final String STR_STATE = "STATE";
+
+    /**
+     * redirect:
+     */
+    public static final String STR_REDIRECT_COLON = "redirect:";
+
+    /**
+     * *
+     */
+    public static final String STR_ASTERISK = "*";
+
+    /**
+     * %2A
+     */
+    public static final String STR_PER_CENT_TWO_A = "%2A";
+
 }

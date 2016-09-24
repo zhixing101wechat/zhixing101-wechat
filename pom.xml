@@ -3,11 +3,25 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.zhixing101.wechat</groupId>
+
   <artifactId>wechat</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>wechat Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+	<!-- zhixing101 nexus -->
+	<repositories>
+		<repository>
+			<id>zhixing101</id>
+			<name>zhixing101 nexus</name>
+			<layout>default</layout>
+			<url>http://www.ntjoytech.com:8081/nexus/content/groups/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
   <!-- 依赖库的版本的设置 -->
   <properties>
@@ -51,14 +65,14 @@
 
   <dependencies>
 
-    <!-- own -->
-    <dependency>
-      <groupId>com.zhixing101.wechat</groupId>
-      <artifactId>api</artifactId>
-      <version>1.0-snapshot</version>
-    </dependency>
+	<!-- zhixing101-api -->
+	<dependency>
+		<groupId>com.zhixing101.wechat</groupId>
+		<artifactId>api</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</dependency>
 
-    <!-- spring-core -->
+    <!-- spring start -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
@@ -287,10 +301,42 @@
       <version>0.1</version>
     </dependency>
 
+    <!-- httpclient -->
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpclient.version}</version>
+    </dependency>
+
   </dependencies>
 
   
   <build>
     <finalName>wechat</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/resources/</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>*.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources/</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
