@@ -30,7 +30,7 @@
 		</tr>
 		<tr>
 			<td>subtitle</td>
-			<td>${book.subtitle}</td>
+			<td>${book.version}</td>
 		</tr>
 		<tr>
 			<td>price</td>
