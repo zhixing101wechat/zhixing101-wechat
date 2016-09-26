@@ -21,9 +21,15 @@ public class HelloWorldController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
-
         Book book = bookService.saveBookByISBN("9787515000541");
         model.addAttribute("book", book);
+        return "index";
+    }
+
+    @RequestMapping("/shutdown")
+    public String shut(Model model) {
+        Book book = new Book();
+        bookService.deleteBook(book);
         return "index";
     }
 
