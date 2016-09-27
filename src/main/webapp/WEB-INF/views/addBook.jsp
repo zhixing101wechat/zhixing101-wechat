@@ -169,6 +169,9 @@ value="${searchBookStoragePlaceRadius }" />
 								    success: function (res) {
 								    	var result = res.resultStr.split(","); // 当needResult 为 1 时，扫码返回的结果
 											var isbn = result[1];//isbn值
+											var url = "http://www.mikko.tech/wechat/findBookByISBN?isbn="+isbn;
+											alert(isbn)
+											alert(url)
 								    	$.ajax({
 								    		url:"http://www.mikko.tech/wechat/findBookByISBN?isbn="+isbn,
 								    		type : "get",
