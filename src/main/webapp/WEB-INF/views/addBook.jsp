@@ -173,7 +173,9 @@ value="${searchBookStoragePlaceRadius }" />
 								    		url:"http://www.mikko.tech/wechat/findBookByISBN?isbn="+isbn,
 								    		type : "get",
 								    		success : function(data) {
+													alert("data:"+data)
 								    			var jsonData = JSON.stringify(data);
+													alert("jsonData:"+jsonData)
 								    			var bookName,bookAuthor,bookPrice,bookPublisher,bookVersion,bookIsbn10,bookIsbn13,bookSummary,bookBinding,bookImage;
 								    			bookName = jsonData.title;
 								    			bookAuthor = jsonData.author;
