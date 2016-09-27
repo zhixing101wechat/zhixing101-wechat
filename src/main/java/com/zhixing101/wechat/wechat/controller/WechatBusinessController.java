@@ -165,6 +165,7 @@ public class WechatBusinessController {
         String result = "";
         result = JSON.toJSONString(book);
         logger.debug("生成的json数据为"+result);
+        System.out.println(result);
         return result;
     }
 }
