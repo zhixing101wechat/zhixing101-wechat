@@ -175,6 +175,7 @@ value="${searchBookStoragePlaceRadius }" />
 								    		type : "get",
 								    		success : function(data) {
 								    			var jsonData = data;
+													alert(typeof jsonData === 'object')
 													alert("jsonData:"+jsonData)
 													alert(jsonData.title);
 								    			var bookName,bookAuthor,bookPrice,bookPublisher,bookVersion,bookIsbn10,bookIsbn13,bookSummary,bookBinding,bookImage;
@@ -188,9 +189,9 @@ value="${searchBookStoragePlaceRadius }" />
 								    			bookSummary = jsonData.summary;
 								    			bookBinding = jsonData.binding;
 								    			bookImageUrl = jsonData.doubanImageUrl;
-								    			alert(bookName);
+								    			
 								    			var str = "<p>书名："+bookName+"</p>"
-								    				+"<p>作者："+bookName+"</p>"
+								    				+"<p>作者："+bookAuthor+"</p>"
 								    				+"<p>价格："+bookPrice+"</p>"
 								    				+"<p>出版："+bookPublisher+"</p>"
 								    				+"<p>版本："+bookVersion+"</p>"
