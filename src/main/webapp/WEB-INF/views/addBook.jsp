@@ -187,7 +187,7 @@ value="${searchBookStoragePlaceRadius }" />
 								    			bookImageUrl = jsonData.doubanImageUrl;
 								    			
 								    			var str = "<p>书名："+bookName+"</p>"
-								    				+"<p>作者："+bookAuthor+"</p>"
+								    				+"<p>作者："+string2Array(bookAuthor).join("、").replace(/\"/g,'')+"</p>"
 								    				+"<p>价格："+bookPrice+"</p>"
 								    				+"<p>出版："+bookPublisher+"</p>"
 								    				+"<p>版本："+bookVersion+"</p>"
@@ -215,6 +215,18 @@ value="${searchBookStoragePlaceRadius }" />
 							alert(res.errMsg);
 						});
 					});
+	//将字符串数组转换成数组
+	function string2Array(stringObj) {
+  stringObj = stringObj.replace(/\[([\w, ]*)\]/, "$1");
+  if (stringObj.indexOf("[") == 0) {// if has chinese
+    stringObj = stringObj.substring(1, stringObj.length - 1);
+  }
+  var arr = stringObj.split(",");
+  var newArray = [];//new Array();
+  for ( var i = 0; i < arr.length; i++) {
+    var arrOne = arr[i];
+    newArray.push(arrOne);
+  }
 </script>
 </body>
 </html>
