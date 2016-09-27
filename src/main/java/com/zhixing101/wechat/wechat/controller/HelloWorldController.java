@@ -21,7 +21,7 @@ public class HelloWorldController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String index(Model model) {
-        Book book = bookService.saveBookByISBN("9787515000541");
+        Book book = bookService.findBookByISBN("9787515000541");
         model.addAttribute("book", book);
         return "index";
     }

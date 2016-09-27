@@ -161,7 +161,7 @@ public class WechatBusinessController {
     @ResponseBody
     public String findBookByISBN(@RequestParam("isbn") String isbn){
         logger.debug("提交isbn获取请求,请求isbn为 " + isbn);
-        Book book = bookService.saveBookByISBN(isbn);
+        Book book = bookService.findBookByISBN(isbn);
         String result = "";
         result = JSON.toJSONString(book);
         logger.debug("生成的json数据为"+result);
