@@ -157,7 +157,7 @@ public class WechatBusinessController {
         return "getLoc4Pad";
     }
 
-    @RequestMapping(value = "findBookByISBN")
+    @RequestMapping(value = "findBookByISBN",produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String findBookByISBN(@RequestParam("isbn") String isbn){
         logger.debug("提交isbn获取请求,请求isbn为 " + isbn);
