@@ -1,9 +1,10 @@
 package com.zhixing101.wechat.wechat.controller;
 
-import java.util.UUID;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.alibaba.fastjson.JSON;
+import com.zhixing101.wechat.api.entity.Book;
+import com.zhixing101.wechat.api.service.BookService;
+import com.zhixing101.wechat.wechat.token.TokenCache;
+import com.zhixing101.wechat.wechat.util.JsSdkUtil;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zhixing101.wechat.wechat.token.TokenCache;
-import com.zhixing101.wechat.wechat.util.JsSdkUtil;
+import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 /**
  * 微信业务Controller
@@ -30,6 +33,9 @@ public class WechatBusinessController {
 
     @Autowired
     TokenCache tokenCache;
+
+    @Autowired
+    BookService bookService;
 
     @Value("#{configProperties['weixin.rootUrl']}")
     private String rootUrl;
@@ -149,5 +155,16 @@ public class WechatBusinessController {
         model.addAttribute("signature", signature);
 
         return "getLoc4Pad";
+    }
+
+    @RequestMapping(value = "findBookByISBN")
+    @ResponseBody
+    public String findBookByISBN(@RequestParam("isbn") String isbn){
+        logger.debug("提交isbn获取请求,请求isbn为 " + isbn);
+        Book book = bookService.saveBookByISBN(isbn);
+        String result = "";
+        result = JSON.toJSONString(book);
+        logger.debug("生成的json数据为"+result);
+        return result;
     }
 }
