@@ -175,7 +175,6 @@ value="${searchBookStoragePlaceRadius }" />
 								    		success : function(data) {
 								    			var jsonData = JSON.parse(data);
 								    			var bookName,bookAuthor,bookPrice,bookPublisher,bookVersion,bookIsbn10,bookIsbn13,bookSummary,bookBinding,bookImage;
-								    			alert(jsonData.title);
 													bookName = jsonData.title;
 								    			bookAuthor = jsonData.author;
 								    			bookPrice = jsonData.price;
