@@ -26,11 +26,16 @@ body {
 	height: 10%
 }
 #mapContainer {
-	height: 70%
+	height: 40%
 }
 #scanQRCode{
 	height:10%;
 	margin-left:10%;
+}
+#bookInfo{
+	height:30%;
+	margin:0 5%;
+	overflow-y:scroll;
 }
 </style>
 <!--加载鼠标绘制工具-->
@@ -60,6 +65,7 @@ value="${searchBookStoragePlaceRadius }" />
 </div>
 <%-- 扫一扫--%>
 <div id="scanQRCode"><button class="btn btn-primary">扫一扫</button></div>
+<div id="bookInfo"></div>
 <%-- 搜索工具条 --%>
 <div id="searchBar" class="form-group">
 <div class="col-xs-6"><input type="text" class="form-control"></div>
@@ -161,8 +167,42 @@ value="${searchBookStoragePlaceRadius }" />
 								    needResult: 1, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
 								    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
 								    success: function (res) {
-								    var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
-								    	alert(JSON.stringify(res));
+								    	var result = res.resultStr.split(","); // 当needResult 为 1 时，扫码返回的结果
+											var isbn = result[1];//isbn值
+								    	$.ajax({
+								    		url:"http://www.mikko.tech/wechat/findBookByISBN?isbn="+isbn,
+								    		type : "get",
+								    		success : function(data) {
+								    			var jsonData = JSON.stringify(data);
+								    			var bookName,bookAuthor,bookPrice,bookPublisher,bookVersion,bookIsbn10,bookIsbn13,bookSummary,bookBinding,bookImage;
+								    			bookName = jsonData.title;
+								    			bookAuthor = jsonData.author;
+								    			bookPrice = jsonData.price;
+								    			bookPublisher = jsonData.publisher;
+								    			bookVersion = jsonData.version;
+								    			bookIsbn10 = jsonData.isbn10;
+								    			bookIsbn13 = jsonData.isbn13;
+								    			bookSummary = jsonData.summary;
+								    			bookBinding = jsonData.binding;
+								    			bookImage = jsonData.doubanImageUrl;
+								    			
+								    			var str = "<p>书名："+bookName+"</p>"
+								    				+"<p>作者："+bookName+"</p>"
+								    				+"<p>价格："+bookPrice+"</p>"
+								    				+"<p>出版："+bookPublisher+"</p>"
+								    				+"<p>版本："+bookVersion+"</p>"
+								    				+"<p>isbn10："+bookIsbn10+"</p>"
+								    				+"<p>isbn13："+bookIsbn13+"</p>"
+								    				+"<p>简介："+bookSummary+"</p>"
+								    				+"<p>装订："+bookBinding+"</p>"
+								    				+"<p>图片："+bookImage+"</p>";
+								    				
+								    			$("#bookInfo").html(str);
+								    		},
+								    		error : function(error) {
+								    			console.log("错误:" + data )
+								    		}
+								    	}) 
 									},cancel : function(res) {
 										alert('error:'+res);
 									}
