@@ -185,7 +185,7 @@ body {
 								    		success : function(data) {
 								    			var jsonData = JSON.parse(data);
 								    			var bookName,bookAuthor,bookPrice,bookPublisher,bookVersion,bookIsbn10,bookIsbn13,bookSummary,bookBinding,bookImage;
-													bookName = jsonData.title;
+												bookName = jsonData.title;
 								    			bookAuthor = jsonData.author;
 								    			bookPrice = jsonData.price;
 								    			bookPublisher = jsonData.publisher;
@@ -197,7 +197,8 @@ body {
 								    			bookImageUrl = jsonData.doubanImageUrl;
 								    			
 								    			var str = "<p>书名："+bookName+"</p>"
-								    				+"<p>作者："+string2Array(bookAuthor).join("、").replace(/\"/g,'')+"</p>"
+								    				//+"<p>作者："+string2Array(bookAuthor).join("、").replace(/\"/g,'')+"</p>"
+								    				+"<p>作者："+bookAuthor+"</p>"
 								    				+"<p>价格："+bookPrice+"</p>"
 								    				+"<p>出版："+bookPublisher+"</p>"
 								    				+"<p>版本："+bookVersion+"</p>"
