@@ -169,17 +169,14 @@ value="${searchBookStoragePlaceRadius }" />
 								    success: function (res) {
 								    	var result = res.resultStr.split(","); // 当needResult 为 1 时，扫码返回的结果
 											var isbn = result[1];//isbn值
-											var url = "http://www.mikko.tech/wechat/findBookByISBN?isbn="+isbn;
 								    	$.ajax({
 								    		url:"http://www.mikko.tech/wechat/findBookByISBN?isbn="+isbn,
 								    		type : "get",
 								    		success : function(data) {
-								    			var jsonData = eval(data);
-													alert(typeof jsonData === 'object')
-													alert("jsonData:"+jsonData)
-													alert(jsonData.title);
+								    			var jsonData = JSON.parse(data);
 								    			var bookName,bookAuthor,bookPrice,bookPublisher,bookVersion,bookIsbn10,bookIsbn13,bookSummary,bookBinding,bookImage;
-								    			bookName = jsonData.title;
+								    			alert(jsonData.title);
+													bookName = jsonData.title;
 								    			bookAuthor = jsonData.author;
 								    			bookPrice = jsonData.price;
 								    			bookPublisher = jsonData.publisher;
