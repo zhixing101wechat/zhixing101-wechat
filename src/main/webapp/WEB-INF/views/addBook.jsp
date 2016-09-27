@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ include file="common.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -22,60 +22,70 @@ body {
 #statisticsBar {
 	height: 10%
 }
+
 #searchBar {
 	height: 10%
 }
+
 #mapContainer {
 	height: 40%
 }
-#scanQRCode{
-	height:10%;
-	margin-left:10%;
+
+#scanQRCode {
+	height: 10%;
+	margin-left: 10%;
 }
-#bookInfo{
-	height:30%;
-	margin:0 5%;
-	overflow-y:scroll;
+
+#bookInfo {
+	height: 30%;
+	margin: 0 5%;
+	overflow-y: scroll;
 }
 </style>
 <!--加载鼠标绘制工具-->
 <script type="text/javascript"
-src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+	src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
 <link rel="stylesheet"
-href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+	href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
 
 </head>
 <body>
 
-<%-- 从后台获取config接口注入权限验证参数 --%>
-<input id="appId" type="hidden" value="${appId }" />
-<input id="timestamp" type="hidden" value="${timestamp }" />
-<input id="noncestr" type="hidden" value="${noncestr }" />
-<input id="signature" type="hidden" value="${signature }" />
-<%-- 从后台获取图书存放点geotableId --%>
-<input id="bookStoragePlaceGeotableId" type="hidden"
-value="${bookStoragePlaceGeotableId }" />
-<%-- 从后台获取检索图书存放点的半径(单位m) --%>
-<input id="searchBookStoragePlaceRadius" type="hidden"
-value="${searchBookStoragePlaceRadius }" />
+	<%-- 从后台获取config接口注入权限验证参数 --%>
+	<input id="appId" type="hidden" value="${appId }" />
+	<input id="timestamp" type="hidden" value="${timestamp }" />
+	<input id="noncestr" type="hidden" value="${noncestr }" />
+	<input id="signature" type="hidden" value="${signature }" />
+	<%-- 从后台获取图书存放点geotableId --%>
+	<input id="bookStoragePlaceGeotableId" type="hidden"
+		value="${bookStoragePlaceGeotableId }" />
+	<%-- 从后台获取检索图书存放点的半径(单位m) --%>
+	<input id="searchBookStoragePlaceRadius" type="hidden"
+		value="${searchBookStoragePlaceRadius }" />
 
-<%-- 统计工具条 --%>
-<div id="statisticsBar">
-<span class="help-block">收录书籍XXX本，可借阅书籍XXX本，存书点YYY处</span>
-</div>
-<%-- 扫一扫--%>
-<div id="scanQRCode"><button class="btn btn-primary">扫一扫</button></div>
-<div id="bookInfo"></div>
-<%-- 搜索工具条 --%>
-<div id="searchBar" class="form-group">
-<div class="col-xs-6"><input type="text" class="form-control"></div>
-<div class="col-xs-4"><button type="submit" class="btn btn-primary">知行一下</button></div>
-</div>
-<%-- 地图容器 --%>
-<div id="mapContainer"></div>
+	<%-- 统计工具条 --%>
+	<div id="statisticsBar">
+		<span class="help-block">收录书籍XXX本，可借阅书籍XXX本，存书点YYY处</span>
+	</div>
+	<%-- 扫一扫--%>
+	<div id="scanQRCode">
+		<button class="btn btn-primary">扫一扫</button>
+	</div>
+	<div id="bookInfo"></div>
+	<%-- 搜索工具条 --%>
+	<div id="searchBar" class="form-group">
+		<div class="col-xs-6">
+			<input type="text" class="form-control">
+		</div>
+		<div class="col-xs-4">
+			<button type="submit" class="btn btn-primary">知行一下</button>
+		</div>
+	</div>
+	<%-- 地图容器 --%>
+	<div id="mapContainer"></div>
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	// 初始化地图
 	function initMap(lng, lat) {
 		// 根据wgs84坐标创建地理坐标点
