@@ -176,6 +176,7 @@ value="${searchBookStoragePlaceRadius }" />
 								    		success : function(data) {
 								    			var jsonData = data;
 													alert("jsonData:"+jsonData)
+													alert(jsonData.title);
 								    			var bookName,bookAuthor,bookPrice,bookPublisher,bookVersion,bookIsbn10,bookIsbn13,bookSummary,bookBinding,bookImage;
 								    			bookName = jsonData.title;
 								    			bookAuthor = jsonData.author;
@@ -186,8 +187,8 @@ value="${searchBookStoragePlaceRadius }" />
 								    			bookIsbn13 = jsonData.isbn13;
 								    			bookSummary = jsonData.summary;
 								    			bookBinding = jsonData.binding;
-								    			bookImage = jsonData.doubanImageUrl;
-								    			
+								    			bookImageUrl = jsonData.doubanImageUrl;
+								    			alert(bookName);
 								    			var str = "<p>书名："+bookName+"</p>"
 								    				+"<p>作者："+bookName+"</p>"
 								    				+"<p>价格："+bookPrice+"</p>"
@@ -197,7 +198,7 @@ value="${searchBookStoragePlaceRadius }" />
 								    				+"<p>isbn13："+bookIsbn13+"</p>"
 								    				+"<p>简介："+bookSummary+"</p>"
 								    				+"<p>装订："+bookBinding+"</p>"
-								    				+"<p>图片："+bookImage+"</p>";
+								    				+"<p>图片：<img src='"+bookImageUrl+"' /></p>";
 								    				
 								    			$("#bookInfo").html(str);
 								    		},
