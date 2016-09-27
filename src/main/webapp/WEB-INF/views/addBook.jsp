@@ -179,10 +179,12 @@ body {
 								    success: function (res) {
 								    	var result = res.resultStr.split(","); // 当needResult 为 1 时，扫码返回的结果
 											var isbn = result[1];//isbn值
+											alert(isbn);
 								    	$.ajax({
 								    		url:"http://zhixing101.zzhkll.com/wechat/findBookByISBN?isbn="+isbn,
 								    		type : "get",
 								    		success : function(data) {
+								    			alert(data);
 								    			var jsonData = JSON.parse(data);
 								    			var bookName,bookAuthor,bookPrice,bookPublisher,bookVersion,bookIsbn10,bookIsbn13,bookSummary,bookBinding,bookImage;
 												bookName = jsonData.title;
