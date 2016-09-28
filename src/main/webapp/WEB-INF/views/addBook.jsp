@@ -208,7 +208,9 @@ body {
 								    				+"<p>装订："+bookBinding+"</p>"
 								    				+"<p>图片：<img src='"+bookImageUrl+"' /></p>";
 								    				
-								    			$("#bookInfo").html(str);
+													var div = $("<div></div>");
+													div.html(str);
+													$("#bookInfo").append(div);
 								    		},
 								    		error : function(error) {
 								    			console.log("错误:" + data )
