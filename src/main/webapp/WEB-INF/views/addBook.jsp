@@ -202,7 +202,6 @@ body {
 								    			//对作者展现形式进行处理，默认获取的是字符串数组
 													if (bookAuthor.indexOf("[") == 0) {// 
 														bookAuthor = bookAuthor.substring(1, bookAuthor.length - 1).replace(/"/g,'');
-														alert(bookAuthor.split(",").length);
 														if(bookAuthor.split(",").length > 1){
 															bookAuthor = bookAuthor.split(",").join("、")
 														}
