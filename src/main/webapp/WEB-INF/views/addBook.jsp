@@ -184,6 +184,7 @@ body {
 								    		type : "get",
 								    		success : function(data) {
 								    			var jsonData = JSON.parse(data);
+											alert(jsonData);
 								    			var bookName,bookAuthor,bookPrice,bookPublisher,bookVersion,bookIsbn10,bookIsbn13,bookSummary,bookBinding,bookImage;
 												bookName = jsonData.title;
 								    			bookAuthor = jsonData.author;
