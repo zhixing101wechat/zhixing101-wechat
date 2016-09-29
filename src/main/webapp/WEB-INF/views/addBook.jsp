@@ -37,7 +37,6 @@ body {
 }
 
 #bookInfo {
-	height: 30%;
 	margin: 0 5%;
 	overflow-y: scroll;
 }
@@ -184,21 +183,31 @@ body {
 								    		type : "get",
 								    		success : function(data) {
 								    			var jsonData = JSON.parse(data);
-											alert(jsonData);
+													//判断扫描的是否为书籍，不是书籍就跳出
+													if(isEmptyObject(jsonData) == true){
+														alert("请正确扫描图书条形码");
+														return;
+													};
 								    			var bookName,bookAuthor,bookPrice,bookPublisher,bookVersion,bookIsbn10,bookIsbn13,bookSummary,bookBinding,bookImage;
-												bookName = jsonData.title;
-								    			bookAuthor = jsonData.author;
-								    			bookPrice = jsonData.price;
-								    			bookPublisher = jsonData.publisher;
-								    			bookVersion = jsonData.version;
-								    			bookIsbn10 = jsonData.isbn10;
-								    			bookIsbn13 = jsonData.isbn13;
-								    			bookSummary = jsonData.summary;
-								    			bookBinding = jsonData.binding;
-								    			bookImageUrl = jsonData.doubanImageUrl;
-								    			
+													bookName = jsonData.title;//书名title
+								    			bookAuthor = jsonData.author;//作者
+								    			bookPrice = jsonData.price;//价格
+								    			bookPublisher = jsonData.publisher;//出版社
+								    			bookVersion = jsonData.version;//版本
+								    			bookIsbn10 = jsonData.isbn10;//isbn10
+								    			bookIsbn13 = jsonData.isbn13;//isbn13
+								    			bookSummary = jsonData.summary;//简介
+								    			bookBinding = jsonData.binding;//装订
+								    			bookImageUrl = jsonData.doubanImageUrl;//图片地址
+								    			//对作者展现形式进行处理，默认获取的是字符串数组
+													if (bookAuthor.indexOf("[") == 0) {// 
+														bookAuthor = bookAuthor.substring(1, bookAuthor.length - 1).replace(/"/g,'');
+														alert(bookAuthor.split(",").length);
+														if(bookAuthor.split(",").length > 1){
+															bookAuthor = bookAuthor.split(",").join("、")
+														}
+													}
 								    			var str = "<p>书名："+bookName+"</p>"
-								    				//+"<p>作者："+string2Array(bookAuthor).join("、").replace(/\"/g,'')+"</p>"
 								    				+"<p>作者："+bookAuthor+"</p>"
 								    				+"<p>价格："+bookPrice+"</p>"
 								    				+"<p>出版："+bookPublisher+"</p>"
@@ -211,6 +220,7 @@ body {
 								    				
 													var div = $("<div></div>");
 													div.html(str);
+													$("#bookInfo").css("height","30%");
 													$("#bookInfo").append(div);
 								    		},
 								    		error : function(error) {
@@ -229,20 +239,13 @@ body {
 							alert(res.errMsg);
 						});
 					});
-
-		//将字符串数组转换成数组
-		function string2Array(stringObj) {
-			stringObj = stringObj.replace(/\[([\w, ]*)\]/, "$1");
-			if (stringObj.indexOf("[") == 0) {// if has chinese
-				stringObj = stringObj.substring(1, stringObj.length - 1);
-			}
-			var arr = stringObj.split(",");
-			var newArray = [];//new Array();
-			for (var i = 0; i < arr.length; i++) {
-				var arrOne = arr[i];
-				newArray.push(arrOne);
-			}
-		}
+		//判断是否为空对象
+		function isEmptyObject(e) {  
+	    var t;  
+	    for (t in e)  
+	        return !1;  
+	    return !0  
+		} 
 	</script>
 </body>
 </html>
