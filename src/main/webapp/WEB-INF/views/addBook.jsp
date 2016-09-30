@@ -182,6 +182,7 @@ body {
 								    		url:"http://zhixing101.zzhkll.com/wechat/findBookByISBN?isbn="+isbn,
 								    		type : "get",
 								    		success : function(data) {
+													var findbookbyisbnData = data;
 								    			var jsonData = JSON.parse(data);
 													//判断扫描的是否为书籍，不是书籍就跳出
 													if(isEmptyObject(jsonData) == true){
@@ -220,7 +221,23 @@ body {
 													var div = $("<div></div>");
 													div.html(str);
 													$("#bookInfo").css("height","30%");
-													$("#bookInfo").append(div);
+													if($("#bookInfo div")){
+														div.prependTo($("#bookInfo"));
+													}	else{
+														$("#bookInfo").append(div);
+													}	
+													//成功获取图书信息之后将数据存储到数据库
+													/*$.ajax({
+														url:"",
+										    		type : "post",
+										    		data : findbookbyisbnData,
+										    		success : function(data) {
+										    			alert("成功");
+										    		},
+										    		error : function(){
+										    			alert("失败");
+										    		}
+													})*/
 								    		},
 								    		error : function(error) {
 								    			console.log("错误:" + data )
