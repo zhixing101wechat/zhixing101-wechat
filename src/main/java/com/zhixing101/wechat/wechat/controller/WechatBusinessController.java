@@ -1,6 +1,7 @@
 package com.zhixing101.wechat.wechat.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.zhixing101.wechat.api.entity.Book;
 import com.zhixing101.wechat.api.service.BookService;
 import com.zhixing101.wechat.wechat.token.TokenCache;
@@ -87,20 +88,23 @@ public class WechatBusinessController {
      * @return
      */
     @RequestMapping(value = "addBook", method = RequestMethod.GET)
-    public String addBook(Model model, HttpServletRequest request) {
+    public String addBook(Model model, HttpServletRequest request,@RequestParam("book") String book) {
 
         String url = rootUrl + "/addBook?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
         String jsapi_ticket = tokenCache.getJsapi_ticket();
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
-
+        Book bookInfo = JSONObject.parseObject(book, Book.class);
+        boolean resultFlag = bookService.saveBook(bookInfo);
+        logger.info("resultFlag ="+resultFlag);
         logger.info("url = " + url);
         logger.info("noncestr = " + noncestr);
         logger.info("jsapi_ticket = " + jsapi_ticket);
         logger.info("timestamp = " + timestamp);
         logger.info("signature = " + signature);
-
+        
+        model.addAttribute("resultFlag", resultFlag);
         model.addAttribute("appId", appId);
         model.addAttribute("noncestr", noncestr);
         model.addAttribute("timestamp", timestamp);
