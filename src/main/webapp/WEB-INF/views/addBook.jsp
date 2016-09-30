@@ -181,9 +181,8 @@ body {
 								    	$.ajax({
 								    		url:"http://zhixing101.zzhkll.com/wechat/findBookByISBN?isbn="+isbn,
 								    		type : "get",
-												contentType: "application/json;charset=utf-8",
-										    dataType: "json",
 								    		success : function(data) {
+													var findbookbyisbnData = data;
 								    			var jsonData = JSON.parse(data);
 													//判断扫描的是否为书籍，不是书籍就跳出
 													if(isEmptyObject(jsonData) == true){
@@ -223,13 +222,11 @@ body {
 													div.html(str);
 													$("#bookInfo").css("height","30%");
 													$("#bookInfo").append(div);
-													//成功获取信息之后将数据存储到数据库
+													//成功获取图书信息之后将数据存储到数据库
 													/*$.ajax({
 														url:"",
 										    		type : "post",
-										    		contentType: "application/json;charset=utf-8",
-										    		data : jsonData,
-										    		dataType: "json",
+										    		data : findbookbyisbnData,
 										    		success : function(data) {
 										    			alert("成功");
 										    		},
