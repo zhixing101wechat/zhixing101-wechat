@@ -221,7 +221,11 @@ body {
 													var div = $("<div></div>");
 													div.html(str);
 													$("#bookInfo").css("height","30%");
-													$("#bookInfo").append(div);
+													if($("#bookInfo div")){
+														div.prependTo($("#bookInfo"));
+													}	else{
+														$("#bookInfo").append(div);
+													}	
 													//成功获取图书信息之后将数据存储到数据库
 													/*$.ajax({
 														url:"",
