@@ -95,8 +95,10 @@ public class WechatBusinessController {
         String jsapi_ticket = tokenCache.getJsapi_ticket();
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
+        
         Book bookInfo = JSONObject.parseObject(book, Book.class);
         boolean resultFlag = bookService.saveBook(bookInfo);
+        
         logger.info("resultFlag ="+resultFlag);
         logger.info("url = " + url);
         logger.info("noncestr = " + noncestr);
