@@ -227,8 +227,8 @@ body {
 														$("#bookInfo").append(div);
 													}	
 													//成功获取图书信息之后将数据存储到数据库
-													/*$.ajax({
-														url:"",
+													$.ajax({
+													url:"http://zhixing101.zzhkll.com/wechat/addBook?book="+str,
 										    		type : "post",
 										    		data : findbookbyisbnData,
 										    		success : function(data) {
@@ -237,7 +237,7 @@ body {
 										    		error : function(){
 										    			alert("失败");
 										    		}
-													})*/
+													})
 								    		},
 								    		error : function(error) {
 								    			console.log("错误:" + data )
