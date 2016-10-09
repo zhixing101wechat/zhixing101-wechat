@@ -169,7 +169,7 @@ body {
 									alert('用户拒绝授权获取地理位置');
 								}
 							});
-							
+							    
 							//扫一扫
 							$("#scanQRCode").click(function(){
 								wx.scanQRCode({
