@@ -182,6 +182,7 @@ public class WechatBusinessController {
      * @return
      */
     @RequestMapping(value = "addBookBiz", method = RequestMethod.POST)
+    @ResponseBody
     public String addBookBiz(Book book) {
 
         boolean result = bookService.saveBook(book);
