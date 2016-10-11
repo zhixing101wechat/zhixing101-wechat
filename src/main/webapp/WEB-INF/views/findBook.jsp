@@ -222,7 +222,19 @@ value="${searchBookStoragePlaceRadius }" />
 						// 知行一下按钮按下事件
 						$("#searchButton").click(function () {
 							var keyword = $("#searchKeyword").val();
-							alert(keyword);
+
+							$.ajax({
+							url : "http://zhixing101.zzhkll.com/wechat/findBookBiz",
+				    		type : "post",
+				    		data : keyword,
+				    		dataType : "json",
+				    		success : function(res) {
+				    			alert(res);
+				    		},
+				    		error : function(res){
+				    			alert("失败");
+				    		}
+							})
 						});
 					});
 </script>

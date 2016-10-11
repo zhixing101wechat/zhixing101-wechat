@@ -1,11 +1,10 @@
 package com.zhixing101.wechat.wechat.controller;
     
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.zhixing101.wechat.api.entity.Book;
-import com.zhixing101.wechat.api.service.BookService;
-import com.zhixing101.wechat.wechat.token.TokenCache;
-import com.zhixing101.wechat.wechat.util.JsSdkUtil;
+import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.UUID;
+import com.alibaba.fastjson.JSON;
+import com.zhixing101.wechat.api.entity.Book;
+import com.zhixing101.wechat.api.service.BookService;
+import com.zhixing101.wechat.wechat.token.TokenCache;
+import com.zhixing101.wechat.wechat.util.JsSdkUtil;
 
 /**
  * 微信业务Controller
@@ -177,8 +179,7 @@ public class WechatBusinessController {
 
     /**
      * 录书业务
-     * @param model
-     * @param request
+     * @param book
      * @return
      */
     @RequestMapping(value = "addBookBiz", method = RequestMethod.POST)
@@ -187,5 +188,16 @@ public class WechatBusinessController {
 
         boolean result = bookService.saveBook(book);
         return String.valueOf(result);
+    }
+
+    /**
+     * 找书业务
+     * @param keyword
+     * @return
+     */
+    @RequestMapping(value = "findBookBiz", method = RequestMethod.POST)
+    @ResponseBody
+    public String findBookBiz(String keyword) {
+        return JSON.toJSONString(bookService.pagingQueryBooksByKeyword(keyword, 100, 0));
     }
 }
