@@ -218,6 +218,12 @@ value="${searchBookStoragePlaceRadius }" />
 						wx.error(function(res) {
 							alert(res.errMsg);
 						});
+						
+						// 知行一下按钮按下事件
+						$("#searchButton").click(function () {
+							var keyword = $("#searchKeyword").attr("value");
+							alert(keyword);
+						});
 					});
 </script>
 </body>
