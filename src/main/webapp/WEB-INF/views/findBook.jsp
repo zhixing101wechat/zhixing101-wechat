@@ -221,7 +221,7 @@ value="${searchBookStoragePlaceRadius }" />
 						
 						// 知行一下按钮按下事件
 						$("#searchButton").click(function () {
-							var keyword = $("#searchKeyword").attr("value");
+							var keyword = $("#searchKeyword").val();
 							alert(keyword);
 						});
 					});
