@@ -199,7 +199,7 @@ public class WechatBusinessController {
     @ResponseBody
     public String findBookBiz(String keyword) {
         String result = JSON.toJSONString(bookService.pagingQueryBooksByKeyword(keyword, 100, 0));
-        logger.info(result);
+        logger.debug(result);
         return result;
     }
 }
