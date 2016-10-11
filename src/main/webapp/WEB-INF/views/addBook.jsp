@@ -231,11 +231,12 @@ body {
 													url : "http://zhixing101.zzhkll.com/wechat/addBookBiz",
 										    		type : "post",
 										    		data : jsonData,
-										    		success : function(data, textStatus) {
-										    			alert(data);
+										    		dataType : "text",
+										    		success : function(res) {
+										    			alert("成功");
 										    		},
-										    		error : function(result){
-										    			alert(result);
+										    		error : function(res){
+										    			alert("失败");
 										    		}
 													})
 								    		},
