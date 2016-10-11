@@ -227,7 +227,7 @@ value="${searchBookStoragePlaceRadius }" />
 							url : "http://zhixing101.zzhkll.com/wechat/findBookBiz",
 				    		type : "post",
 				    		data : keyword,
-				    		dataType : "json",
+				    		dataType : "text",
 				    		success : function(res) {
 				    			alert(res);
 				    		},
