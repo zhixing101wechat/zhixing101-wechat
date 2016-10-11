@@ -23,16 +23,12 @@ body {
 	height: 10%
 }
 
-#searchBar {
-	height: 10%
-}
-
 #mapContainer {
 	height: 40%
 }
 
 #scanQRCode {
-	height: 10%;
+	height: 20%;
 	margin-left: 10%;
 }
 
@@ -71,15 +67,6 @@ body {
 		<button class="btn btn-primary">扫一扫</button>
 	</div>
 	<div id="bookInfo"></div>
-	<%-- 搜索工具条 --%>
-	<div id="searchBar" class="form-group">
-		<div class="col-xs-6">
-			<input type="text" class="form-control">
-		</div>
-		<div class="col-xs-4">
-			<button type="submit" class="btn btn-primary">知行一下</button>
-		</div>
-	</div>
 	<%-- 地图容器 --%>
 	<div id="mapContainer"></div>
 
