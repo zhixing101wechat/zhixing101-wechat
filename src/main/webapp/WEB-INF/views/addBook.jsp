@@ -230,7 +230,7 @@ body {
 													$.ajax({
 													url : "http://zhixing101.zzhkll.com/wechat/addBookBiz",
 										    		type : "post",
-										    		data : findbookbyisbnData,
+										    		data : jsonData,
 										    		success : function(data) {
 										    			//alert("成功");
 										    			alert(data);
