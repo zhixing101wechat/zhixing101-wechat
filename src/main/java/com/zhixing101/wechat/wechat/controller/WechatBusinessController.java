@@ -88,7 +88,7 @@ public class WechatBusinessController {
      * @return
      */
     @RequestMapping(value = "addBook", method = RequestMethod.GET)
-    public String addBook(Model model, HttpServletRequest request,@RequestParam("book") String book) {
+    public String addBook(Model model, HttpServletRequest request) {
 
         String url = rootUrl + "/addBook?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
@@ -96,17 +96,17 @@ public class WechatBusinessController {
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
         
-        Book bookInfo = JSONObject.parseObject(book, Book.class);
-        boolean resultFlag = bookService.saveBook(bookInfo);
+//        Book bookInfo = JSONObject.parseObject(book, Book.class);
+//        boolean resultFlag = bookService.saveBook(bookInfo);
         
-        logger.info("resultFlag ="+resultFlag);
+//        logger.info("resultFlag ="+resultFlag);
         logger.info("url = " + url);
         logger.info("noncestr = " + noncestr);
         logger.info("jsapi_ticket = " + jsapi_ticket);
         logger.info("timestamp = " + timestamp);
         logger.info("signature = " + signature);
         
-        model.addAttribute("resultFlag", resultFlag);
+//        model.addAttribute("resultFlag", resultFlag);
         model.addAttribute("appId", appId);
         model.addAttribute("noncestr", noncestr);
         model.addAttribute("timestamp", timestamp);
