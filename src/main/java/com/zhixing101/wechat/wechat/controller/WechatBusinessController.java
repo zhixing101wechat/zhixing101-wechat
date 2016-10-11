@@ -198,6 +198,8 @@ public class WechatBusinessController {
     @RequestMapping(value = "findBookBiz", method = RequestMethod.POST)
     @ResponseBody
     public String findBookBiz(String keyword) {
-        return JSON.toJSONString(bookService.pagingQueryBooksByKeyword(keyword, 100, 0));
+        String result = JSON.toJSONString(bookService.pagingQueryBooksByKeyword(keyword, 100, 0));
+        logger.info(result);
+        return result;
     }
 }
