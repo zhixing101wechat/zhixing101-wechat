@@ -56,8 +56,8 @@ value="${searchBookStoragePlaceRadius }" />
 </div>
 <%-- 搜索工具条 --%>
 <div id="searchBar" class="form-group">
-<div class="col-xs-6"><input type="text" class="form-control"></div>
-<div class="col-xs-4"><button type="submit" class="btn btn-primary">知行一下</button></div>
+<div class="col-xs-6"><input id="searchKeyword" type="text" class="form-control"></div>
+<div class="col-xs-4"><button id="searchButton" type="submit" class="btn btn-primary">知行一下</button></div>
 </div>
 <%-- 地图容器 --%>
 <div id="mapContainer"></div>
