@@ -233,7 +233,7 @@ body {
 										    		data : jsonData,
 										    		dataType : "text",
 										    		success : function(res) {
-										    			alert("成功");
+										    			alert(res);
 										    		},
 										    		error : function(res){
 										    			alert("失败");
