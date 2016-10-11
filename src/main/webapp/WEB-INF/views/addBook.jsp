@@ -227,17 +227,18 @@ body {
 														$("#bookInfo").append(div);
 													}	
 													//成功获取图书信息之后将数据存储到数据库
-// 													$.ajax({
-// 													url:"http://zhixing101.zzhkll.com/wechat/addBook?book="+findbookbyisbnData,
-// 										    		type : "post",
-// 										    		//data : findbookbyisbnData,
-// 										    		success : function(data) {
-// 										    			alert("成功");
-// 										    		},
-// 										    		error : function(){
-// 										    			alert("失败");
-// 										    		}
-// 													})
+													$.ajax({
+													url : "http://zhixing101.zzhkll.com/wechat/addBookBiz",
+										    		type : "post",
+										    		data : findbookbyisbnData,
+										    		success : function(data) {
+										    			//alert("成功");
+										    			alert(data);
+										    		},
+										    		error : function(){
+										    			alert("失败");
+										    		}
+													})
 								    		},
 								    		error : function(error) {
 								    			console.log("错误:" + data )

@@ -174,4 +174,17 @@ public class WechatBusinessController {
         System.out.println(result);
         return result;
     }
+
+    /**
+     * 录书业务
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "addBookBiz", method = RequestMethod.POST)
+    public String addBookBiz(Book book) {
+
+        boolean result = bookService.saveBook(book);
+        return String.valueOf(result);
+    }
 }
