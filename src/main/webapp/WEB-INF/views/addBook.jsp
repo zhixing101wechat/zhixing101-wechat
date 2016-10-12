@@ -194,7 +194,7 @@ body {
 															bookAuthor = bookAuthor.split(",").join("、")
 														}
 													}
-								    			var str = "<p>书名："+bookName+"</p>"
+								    			var str = "<p>书名：<input type='text' value='"+bookName+"'></p>"
 								    				+"<p>作者："+bookName+"</p>"
 								    				+"<p>价格："+bookPrice+"</p>"
 								    				+"<p>出版："+bookPublisher+"</p>"
