@@ -195,14 +195,14 @@ body {
 														}
 													}
 								    			var str = "<p>书名：<input type='text' value='"+bookName+"'></p>"
-								    				+"<p>作者："+bookName+"</p>"
-								    				+"<p>价格："+bookPrice+"</p>"
-								    				+"<p>出版："+bookPublisher+"</p>"
-								    				+"<p>版本："+bookVersion+"</p>"
-								    				+"<p>isbn10："+bookIsbn10+"</p>"
-								    				+"<p>isbn13："+bookIsbn13+"</p>"
-								    				+"<p>简介："+bookSummary+"</p>"
-								    				+"<p>装订："+bookBinding+"</p>"
+								    				+"<p>作者：<input type='text' value='"+bookAuthor+"'></p>"
+								    				+"<p>价格：<input type='text' value='"+bookPrice+"'></p>"
+								    				+"<p>出版：<input type='text' value='"+bookPublisher+"'></p>"
+								    				+"<p>版本：<input type='text' value='"+bookVersion+"'></p>"
+								    				+"<p>isbn10：<input type='text' value='"+bookIsbn10+"'></p>"
+								    				+"<p>isbn13：<input type='text' value='"+bookIsbn13+"'></p>"
+								    				+"<p>简介：<input type='text' value='"+bookSummary+"'></p>"
+								    				+"<p>装订：<input type='text' value='"+bookBinding+"'></p>"
 								    				+"<p>图片：<img src='"+bookImageUrl+"' /></p>";
 								    				
 													var div = $("<div></div>");
