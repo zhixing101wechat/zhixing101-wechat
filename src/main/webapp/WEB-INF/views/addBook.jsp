@@ -65,9 +65,8 @@ body {
 
 	<%-- 按钮工具条 --%>
 	<div id="buttonBar" class="form-group">
-		<div class="col-xs-6">
-			<button id="createBookStoragePlaceButton" type="submit" class="btn btn-primary" value="创建存书点"></button>
-		</div>
+		<button id="createBookStoragePlaceButton" type="submit"
+			class="btn btn-primary" value="创建存书点"></button>
 	</div>
 
 	<script type="text/javascript">
