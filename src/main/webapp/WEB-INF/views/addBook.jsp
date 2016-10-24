@@ -20,11 +20,15 @@ body {
 }
 
 #statisticsBar {
-	height: 10%
+	height: 5%
 }
 
 #mapContainer {
 	height: 40%
+}
+
+#buttonBar {
+	height: 5%
 }
 </style>
 
@@ -58,6 +62,13 @@ body {
 
 	<%-- 地图容器 --%>
 	<div id="mapContainer"></div>
+
+	<%-- 按钮工具条 --%>
+	<div id="buttonBar" class="form-group">
+		<div class="col-xs-6">
+			<button id="createBookStoragePlaceButton" type="submit" class="form-control" value="创建存书点"></button>
+		</div>
+	</div>
 
 	<script type="text/javascript">
 		// 初始化地图
