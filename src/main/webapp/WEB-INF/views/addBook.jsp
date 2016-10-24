@@ -24,7 +24,7 @@ body {
 }
 
 #mapContainer {
-	height: 90%
+	height: 80%
 }
 
 #buttonBar {
