@@ -20,7 +20,7 @@ body {
 }
 
 #statisticsBar {
-	height: 5%
+	height: 10%
 }
 
 #mapContainer {
@@ -28,7 +28,7 @@ body {
 }
 
 #buttonBar {
-	height: 5%
+	height: 10%
 }
 </style>
 
