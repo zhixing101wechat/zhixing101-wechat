@@ -231,7 +231,9 @@ body {
 
 										// 初始化地图
 										initMap(parseFloat(longitude),
-												parseFloat(latitude));
+												parseFloat(latitude),
+												searchRadius,
+												storagePlaceGeotableId);
 									},
 									cancel : function(res) {
 										alert('用户拒绝授权获取地理位置');
