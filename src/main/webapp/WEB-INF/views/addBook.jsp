@@ -136,8 +136,8 @@ body {
 						}
 					});
 					var circle = null;
-					drawingManager.addEventListener('circlecomplete', function(e,
-							overlay) {
+					drawingManager.addEventListener('circlecomplete', function(
+							e, overlay) {
 						//	circlecomplete
 						map.clearOverlays();
 						circle = e;
@@ -151,13 +151,15 @@ body {
 							}
 						});
 					});
-					
+
 					// 添加地图单击事件
 					function showInfo(e) {
-	 					alert(e.point.lng + ", " + e.point.lat);
-// 						initMap(e.point.lng, e.point.lat, searchRadius, storagePlaceGeotableId)
+						// 					alert(e.point.lng + ", " + e.point.lat);
+						initMap(e.point.lng, e.point.lat, searchRadius,
+								storagePlaceGeotableId)
 					}
-					map.addEventListener("click", showInfo);
+					map.addEventListener("dblclick", showInfo);
+
 				}
 			}
 
