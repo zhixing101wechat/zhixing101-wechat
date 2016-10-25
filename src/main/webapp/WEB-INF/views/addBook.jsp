@@ -96,75 +96,9 @@ body {
 						offset : new BMap.Size(20, -10)
 					});
 					marker.setLabel(label);
-					map.setCenter(point);
-
-					var options = {
-						renderOptions : {
-							map : map
-						},
-						onSearchComplete : function(results) {
-							//     			alert('Search Completed');
-							//可添加自定义回调函数
-						}
-					};
-					var localSearch = new BMap.LocalSearch(map, options);
-					map.addEventListener("load", function() {
-						var circle = new BMap.Circle(point, searchRadius, {
-							fillColor : "blue",
-							strokeWeight : 1,
-							fillOpacity : 0.3,
-							strokeOpacity : 0.3
-						});
-						map.addOverlay(circle);
-						localSearch.searchNearby('图书馆', point, searchRadius, {
-							customData : {
-								geotableId : storagePlaceGeotableId
-							}
-						});
-					});
-
-					// 初始化地图，设置中心点坐标和地图级别
-					map.centerAndZoom(point, 12);
-					map.enableScrollWheelZoom();
-					//添加默认缩放平移控件
+					map.centerAndZoom(point, 15);
 					map.addControl(new BMap.NavigationControl());
 
-					var drawingManager = new BMapLib.DrawingManager(map, {
-						isOpen : false, //是否开启绘制模式
-						enableDrawingTool : false, //是否显示工具栏
-						drawingToolOptions : {
-							anchor : BMAP_ANCHOR_TOP_RIGHT, //位置
-							offset : new BMap.Size(5, 5), //偏离值
-							scale : 0.8, //工具栏缩放比例
-							drawingModes : [ BMAP_DRAWING_CIRCLE ]
-						}
-					});
-					var circle = null;
-					drawingManager.addEventListener('circlecomplete', function(
-							e, overlay) {
-						//	circlecomplete
-						map.clearOverlays();
-						circle = e;
-						map.addOverlay(overlay);
-						var radius = parseInt(e.getRadius());
-						var center = e.getCenter();
-						drawingManager.close();
-						localSearch.searchNearby('图书馆', center, radius, {
-							customData : {
-								geotableId : storagePlaceGeotableId
-							}
-						});
-					});
-
-					// 添加地图单击事件
-					function showInfo(e) {
-						// 					alert(e.point.lng + ", " + e.point.lat);
-						initMap(e.point.lng, e.point.lat, searchRadius,
-								storagePlaceGeotableId)
-					}
-					map.addEventListener("dblclick", showInfo);
-
-			
 					// 添加定位控件
 					var geolocationControl = new BMap.GeolocationControl();
 					geolocationControl.addEventListener("locationSuccess",
