@@ -1,6 +1,5 @@
 package com.zhixing101.wechat.wechat.controller;
-    
-import java.util.List;
+
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,6 +53,7 @@ public class WechatBusinessController {
 
     /**
      * 找书
+     * 
      * @param model
      * @param request
      * @return
@@ -85,6 +85,7 @@ public class WechatBusinessController {
 
     /**
      * 录书
+     * 
      * @param model
      * @param request
      * @return
@@ -97,18 +98,18 @@ public class WechatBusinessController {
         String jsapi_ticket = tokenCache.getJsapi_ticket();
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
-        
-//        Book bookInfo = JSONObject.parseObject(book, Book.class);
-//        boolean resultFlag = bookService.saveBook(bookInfo);
-        
-//        logger.info("resultFlag ="+resultFlag);
+
+        // Book bookInfo = JSONObject.parseObject(book, Book.class);
+        // boolean resultFlag = bookService.saveBook(bookInfo);
+
+        // logger.info("resultFlag ="+resultFlag);
         logger.info("url = " + url);
         logger.info("noncestr = " + noncestr);
         logger.info("jsapi_ticket = " + jsapi_ticket);
         logger.info("timestamp = " + timestamp);
         logger.info("signature = " + signature);
-        
-//        model.addAttribute("resultFlag", resultFlag);
+
+        // model.addAttribute("resultFlag", resultFlag);
         model.addAttribute("appId", appId);
         model.addAttribute("noncestr", noncestr);
         model.addAttribute("timestamp", timestamp);
@@ -122,41 +123,42 @@ public class WechatBusinessController {
     @RequestMapping(value = "getLoc", method = RequestMethod.GET)
     public String getLoc(Model model, HttpServletRequest request) {
 
-//        String url = rootUrl + "/getLoc?" + request.getQueryString();
-//        String noncestr = UUID.randomUUID().toString();
-//        String jsapi_ticket = tokenCache.getJsapi_ticket();
-//        String timestamp = Long.toString(System.currentTimeMillis() / 1000);
-//        String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
-//
-//        logger.info("url = " + url);
-//        logger.info("noncestr = " + noncestr);
-//        logger.info("jsapi_ticket = " + jsapi_ticket);
-//        logger.info("timestamp = " + timestamp);
-//        logger.info("signature = " + signature);
-//
-//        model.addAttribute("appId", appId);
-//        model.addAttribute("noncestr", noncestr);
-//        model.addAttribute("timestamp", timestamp);
-//        model.addAttribute("signature", signature);
-//
-//        return "getLoc";
+        // String url = rootUrl + "/getLoc?" + request.getQueryString();
+        // String noncestr = UUID.randomUUID().toString();
+        // String jsapi_ticket = tokenCache.getJsapi_ticket();
+        // String timestamp = Long.toString(System.currentTimeMillis() / 1000);
+        // String signature = JsSdkUtil.getJsSdkSignature(noncestr,
+        // jsapi_ticket, timestamp, url);
+        //
+        // logger.info("url = " + url);
+        // logger.info("noncestr = " + noncestr);
+        // logger.info("jsapi_ticket = " + jsapi_ticket);
+        // logger.info("timestamp = " + timestamp);
+        // logger.info("signature = " + signature);
+        //
+        // model.addAttribute("appId", appId);
+        // model.addAttribute("noncestr", noncestr);
+        // model.addAttribute("timestamp", timestamp);
+        // model.addAttribute("signature", signature);
+        //
+        // return "getLoc";
         String url = rootUrl + "/getLoc?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
         String jsapi_ticket = tokenCache.getJsapi_ticket();
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
-        
-//        Book bookInfo = JSONObject.parseObject(book, Book.class);
-//        boolean resultFlag = bookService.saveBook(bookInfo);
-        
-//        logger.info("resultFlag ="+resultFlag);
+
+        // Book bookInfo = JSONObject.parseObject(book, Book.class);
+        // boolean resultFlag = bookService.saveBook(bookInfo);
+
+        // logger.info("resultFlag ="+resultFlag);
         logger.info("url = " + url);
         logger.info("noncestr = " + noncestr);
         logger.info("jsapi_ticket = " + jsapi_ticket);
         logger.info("timestamp = " + timestamp);
         logger.info("signature = " + signature);
-        
-//        model.addAttribute("resultFlag", resultFlag);
+
+        // model.addAttribute("resultFlag", resultFlag);
         model.addAttribute("appId", appId);
         model.addAttribute("noncestr", noncestr);
         model.addAttribute("timestamp", timestamp);
@@ -190,20 +192,25 @@ public class WechatBusinessController {
         return "getLoc4Pad";
     }
 
-    @RequestMapping(value = "findBookByISBN",produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "findBookByISBN", produces = "text/html;charset=UTF-8")
     @ResponseBody
-    public String findBookByISBN(@RequestParam("isbn") String isbn){
-        logger.debug("提交isbn获取请求,请求isbn为 " + isbn);
+    public String findBookByISBN(@RequestParam("isbn") String isbn) {
+
+        logger.debug("WechatBusinessController.findBookByISBN begin");
+        logger.debug("isbn = " + isbn);
+
         Book book = bookService.findBookByISBN(isbn);
-        String result = "";
-        result = JSON.toJSONString(book);
-        logger.debug("生成的json数据为"+result);
-        System.out.println(result);
+        String result = JSON.toJSONString(book);
+
+        logger.debug("result = " + result);
+        logger.debug("WechatBusinessController.findBookByISBN end");
+
         return result;
     }
 
     /**
      * 录书业务
+     * 
      * @param book
      * @return
      */
@@ -217,10 +224,11 @@ public class WechatBusinessController {
 
     /**
      * 找书业务
+     * 
      * @param keyword
      * @return
      */
-    @RequestMapping(value = "findBookBiz",produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "findBookBiz", produces = "text/html;charset=UTF-8")
     @ResponseBody
     public String findBookBiz(@RequestParam("keyword") String keyword) {
         return JSON.toJSONString(bookService.pagingQueryBooksByKeyword(keyword, 10, 1));

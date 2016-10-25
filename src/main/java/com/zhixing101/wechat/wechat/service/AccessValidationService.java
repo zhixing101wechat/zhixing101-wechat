@@ -52,7 +52,7 @@ public class AccessValidationService {
      * 根据token计算signature验证是否为weixin服务端发送的消息
      */
     public boolean checkWeixinReques(HttpServletRequest request) {
-        System.out.println("验证微信");
+
         String signature = request.getParameter("signature");
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");

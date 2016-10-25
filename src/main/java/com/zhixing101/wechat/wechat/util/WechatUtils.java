@@ -52,8 +52,7 @@ public class WechatUtils {
                             writer.write(text);
                         }
                     } catch (Exception e) {
-                        // TODO Auto-generated catch block
-                        System.out.println(e);
+                        e.printStackTrace();
                     }
                 }
             };
