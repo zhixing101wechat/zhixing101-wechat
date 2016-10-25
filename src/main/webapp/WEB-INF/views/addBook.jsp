@@ -24,7 +24,7 @@ body {
 }
 
 #mapContainer {
-	height: 60%
+	height: 80%
 }
 
 #buttonBar {
@@ -65,9 +65,13 @@ body {
 
 	<%-- 按钮工具条 --%>
 	<div id="buttonBar" class="form-group">
-		<div class="col-xs-12">
+		<div class="col-xs-6">
 			<button id="createBookStoragePlaceButton" type="submit"
 				class="btn btn-primary">创建存书点</button>
+		</div>
+		<div class="col-xs-6">
+			<button id="selectBookStoragePlaceButton" type="submit"
+				class="btn btn-primary">选择已有存书点</button>
 		</div>
 	</div>
 
