@@ -122,24 +122,49 @@ public class WechatBusinessController {
     @RequestMapping(value = "getLoc", method = RequestMethod.GET)
     public String getLoc(Model model, HttpServletRequest request) {
 
-        String url = rootUrl + "/getLoc?" + request.getQueryString();
+//        String url = rootUrl + "/getLoc?" + request.getQueryString();
+//        String noncestr = UUID.randomUUID().toString();
+//        String jsapi_ticket = tokenCache.getJsapi_ticket();
+//        String timestamp = Long.toString(System.currentTimeMillis() / 1000);
+//        String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
+//
+//        logger.info("url = " + url);
+//        logger.info("noncestr = " + noncestr);
+//        logger.info("jsapi_ticket = " + jsapi_ticket);
+//        logger.info("timestamp = " + timestamp);
+//        logger.info("signature = " + signature);
+//
+//        model.addAttribute("appId", appId);
+//        model.addAttribute("noncestr", noncestr);
+//        model.addAttribute("timestamp", timestamp);
+//        model.addAttribute("signature", signature);
+//
+//        return "getLoc";
+        String url = rootUrl + "/addBook?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
         String jsapi_ticket = tokenCache.getJsapi_ticket();
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
-
+        
+//        Book bookInfo = JSONObject.parseObject(book, Book.class);
+//        boolean resultFlag = bookService.saveBook(bookInfo);
+        
+//        logger.info("resultFlag ="+resultFlag);
         logger.info("url = " + url);
         logger.info("noncestr = " + noncestr);
         logger.info("jsapi_ticket = " + jsapi_ticket);
         logger.info("timestamp = " + timestamp);
         logger.info("signature = " + signature);
-
+        
+//        model.addAttribute("resultFlag", resultFlag);
         model.addAttribute("appId", appId);
         model.addAttribute("noncestr", noncestr);
         model.addAttribute("timestamp", timestamp);
         model.addAttribute("signature", signature);
+        model.addAttribute("bookStoragePlaceGeotableId", bookStoragePlaceGeotableId);
+        model.addAttribute("searchBookStoragePlaceRadius", searchBookStoragePlaceRadius);
 
-        return "getLoc";
+        return "addBook_bak20161024";
     }
 
     @RequestMapping(value = "getLoc4Pad", method = RequestMethod.GET)
