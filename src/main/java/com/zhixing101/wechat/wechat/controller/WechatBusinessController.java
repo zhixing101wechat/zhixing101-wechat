@@ -140,7 +140,7 @@ public class WechatBusinessController {
 //        model.addAttribute("signature", signature);
 //
 //        return "getLoc";
-        String url = rootUrl + "/addBook?" + request.getQueryString();
+        String url = rootUrl + "/getLoc?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
         String jsapi_ticket = tokenCache.getJsapi_ticket();
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
