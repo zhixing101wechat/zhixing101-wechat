@@ -105,21 +105,21 @@ body {
 					map.addControl(new BMap.NavigationControl());
 
 					// 添加定位控件
-					var geolocationControl = new BMap.GeolocationControl();
-					geolocationControl.addEventListener("locationSuccess",
-							function(e) {
-								// 定位成功事件
-								var lat = e.point.lat;
-								var lng = e.point.lng;
-								var point = new BMap.Point(lng, lat);
-								displayPoint(point);
-							});
-					geolocationControl.addEventListener("locationError",
-							function(e) {
-								// 定位失败事件
-								alert(e.message);
-							});
-					map.addControl(geolocationControl);
+// 					var geolocationControl = new BMap.GeolocationControl();
+// 					geolocationControl.addEventListener("locationSuccess",
+// 							function(e) {
+// 								// 定位成功事件
+// 								var lat = e.point.lat;
+// 								var lng = e.point.lng;
+// 								var point = new BMap.Point(lng, lat);
+// 								displayPoint(point);
+// 							});
+// 					geolocationControl.addEventListener("locationError",
+// 							function(e) {
+// 								// 定位失败事件
+// 								alert(e.message);
+// 							});
+// 					map.addControl(geolocationControl);
 				}
 			}
 
