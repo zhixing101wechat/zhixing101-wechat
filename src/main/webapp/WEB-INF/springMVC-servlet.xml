@@ -26,5 +26,6 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
         p:prefix="/WEB-INF/views/" p:suffix=".jsp" />
 
+    <mvc:default-servlet-handler />
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
 </beans>
