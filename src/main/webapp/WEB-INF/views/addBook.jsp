@@ -85,17 +85,22 @@ body {
 			// 创建地图实例
 			var map = new BMap.Map("mapContainer");
 
+			// 在地图上显示point点
+			function displayPoint(point) {
+				var marker = new BMap.Marker(point);
+				map.addOverlay(marker);
+				var label = new BMap.Label("当前位置", {
+					offset : new BMap.Size(20, -10)
+				});
+				marker.setLabel(label);
+			}
+			
 			// 坐标转换完之后的回调函数
 			translateCallback = function(data) {
 				if (data.status === 0) {
 
 					var point = data.points[0];
-					var marker = new BMap.Marker(point);
-					map.addOverlay(marker);
-					var label = new BMap.Label("当前位置", {
-						offset : new BMap.Size(20, -10)
-					});
-					marker.setLabel(label);
+					displayPoint(point);
 					map.centerAndZoom(point, 15);
 					map.addControl(new BMap.NavigationControl());
 
@@ -104,13 +109,10 @@ body {
 					geolocationControl.addEventListener("locationSuccess",
 							function(e) {
 								// 定位成功事件
-								var address = '';
-								address += e.addressComponent.province;
-								address += e.addressComponent.city;
-								address += e.addressComponent.district;
-								address += e.addressComponent.street;
-								address += e.addressComponent.streetNumber;
-								alert("当前定位地址为：" + address);
+								var lat = e.point.lat;
+								var lng = e.point.lng;
+								var point = new BMap.Point(lng, lat);
+								displayPoint(point);
 							});
 					geolocationControl.addEventListener("locationError",
 							function(e) {
