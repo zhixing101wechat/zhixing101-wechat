@@ -33,7 +33,7 @@ body {
 </style>
 
 <script type="text/javascript"
-	src="<c:url value='/js/weixin.js'/>"></script>
+	src="js/weixin.js'/>"></script>
 
 <%-- 加载鼠标绘制工具 --%>
 <script type="text/javascript"
