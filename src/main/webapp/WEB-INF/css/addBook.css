@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+html {
+	height: 100%
+}
+
+body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
+
+#statisticsBar {
+	height: 10%
+}
+
+#mapContainer {
+	height: 80%
+}
+
+#buttonBar {
+	height: 10%
+}
