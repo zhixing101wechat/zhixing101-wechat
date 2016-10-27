@@ -1,13 +1,21 @@
 /**
  * 微信JS
  */
+
 // 权限验证
 function authorityValidate(document) {
+
 	// 从hidden字段获取config接口注入权限验证参数
 	var appIdValue = document.getElementById("appId").value;
 	var noncestrValue = document.getElementById("noncestr").value;
 	var timestampValue = document.getElementById("timestamp").value;
 	var signatureValue = document.getElementById("signature").value;
+
+	// 从hidden字段获取图书存放点geotableId
+	var storagePlaceGeotableId = document
+			.getElementById("bookStoragePlaceGeotableId").value;
+	// 从hidden字段获取检索图书存放点的半径(单位m)
+	var searchRadius = document.getElementById("searchBookStoragePlaceRadius").value;
 
 	// 通过config接口注入权限验证配置
 	wx.config({
@@ -25,4 +33,40 @@ function authorityValidate(document) {
 		jsApiList : [ 'getLocation' ]
 
 	});
+
+	// 通过ready接口处理成功验证
+	wx.ready(function() {
+
+		// 获取地理位置
+		wx.getLocation({
+
+			// 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+			type : 'wgs84',
+			success : function(res) {
+
+				// 纬度，浮点数，范围为90 ~ -90
+				var latitude = res.latitude;
+				// 经度，浮点数，范围为180 ~ -180
+				var longitude = res.longitude;
+				// 速度，以米/每秒计
+				var speed = res.speed;
+				// 位置精度
+				var accuracy = res.accuracy;
+
+				// 初始化地图
+				initMap(parseFloat(longitude), parseFloat(latitude),
+						searchRadius, storagePlaceGeotableId);
+			},
+			cancel : function(res) {
+				alert('用户拒绝授权获取地理位置');
+			}
+		});
+	});
+
+	// 通过error接口处理失败验证
+	wx.error(function(res) {
+		alert(res.errMsg);
+	});
 }
+
+//
