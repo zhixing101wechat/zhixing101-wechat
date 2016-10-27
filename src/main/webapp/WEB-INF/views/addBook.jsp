@@ -9,7 +9,7 @@
 <title>录书</title>
 
 <%-- 加载addBook.css --%>
-<script type="text/javascript" src="css/addBook.css"></script>
+<link rel="stylesheet" type="text/css" href="css/addBook.css" />
 <%-- 加载baidu.js --%>
 <script type="text/javascript" src="js/baidu.js"></script>
 <%-- 加载weixin.js --%>
