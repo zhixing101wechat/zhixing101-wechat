@@ -33,9 +33,9 @@ body {
 </style>
 
 <%-- 加载weixin.js --%>
-<script type="text/javascript" src="js/weixin.js"></script>
-<%-- 加载weixin.js --%>
 <script type="text/javascript" src="js/baidu.js"></script>
+<%-- 加载weixin.js --%>
+<script type="text/javascript" src="js/weixin.js"></script>
 
 <%-- 加载鼠标绘制工具 --%>
 <script type="text/javascript"
