@@ -8,31 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <title>录书</title>
 
-<style type="text/css">
-html {
-	height: 100%
-}
-
-body {
-	height: 100%;
-	margin: 0px;
-	padding: 0px
-}
-
-#statisticsBar {
-	height: 10%
-}
-
-#mapContainer {
-	height: 80%
-}
-
-#buttonBar {
-	height: 10%
-}
-</style>
-
-<%-- 加载weixin.js --%>
+<%-- 加载addBook.css --%>
+<script type="text/javascript" src="css/addBook.css"></script>
+<%-- 加载baidu.js --%>
 <script type="text/javascript" src="js/baidu.js"></script>
 <%-- 加载weixin.js --%>
 <script type="text/javascript" src="js/weixin.js"></script>
@@ -77,6 +55,11 @@ body {
 			<button id="selectBookStoragePlaceButton" type="submit"
 				class="btn btn-primary">选择已有存书点</button>
 		</div>
+	</div>
+
+	<%-- 创建存书点输入框 --%>
+	<div id="createBookStoragePlaceDialog">
+	
 	</div>
 
 	<script type="text/javascript">
