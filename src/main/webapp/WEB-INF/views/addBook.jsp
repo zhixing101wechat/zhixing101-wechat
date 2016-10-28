@@ -48,12 +48,22 @@
 	<%-- 创建存书点输入框 --%>
 	<div id="createBookStoragePlaceDialog" class="form-group">
 		<div class="form-group">
-			<label for="name">名称</label> <input type="text" class="form-control"
-				id="name" placeholder="请输入名称">
+			<label for="name">存书点名称</label> <input type="text"
+				class="form-control" id="name" placeholder="请输入存书点名称">
 		</div>
 		<div class="form-group">
-			<label for="desc">文件输入</label> <input type="text"
-				class="form-control" id="desc" placeholder="请输入描述">
+			<label for="desc">存书点描述</label> <input type="text"
+				class="form-control" id="desc" placeholder="请输入存书点描述">
+		</div>
+		<div class="form-group">
+			<div class="col-xs-6">
+				<button id="submitCreateBookStoragePlace" type="submit"
+					class="btn btn-primary">提交</button>
+			</div>
+			<div class="col-xs-6">
+				<button id="cancelCreateBookStoragePlace" type="submit"
+					class="btn btn-primary">取消</button>
+			</div>
 		</div>
 	</div>
 
@@ -70,14 +80,23 @@
 	</div>
 
 	<script type="text/javascript">
+
 		$(document).ready(function() {
 			authorityValidate(document);
-			
 
-	
-		$("#createBookStoragePlaceButton").click(function() {
-				$("#mapContainer").css("display","none");
-				$("#createBookStoragePlaceDialog").css("display","block");
+			$("#createBookStoragePlaceButton").click(function() {
+				$("#statisticsBar").css("display", "none");
+				$("#mapContainer").css("display", "none");
+				$("#createBookStoragePlaceDialog").css("display", "block");
+				$("#buttonBar").css("display", "none");
+			});
+			
+			
+			$("#cancelCreateBookStoragePlace").click(function() {
+				$("#statisticsBar").css("display", "block");
+				$("#mapContainer").css("display", "block");
+				$("#createBookStoragePlaceDialog").css("display", "none");
+				$("#buttonBar").css("display", "block");
 			});
 		});
 	</script>
