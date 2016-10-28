@@ -22,5 +22,6 @@ body {
 }
 
 #createBookStoragePlaceDialog {
+	height: 80%;
 	display:none;
 }
