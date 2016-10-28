@@ -76,8 +76,8 @@
 
 	
 		$("#createBookStoragePlaceButton").click(function() {
-				$("#mapContainer").css("display":"none");
-				$("#createBookStoragePlaceDialog").css("display":"");
+				$("#mapContainer").css("display","none");
+				$("#createBookStoragePlaceDialog").css("display","");
 			});
 		});
 	</script>
