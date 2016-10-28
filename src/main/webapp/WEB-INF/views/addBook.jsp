@@ -45,6 +45,18 @@
 	<%-- 地图容器 --%>
 	<div id="mapContainer"></div>
 
+	<%-- 创建存书点输入框 --%>
+	<div id="createBookStoragePlaceDialog" class="form-group">
+		<div class="form-group">
+			<label for="name">名称</label> <input type="text" class="form-control"
+				id="name" placeholder="请输入名称">
+		</div>
+		<div class="form-group">
+			<label for="desc">文件输入</label> <input type="text"
+				class="form-control" id="desc" placeholder="请输入描述">
+		</div>
+	</div>
+
 	<%-- 按钮工具条 --%>
 	<div id="buttonBar" class="form-group">
 		<div class="col-xs-6">
@@ -57,14 +69,16 @@
 		</div>
 	</div>
 
-	<%-- 创建存书点输入框 --%>
-	<div id="createBookStoragePlaceDialog">
-	
-	</div>
-
 	<script type="text/javascript">
 		$(document).ready(function() {
 			authorityValidate(document);
+			
+
+	
+		$("#createBookStoragePlaceButton").click(function() {
+				$("#mapContainer").attr("display","none");
+				$("#createBookStoragePlaceDialog").attr("display","block");
+			});
 		});
 	</script>
 </body>

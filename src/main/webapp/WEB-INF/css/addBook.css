@@ -20,3 +20,7 @@ body {
 #buttonBar {
 	height: 10%
 }
+
+#createBookStoragePlaceDialog {
+	display:none;
+}
