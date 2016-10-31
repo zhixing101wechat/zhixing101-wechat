@@ -50,13 +50,13 @@
 	<%-- 创建存书点对话框 --%>
 	<div id="createBookStoragePlaceDialog" class="form-group">
 		<div class="form-group">
-			<label for="createBookStoragePlaceDialog_Name">存书点名称</label> <input
-				id="createBookStoragePlaceDialog_Name" type="text"
+			<label for="createBookStoragePlaceDialogName">存书点名称</label> <input
+				id="createBookStoragePlaceDialogName" type="text"
 				class="form-control" placeholder="请输入存书点名称">
 		</div>
 		<div class="form-group">
-			<label for="createBookStoragePlaceDialog_Desc">存书点描述</label> <input
-				id="createBookStoragePlaceDialog_Desc" type="text"
+			<label for="createBookStoragePlaceDialogDesc">存书点描述</label> <input
+				id="createBookStoragePlaceDialogDesc" type="text"
 				class="form-control" placeholder="请输入存书点描述">
 		</div>
 		<div class="form-group">
