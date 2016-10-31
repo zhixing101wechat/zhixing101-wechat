@@ -4,12 +4,15 @@
 
 function createBookStoragePlace(document) {
 
-	var bookStoragePlace;
-	
 	// 从创建存书点输入框获取参数
-	bookStoragePlace.name = document.getElementById("createBookStoragePlaceDialogName").value;
-	bookStoragePlace.description = document.getElementById("createBookStoragePlaceDialogDesc").value;
-	
+	var nameValue = document.getElementById("createBookStoragePlaceDialogName").value;
+	var descriptionValue = document
+			.getElementById("createBookStoragePlaceDialogDesc").value;
+	var bookStoragePlace = {
+		name : nameValue,
+		description : descriptionValue
+	};
+
 	// 向后台发送请求
 	$.ajax({
 		url : "http://zhixing101.zzhkll.com/wechat/createBookStoragePlaceBiz",
