@@ -16,5 +16,6 @@
 
     <!-- dnionConfigManage-api -->
     <dubbo:reference id="bookService" interface="com.zhixing101.wechat.api.service.BookService"/>
+    <dubbo:reference id="bookStoragePlaceServiceImpl" interface="com.zhixing101.wechat.api.service.BookStoragePlaceService"/>
 
 </beans>

@@ -14,6 +14,8 @@
 <script type="text/javascript" src="js/baidu.js"></script>
 <%-- 加载weixin.js --%>
 <script type="text/javascript" src="js/weixin.js"></script>
+<%-- 加载zhixing101.js --%>
+<script type="text/javascript" src="js/zhixing101.js"></script>
 
 <%-- 加载鼠标绘制工具 --%>
 <script type="text/javascript"
@@ -45,15 +47,17 @@
 	<%-- 地图容器 --%>
 	<div id="mapContainer"></div>
 
-	<%-- 创建存书点输入框 --%>
+	<%-- 创建存书点对话框 --%>
 	<div id="createBookStoragePlaceDialog" class="form-group">
 		<div class="form-group">
-			<label for="name">存书点名称</label> <input type="text"
-				class="form-control" id="name" placeholder="请输入存书点名称">
+			<label for="createBookStoragePlaceDialog_Name">存书点名称</label> <input
+				id="createBookStoragePlaceDialog_Name" type="text"
+				class="form-control" placeholder="请输入存书点名称">
 		</div>
 		<div class="form-group">
-			<label for="desc">存书点描述</label> <input type="text"
-				class="form-control" id="desc" placeholder="请输入存书点描述">
+			<label for="createBookStoragePlaceDialog_Desc">存书点描述</label> <input
+				id="createBookStoragePlaceDialog_Desc" type="text"
+				class="form-control" placeholder="请输入存书点描述">
 		</div>
 		<div class="form-group">
 			<div class="col-xs-6">

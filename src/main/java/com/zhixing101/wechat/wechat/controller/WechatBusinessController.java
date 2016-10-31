@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.zhixing101.wechat.api.entity.Book;
+import com.zhixing101.wechat.api.entity.BookStoragePlace;
 import com.zhixing101.wechat.api.service.BookService;
+import com.zhixing101.wechat.api.service.BookStoragePlaceService;
 import com.zhixing101.wechat.wechat.token.TokenCache;
 import com.zhixing101.wechat.wechat.util.JsSdkUtil;
 
@@ -38,6 +40,9 @@ public class WechatBusinessController {
 
     @Autowired
     BookService bookService;
+
+    @Autowired
+    BookStoragePlaceService bookStoragePlaceService;
 
     @Value("#{configProperties['weixin.rootUrl']}")
     private String rootUrl;
@@ -232,5 +237,19 @@ public class WechatBusinessController {
     @ResponseBody
     public String findBookBiz(@RequestParam("keyword") String keyword) {
         return JSON.toJSONString(bookService.pagingQueryBooksByKeyword(keyword, 10, 1));
+    }
+
+    /**
+     * 创建存书点业务
+     * 
+     * @param bookStoragePlace
+     * @return
+     */
+    @RequestMapping(value = "createBookStoragePlaceBiz", method = RequestMethod.POST)
+    @ResponseBody
+    public String createBookStoragePlaceBiz(BookStoragePlace bookStoragePlace) {
+
+        boolean result = bookStoragePlaceService.saveBookStoragePlace(bookStoragePlace);
+        return String.valueOf(result);
     }
 }
