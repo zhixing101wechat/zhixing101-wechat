@@ -88,19 +88,23 @@
 		$(document).ready(function() {
 			authorityValidate(document);
 
+
 			$("#createBookStoragePlaceButton").click(function() {
 				$("#statisticsBar").css("display", "none");
 				$("#mapContainer").css("display", "none");
 				$("#createBookStoragePlaceDialog").css("display", "block");
 				$("#buttonBar").css("display", "none");
 			});
-			
-			
+
 			$("#cancelCreateBookStoragePlace").click(function() {
 				$("#statisticsBar").css("display", "block");
 				$("#mapContainer").css("display", "block");
 				$("#createBookStoragePlaceDialog").css("display", "none");
 				$("#buttonBar").css("display", "block");
+			});
+
+			$("#submitCreateBookStoragePlace").click(function() {
+				createBookStoragePlace(document);
 			});
 		});
 	</script>
