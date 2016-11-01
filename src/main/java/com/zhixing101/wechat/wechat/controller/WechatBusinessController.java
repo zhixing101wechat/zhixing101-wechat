@@ -1,5 +1,6 @@
 package com.zhixing101.wechat.wechat.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -251,5 +252,26 @@ public class WechatBusinessController {
 
         boolean result = bookStoragePlaceService.saveBookStoragePlace(bookStoragePlace);
         return String.valueOf(result);
+    }
+
+    /**
+     * 测试queryAllBooks
+     * 
+     * @return
+     */
+    @RequestMapping(value = "queryAllBooks", method = RequestMethod.GET)
+    @ResponseBody
+    public String queryAllBooks() {
+
+        logger.debug("WechatBusinessController#queryAllBooks begin");
+
+        List<Book> queryResult = bookService.queryAllBooks();
+
+        for (Book loop : queryResult) {
+            logger.debug(loop);
+        }
+        logger.debug("WechatBusinessController#queryAllBooks end");
+
+        return JSON.toJSONString(queryResult);
     }
 }
