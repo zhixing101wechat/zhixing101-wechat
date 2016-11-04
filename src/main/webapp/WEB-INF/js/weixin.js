@@ -53,8 +53,10 @@ function authorityValidate(document) {
 				// 位置精度
 				var accuracy = res.accuracy;
 
-				globalLongtitude = parseFloat(longitude);
-				globalLatitude = parseFloat(latitude);
+				document.getElementById("globalLongtitude").value = parseFloat(longitude);
+				document.getElementById("globalLatitude").value = parseFloat(latitude);
+//				globalLongtitude = parseFloat(longitude);
+//				globalLatitude = parseFloat(latitude);
 
 				// 初始化地图
 				initMap(parseFloat(longitude), parseFloat(latitude),

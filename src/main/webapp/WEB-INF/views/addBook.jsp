@@ -92,16 +92,13 @@
 
 		$(document).ready(function() {
 			
-			// 经度
-			var globalLongtitude;
-			// 纬度
-			var globalLatitude;
+// 			// 经度
+// 			var globalLongtitude;
+// 			// 纬度
+// 			var globalLatitude;
 
 			authorityValidate(document);
 
-			document.getElementById("globalLongtitude").value = globalLongtitude;
-			document.getElementById("globalLatitude").value = globalLatitude;
-					
 			$("#createBookStoragePlaceButton").click(function() {
 				$("#statisticsBar").css("display", "none");
 				$("#mapContainer").css("display", "none");
