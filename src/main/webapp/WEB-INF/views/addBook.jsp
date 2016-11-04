@@ -39,6 +39,11 @@
 	<input id="searchBookStoragePlaceRadius" type="hidden"
 		value="${searchBookStoragePlaceRadius }" />
 
+	<%-- 存储经度 --%>
+	<input id="globalLongtitude" type="hidden" />
+	<%-- 存储纬度 --%>
+	<input id="globalLatitude" type="hidden" />
+
 	<%-- 统计工具条 --%>
 	<div id="statisticsBar">
 		<span class="help-block">收录书籍XXX本，可借阅书籍XXX本，存书点XXX处</span>
@@ -86,9 +91,17 @@
 	<script type="text/javascript">
 
 		$(document).ready(function() {
+			
+			// 经度
+			var globalLongtitude;
+			// 纬度
+			var globalLatitude;
+
 			authorityValidate(document);
 
-
+			document.getElementById("globalLongtitude").value = globalLongtitude;
+			document.getElementById("globalLatitude").value = globalLatitude;
+					
 			$("#createBookStoragePlaceButton").click(function() {
 				$("#statisticsBar").css("display", "none");
 				$("#mapContainer").css("display", "none");

@@ -8,9 +8,14 @@ function createBookStoragePlace(document) {
 	var nameValue = document.getElementById("createBookStoragePlaceDialogName").value;
 	var descriptionValue = document
 			.getElementById("createBookStoragePlaceDialogDesc").value;
+	var longtitudeValue = dedocument.getElementById("globalLongtitude").value;
+	var latitudeValue = dedocument.getElementById("globalLatitude").value;
+	
 	var bookStoragePlace = {
 		name : nameValue,
-		description : descriptionValue
+		description : descriptionValue,
+		longtitude : longtitudeValue,
+		latitude : latitudeValue
 	};
 
 	// 向后台发送请求
