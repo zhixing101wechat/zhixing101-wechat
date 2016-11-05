@@ -25,6 +25,7 @@ function initMap(lng, lat, searchRadius, storagePlaceGeotableId) {
 		// 存储微信getLocation函数获取到的经纬度
 		document.getElementById("globalLongtitude").value = point.lng;
 		document.getElementById("globalLatitude").value = point.lat;
+		alert("@setLngLat" + point.lng + "" + point.lat);
 	};
 
 	// 坐标转换完之后的回调函数
@@ -35,25 +36,9 @@ function initMap(lng, lat, searchRadius, storagePlaceGeotableId) {
 			displayPoint(point);
 			map.centerAndZoom(point, 15);
 			map.addControl(new BMap.NavigationControl());
-
+			alert("@translateCallback" + point.lng + "" + point.lat);
 			setLngLat(point);
 
-			// 添加定位控件
-			// var geolocationControl = new BMap.GeolocationControl();
-			// geolocationControl.addEventListener("locationSuccess",
-			// function(e) {
-			// // 定位成功事件
-			// var lat = e.point.lat;
-			// var lng = e.point.lng;
-			// var point = new BMap.Point(lng, lat);
-			// displayPoint(point);
-			// });
-			// geolocationControl.addEventListener("locationError",
-			// function(e) {
-			// // 定位失败事件
-			// alert(e.message);
-			// });
-			// map.addControl(geolocationControl);
 		}
 	}
 
