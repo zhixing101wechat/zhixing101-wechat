@@ -25,7 +25,6 @@ function initMap(lng, lat, searchRadius, storagePlaceGeotableId) {
 		// 存储微信getLocation函数获取到的经纬度
 		document.getElementById("globalLongtitude").value = point.lng;
 		document.getElementById("globalLatitude").value = point.lat;
-		alert("@setLngLat" + point.lng + "" + point.lat);
 	};
 
 	// 坐标转换完之后的回调函数
@@ -36,7 +35,7 @@ function initMap(lng, lat, searchRadius, storagePlaceGeotableId) {
 			displayPoint(point);
 			map.centerAndZoom(point, 15);
 			map.addControl(new BMap.NavigationControl());
-			alert("@translateCallback" + point.lng + "" + point.lat);
+
 			setLngLat(point);
 
 		}
