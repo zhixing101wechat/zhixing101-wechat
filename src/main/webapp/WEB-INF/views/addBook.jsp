@@ -92,11 +92,6 @@
 
 		$(document).ready(function() {
 			
-// 			// 经度
-// 			var globalLongtitude;
-// 			// 纬度
-// 			var globalLatitude;
-
 			authorityValidate(document);
 
 			$("#createBookStoragePlaceButton").click(function() {

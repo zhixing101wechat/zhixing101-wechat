@@ -30,6 +30,10 @@ function initMap(lng, lat, searchRadius, storagePlaceGeotableId) {
 			map.centerAndZoom(point, 15);
 			map.addControl(new BMap.NavigationControl());
 
+			// 存储微信getLocation函数获取到的经纬度
+			document.getElementById("globalLongtitude").value = point.lng.toString();
+			document.getElementById("globalLatitude").value = point.lat.toString();
+
 			// 添加定位控件
 			// var geolocationControl = new BMap.GeolocationControl();
 			// geolocationControl.addEventListener("locationSuccess",
