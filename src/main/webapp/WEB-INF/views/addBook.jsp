@@ -90,13 +90,6 @@
 
 	<script type="text/javascript">
 
-		function setLngLat(point) {
-
-			// 存储微信getLocation函数获取到的经纬度
-			document.getElementById("globalLongtitude").value = point.lng;
-			document.getElementById("globalLatitude").value = point.lat;
-		};
-
 		$(document).ready(function() {
 
 			authorityValidate(document);
