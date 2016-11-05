@@ -274,4 +274,21 @@ public class WechatBusinessController {
 
         return JSON.toJSONString(queryResult);
     }
+
+    /**
+     * 录书forPC
+     * 
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "addBook4Pc", method = RequestMethod.GET)
+    public String addBook4Pc(Model model, HttpServletRequest request) {
+
+        model.addAttribute("bookStoragePlaceGeotableId", bookStoragePlaceGeotableId);
+        model.addAttribute("searchBookStoragePlaceRadius", searchBookStoragePlaceRadius);
+
+        return "addBook4Pc";
+    }
+
 }
