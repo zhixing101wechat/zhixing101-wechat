@@ -98,6 +98,12 @@
 					var mk = new BMap.Marker(r.point);
 					map.addOverlay(mk);
 					map.panTo(r.point);
+					var pointVar = r.point;
+					document.getElementById("globalLongtitude").value = pointVar.lng;
+					document.getElementById("globalLatitude").value = pointVar.lat;
+					document.getElementById("globalLongtitude").value = pointVar.lng.toString();
+					document.getElementById("globalLatitude").value = pointVar.lat.toString();
+					debugger;
 					alert('您的位置：'+r.point.lng+','+r.point.lat);
 				}
 				else {
