@@ -19,6 +19,8 @@ function initMap(lng, lat, searchRadius, storagePlaceGeotableId) {
 			offset : new BMap.Size(20, -10)
 		});
 		marker.setLabel(label);
+		
+		setLngLat(point);
 	}
 
 	function setLngLat(point) {
@@ -35,9 +37,6 @@ function initMap(lng, lat, searchRadius, storagePlaceGeotableId) {
 			displayPoint(point);
 			map.centerAndZoom(point, 15);
 			map.addControl(new BMap.NavigationControl());
-
-			setLngLat(point);
-
 		}
 	}
 
