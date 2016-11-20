@@ -251,7 +251,14 @@ public class WechatBusinessController {
     @ResponseBody
     public String createBookStoragePlaceBiz(BookStoragePlace bookStoragePlace) {
 
+        logger.debug("WechatBusinessController.createBookStoragePlaceBiz begin");
+        logger.debug("bookStoragePlace = " + bookStoragePlace);
+
         boolean result = bookStoragePlaceService.saveBookStoragePlace(bookStoragePlace);
+
+        logger.debug("result = " + result);
+        logger.debug("WechatBusinessController.createBookStoragePlaceBiz end");
+
         return String.valueOf(result);
     }
 
