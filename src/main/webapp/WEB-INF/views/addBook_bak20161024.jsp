@@ -215,7 +215,7 @@ body {
 													}	
 													//成功获取图书信息之后将数据存储到数据库
 														$.ajax({
-															url : "http://zhixing101.zzhkll.com/wechat/addBookBiz",
+															url : "http://zhixing101.zzhkll.com/addBookBiz",
 															type : "post",
 															data : jsonData,
 															dataType : "text",
