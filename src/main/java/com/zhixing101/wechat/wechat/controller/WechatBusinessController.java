@@ -122,6 +122,7 @@ public class WechatBusinessController {
         model.addAttribute("signature", signature);
         model.addAttribute("bookStoragePlaceGeotableId", bookStoragePlaceGeotableId);
         model.addAttribute("searchBookStoragePlaceRadius", searchBookStoragePlaceRadius);
+        model.addAttribute("rootUrl", rootUrl);
 
         return "addBook";
     }

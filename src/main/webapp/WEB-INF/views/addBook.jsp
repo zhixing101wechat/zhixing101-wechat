@@ -39,6 +39,9 @@
 	<input id="searchBookStoragePlaceRadius" type="hidden"
 		value="${searchBookStoragePlaceRadius }" />
 
+	<%-- 从后台获取根url --%>
+	<input id="rootUrl" type="hidden" value="${rootUrl }" />
+
 	<%-- 存储经度 --%>
 	<input id="globalLongtitude" type="hidden" />
 	<%-- 存储纬度 --%>

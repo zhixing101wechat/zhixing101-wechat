@@ -4,6 +4,10 @@
 
 function createBookStoragePlace(document) {
 
+	// 获取根url
+	var rootUrlValue = document.getElementById("rootUrl").value;
+	var requestUrl = rootUrlValue + "/createBookStoragePlaceBiz";
+
 	// 从创建存书点输入框获取参数
 	var nameValue = document.getElementById("createBookStoragePlaceDialogName").value;
 	var descriptionValue = document
@@ -20,7 +24,7 @@ function createBookStoragePlace(document) {
 
 	// 向后台发送请求
 	$.ajax({
-		url : "http://zhixing101.zzhkll.com/wechat/createBookStoragePlaceBiz",
+		url : requestUrl,
 		type : "post",
 		data : bookStoragePlace,
 		dataType : "text",
