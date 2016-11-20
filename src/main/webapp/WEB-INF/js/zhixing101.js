@@ -14,7 +14,8 @@ function createBookStoragePlace(document) {
 			.getElementById("createBookStoragePlaceDialogDesc").value;
 	var longtitudeValue = document.getElementById("globalLongtitude").value;
 	var latitudeValue = document.getElementById("globalLatitude").value;
-	
+	alert("longtitudeValue : " + longtitudeValue);
+	alert("latitudeValue : " + latitudeValue);
 	var bookStoragePlace = {
 		name : nameValue,
 		description : descriptionValue,
