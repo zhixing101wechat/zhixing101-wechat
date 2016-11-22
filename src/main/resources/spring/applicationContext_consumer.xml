@@ -10,9 +10,10 @@
     <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
     <dubbo:application name="zhixing101_wechat_consumer"/>
     <!-- 使用multicast广播注册中心暴露发现服务地址 -->
-    <dubbo:registry address="multicast://224.5.6.7:1234?unicast=false" />
+    <!-- <dubbo:registry address="multicast://224.5.6.7:1234?unicast=false" /> -->
     <!--dubbo集群开发，请激活下面条目，并注销上面的多播multicast -->
     <!--<dubbo:registry protocol="zookeeper" address="${zookeeper.address}" />-->
+    <dubbo:registry protocol="zookeeper" address="10.28.34.32:2181" />
 
     <!-- dnionConfigManage-api -->
     <dubbo:reference id="bookService" interface="com.zhixing101.wechat.api.service.BookService"/>
