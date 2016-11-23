@@ -12,6 +12,15 @@ function createBookStoragePlace(document) {
 	var nameValue = document.getElementById("createBookStoragePlaceDialogName").value;
 	var descriptionValue = document
 			.getElementById("createBookStoragePlaceDialogDesc").value;
+
+	// 检查输入项
+	if (nameValue !== null || nameValue !== undefined || nameValue !== '') {
+		alert("存书点名称为必填项");
+	}
+	if (descriptionValue !== null || descriptionValue !== undefined || descriptionValue !== '') {
+		alert("存书点描述为必填项");
+	}
+
 	var longtitudeValue = document.getElementById("globalLongtitude").value;
 	var latitudeValue = document.getElementById("globalLatitude").value;
 

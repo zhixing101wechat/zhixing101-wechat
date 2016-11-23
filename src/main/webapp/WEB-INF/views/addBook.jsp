@@ -112,6 +112,7 @@
 			});
 
 			$("#submitCreateBookStoragePlace").click(function() {
+				
 				createBookStoragePlace(document);
 			});
 		});
