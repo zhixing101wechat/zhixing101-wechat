@@ -49,5 +49,5 @@ function createBookStoragePlace(document) {
 		}
 	})
 	
-	$("#cancelCreateBookStoragePlace").trigger("click");
+	$(document.getElementById("cancelCreateBookStoragePlace")).trigger("click");
 }
