@@ -16,9 +16,11 @@ function createBookStoragePlace(document) {
 	// 检查输入项
 	if (nameValue !== null || nameValue !== undefined || nameValue !== '') {
 		alert("存书点名称为必填项");
+		return;
 	}
 	if (descriptionValue !== null || descriptionValue !== undefined || descriptionValue !== '') {
 		alert("存书点描述为必填项");
+		return;
 	}
 
 	var longtitudeValue = document.getElementById("globalLongtitude").value;
