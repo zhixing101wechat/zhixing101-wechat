@@ -40,7 +40,9 @@ function createBookStoragePlace(document) {
 		data : bookStoragePlace,
 		dataType : "text",
 		success : function(res) {
-			alert(res);
+			if (res == "true") {
+				alert("成功");
+			}
 		},
 		error : function(res) {
 			alert("失败");
