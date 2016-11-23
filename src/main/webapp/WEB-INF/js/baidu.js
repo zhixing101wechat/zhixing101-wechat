@@ -19,15 +19,18 @@ function initMap(lng, lat, searchRadius, storagePlaceGeotableId) {
 			offset : new BMap.Size(20, -10)
 		});
 		marker.setLabel(label);
-		
+		// 存储经纬度
 		setLngLat(point);
+		map.centerAndZoom(point, 15);
+		map.addControl(new BMap.NavigationControl());
 	}
 
 	function setLngLat(point) {
 		// 存储微信getLocation函数获取到的经纬度
 		document.getElementById("globalLongtitude").value = point.lng;
 		document.getElementById("globalLatitude").value = point.lat;
-	};
+	}
+	;
 
 	// 坐标转换完之后的回调函数
 	translateCallback = function(data) {
@@ -35,8 +38,6 @@ function initMap(lng, lat, searchRadius, storagePlaceGeotableId) {
 
 			var point = data.points[0];
 			displayPoint(point);
-			map.centerAndZoom(point, 15);
-			map.addControl(new BMap.NavigationControl());
 		}
 	}
 
@@ -47,4 +48,9 @@ function initMap(lng, lat, searchRadius, storagePlaceGeotableId) {
 		convertor.translate(pointArr, 1, 5, translateCallback)
 	}, 0);
 
+	function movePoint(e) {
+		displayPoint(e.point);
+	}
+
+	map.addEventListener("click", movePoint);
 }
