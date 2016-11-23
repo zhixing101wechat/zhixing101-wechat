@@ -224,7 +224,7 @@ value="${searchBookStoragePlaceRadius }" />
 							var keyword = $("#searchKeyword").val();
 
 							$.ajax({
-							url : "http://zhixing101.zzhkll.com/wechat/findBookBiz?keyword=" + keyword,
+							url : "http://zhixing101.zzhkll.com/findBookBiz?keyword=" + keyword,
 				    		type : "get",
 				    		success : function(res) {
 				    			alert(res);
