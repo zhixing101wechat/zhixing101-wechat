@@ -17,6 +17,7 @@ import javax.net.ssl.TrustManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.alibaba.fastjson.JSON;
 import com.qq.weixin.mp.api.res.GetWebAccessTokenResponse;
@@ -26,6 +27,7 @@ import com.zhixing101.wechat.wechat.common.Constants;
  * JS-SDKUtil
  *
  */
+@Component
 public class JsSdkUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(JsSdkUtil.class);
@@ -71,7 +73,7 @@ public class JsSdkUtil {
 
         logger.debug("JsSdkUtil#GetWebAccessTokenResponse begin");
 
-        logger.debug("webAccessTokenRequestUrl" + webAccessTokenRequestUrl);
+        logger.debug("webAccessTokenRequestUrl = " + webAccessTokenRequestUrl);
 
         // 修改APPID和SECRET，构造获取access_token的链接
         String reqUrl = new String(webAccessTokenRequestUrl);
