@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.qq.weixin.mp.api.res.GetWebAccessTokenResponse;
 import com.zhixing101.wechat.api.entity.Book;
 import com.zhixing101.wechat.api.entity.BookStoragePlace;
 import com.zhixing101.wechat.api.service.BookService;
@@ -50,6 +51,9 @@ public class WechatBusinessController {
 
     @Value("#{configProperties['weixin.appId']}")
     private String appId;
+
+    @Value("#{configProperties['weixin.appSecret']}")
+    private String appSecret;
 
     @Value("#{configProperties['baidu.bookStoragePlaceGeotableId']}")
     private String bookStoragePlaceGeotableId;
@@ -97,29 +101,39 @@ public class WechatBusinessController {
      * @return
      */
     @RequestMapping(value = "addBook", method = RequestMethod.GET)
-    public String addBook(Model model, HttpServletRequest request) {
+    public String addBook(Model model, HttpServletRequest request, @RequestParam("code") String code) {
 
+        logger.debug("WechatBusinessController#addBook begin");
+
+        // 使用JS-SDK的页面必须先注入配置信息
+        // 准备权限验证配置信息
         String url = rootUrl + "/addBook?" + request.getQueryString();
         String noncestr = UUID.randomUUID().toString();
         String jsapi_ticket = tokenCache.getJsapi_ticket();
         String timestamp = Long.toString(System.currentTimeMillis() / 1000);
         String signature = JsSdkUtil.getJsSdkSignature(noncestr, jsapi_ticket, timestamp, url);
+        // debug日志输出权限验证配置信息
+        logger.debug("url = " + url);
+        logger.debug("noncestr = " + noncestr);
+        logger.debug("jsapi_ticket = " + jsapi_ticket);
+        logger.debug("timestamp = " + timestamp);
+        logger.debug("signature = " + signature);
 
-        // Book bookInfo = JSONObject.parseObject(book, Book.class);
-        // boolean resultFlag = bookService.saveBook(bookInfo);
+        // 通过code换取网页授权access_token
+        GetWebAccessTokenResponse webAccessTokenRes = JsSdkUtil.getWebAccessToken(appId, appSecret, code);
+        String openid = webAccessTokenRes.getOpenid();
 
-        // logger.info("resultFlag ="+resultFlag);
-        logger.info("url = " + url);
-        logger.info("noncestr = " + noncestr);
-        logger.info("jsapi_ticket = " + jsapi_ticket);
-        logger.info("timestamp = " + timestamp);
-        logger.info("signature = " + signature);
+        logger.debug("appid = " + appId);
+        logger.debug("secret = " + appSecret);
+        logger.debug("code = " + code);
+        logger.debug("webAccessTokenRes = " + webAccessTokenRes);
+        logger.debug("openid = " + openid);
 
-        // model.addAttribute("resultFlag", resultFlag);
         model.addAttribute("appId", appId);
         model.addAttribute("noncestr", noncestr);
         model.addAttribute("timestamp", timestamp);
         model.addAttribute("signature", signature);
+        model.addAttribute("openid", openid);
         model.addAttribute("bookStoragePlaceGeotableId", bookStoragePlaceGeotableId);
         model.addAttribute("searchBookStoragePlaceRadius", searchBookStoragePlaceRadius);
         model.addAttribute("rootUrl", rootUrl);

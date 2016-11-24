@@ -31,6 +31,8 @@
 	<input id="timestamp" type="hidden" value="${timestamp }" />
 	<input id="noncestr" type="hidden" value="${noncestr }" />
 	<input id="signature" type="hidden" value="${signature }" />
+	<%-- 存储当前粉丝的openid --%>
+	<input id="openid" type="hidden" value="${openid }" />
 
 	<%-- 从后台获取图书存放点geotableId --%>
 	<input id="bookStoragePlaceGeotableId" type="hidden"

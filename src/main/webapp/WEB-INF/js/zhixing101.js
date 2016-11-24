@@ -14,6 +14,7 @@ function createBookStoragePlace(document) {
 			.getElementById("createBookStoragePlaceDialogDesc").value;
 
 	// 检查输入项
+	// TODO:检查无效
 	if (nameValue == null || nameValue == undefined || nameValue == "") {
 		alert("存书点名称为必填项");
 		return;
@@ -40,14 +41,10 @@ function createBookStoragePlace(document) {
 		data : bookStoragePlace,
 		dataType : "text",
 		success : function(res) {
-			if (res == "true") {
-				alert("成功");
-			}
+			alert(res);
 		},
 		error : function(res) {
 			alert("失败");
 		}
 	})
-	
-	$(document.getElementById("cancelCreateBookStoragePlace")).trigger("click");
 }
