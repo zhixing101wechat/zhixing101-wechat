@@ -32,7 +32,6 @@ public class JsSdkUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(JsSdkUtil.class);
 
-    //@Value("#{configProperties['weixin.webAccessTokenRequestUrl']}")
     private static String webAccessTokenRequestUrl;
 
     @Value("#{configProperties['weixin.webAccessTokenRequestUrl']}")
@@ -78,8 +77,6 @@ public class JsSdkUtil {
 
         logger.debug("JsSdkUtil#GetWebAccessTokenResponse begin");
 
-        logger.debug("webAccessTokenRequestUrl = " + webAccessTokenRequestUrl);
-
         // 修改APPID和SECRET，构造获取access_token的链接
         String reqUrl = new String(webAccessTokenRequestUrl);
         reqUrl = reqUrl.replaceFirst("APPID", appid);
@@ -123,10 +120,11 @@ public class JsSdkUtil {
             inputStream.close();
             httpUrlConn.disconnect();
 
+            logger.debug("JsSdkUtil#GetWebAccessTokenResponse result " + buffer.toString());
+
             // 返回返回结果
             GetWebAccessTokenResponse res = JSON.parseObject(buffer.toString(), GetWebAccessTokenResponse.class);
 
-            logger.debug("JsSdkUtil#GetWebAccessTokenResponse return " + res);
             logger.debug("JsSdkUtil#GetWebAccessTokenResponse end");
             return res;
         } catch (Exception e) {
