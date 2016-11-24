@@ -32,8 +32,13 @@ public class JsSdkUtil {
 
     private static final Logger logger = LoggerFactory.getLogger(JsSdkUtil.class);
 
-    @Value("#{configProperties['weixin.webAccessTokenRequestUrl']}")
+    //@Value("#{configProperties['weixin.webAccessTokenRequestUrl']}")
     private static String webAccessTokenRequestUrl;
+
+    @Value("#{configProperties['weixin.webAccessTokenRequestUrl']}")
+    public static void setWebAccessTokenRequestUrl(String url) {
+        webAccessTokenRequestUrl = url;
+    }
 
     public static String getJsSdkSignature(String noncestr, String jsapi_ticket, String timestamp, String url) {
 
