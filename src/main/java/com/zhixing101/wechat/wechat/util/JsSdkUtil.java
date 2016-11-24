@@ -36,8 +36,8 @@ public class JsSdkUtil {
     private static String webAccessTokenRequestUrl;
 
     @Value("#{configProperties['weixin.webAccessTokenRequestUrl']}")
-    public static void setWebAccessTokenRequestUrl(String url) {
-        JsSdkUtil.webAccessTokenRequestUrl = url;
+    public void setWebAccessTokenRequestUrl(String url) {
+        webAccessTokenRequestUrl = url;
     }
 
     public static String getJsSdkSignature(String noncestr, String jsapi_ticket, String timestamp, String url) {
