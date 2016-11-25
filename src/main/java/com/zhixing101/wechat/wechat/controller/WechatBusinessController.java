@@ -119,13 +119,14 @@ public class WechatBusinessController {
         logger.debug("timestamp = " + timestamp);
         logger.debug("signature = " + signature);
 
+        logger.debug("appid = " + appId);
+        logger.debug("secret = " + appSecret);
+        logger.debug("code = " + code);
+
         // 通过code换取网页授权access_token
         GetWebAccessTokenResponse webAccessTokenRes = JsSdkUtil.getWebAccessToken(appId, appSecret, code);
         String openid = webAccessTokenRes.getOpenid();
 
-        logger.debug("appid = " + appId);
-        logger.debug("secret = " + appSecret);
-        logger.debug("code = " + code);
         logger.debug("webAccessTokenRes = " + webAccessTokenRes);
         logger.debug("openid = " + openid);
 
