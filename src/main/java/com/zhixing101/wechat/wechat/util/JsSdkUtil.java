@@ -81,6 +81,9 @@ public class JsSdkUtil {
         String reqUrl = new String(webAccessTokenRequestUrl);
         reqUrl = reqUrl.replaceFirst("APPID", appid);
         reqUrl = reqUrl.replaceFirst("SECRET", secret);
+        reqUrl = reqUrl.replaceFirst("CODE", code);
+
+        logger.debug("reqUrl = " + reqUrl);
 
         try {
             // 建立连接
