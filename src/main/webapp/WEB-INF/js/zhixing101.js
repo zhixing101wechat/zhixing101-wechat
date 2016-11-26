@@ -27,11 +27,18 @@ function createBookStoragePlace(document) {
 	var longtitudeValue = document.getElementById("globalLongtitude").value;
 	var latitudeValue = document.getElementById("globalLatitude").value;
 
+	var openidValue = document.getElementById("openid").value;
+
+	var ownerUserValue = {
+		wechatOpenId : openidValue
+	};
+
 	var bookStoragePlace = {
 		name : nameValue,
 		description : descriptionValue,
 		longtitude : longtitudeValue,
-		latitude : latitudeValue
+		latitude : latitudeValue,
+		ownerUser : ownerUserValue
 	};
 
 	// 向后台发送请求
