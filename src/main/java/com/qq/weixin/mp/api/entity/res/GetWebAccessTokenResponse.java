@@ -1,4 +1,4 @@
-package com.qq.weixin.mp.api.res;
+package com.qq.weixin.mp.api.entity.res;
 
 /**
  * 获取网页授权access_token响应

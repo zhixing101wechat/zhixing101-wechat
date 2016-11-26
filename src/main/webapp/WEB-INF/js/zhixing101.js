@@ -6,12 +6,15 @@ function createBookStoragePlace(document) {
 
 	// 获取根url
 	var rootUrlValue = document.getElementById("rootUrl").value;
-	var requestUrl = rootUrlValue + "/createBookStoragePlaceBiz";
+	var requestUrl = rootUrlValue + "/createBookStoragePlace";
 
 	// 从创建存书点输入框获取参数
 	var nameValue = document.getElementById("createBookStoragePlaceDialogName").value;
 	var descriptionValue = document
 			.getElementById("createBookStoragePlaceDialogDesc").value;
+	var longtitudeValue = document.getElementById("globalLongtitude").value;
+	var latitudeValue = document.getElementById("globalLatitude").value;
+	var openidValue = document.getElementById("openid").value;
 
 	// 检查输入项
 	// TODO:检查无效
@@ -24,20 +27,12 @@ function createBookStoragePlace(document) {
 		return;
 	}
 
-	var longtitudeValue = document.getElementById("globalLongtitude").value;
-	var latitudeValue = document.getElementById("globalLatitude").value;
-
-	var openidValue = document.getElementById("openid").value;
-
-	var ownerUserValue = new Object();
-	ownerUserValue.wechatOpenId = openidValue;
-
-	var bookStoragePlace = {
+	var createBookStoragePlaceRequest = {
 		name : nameValue,
 		description : descriptionValue,
 		longtitude : longtitudeValue,
 		latitude : latitudeValue,
-		ownerUser : ownerUserValue
+		wechatOpenId : openidValue
 	};
 
 	// 向后台发送请求

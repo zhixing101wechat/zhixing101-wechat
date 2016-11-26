@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
-import com.qq.weixin.mp.api.res.GetWebAccessTokenResponse;
+import com.qq.weixin.mp.api.entity.res.GetWebAccessTokenResponse;
 import com.zhixing101.wechat.api.entity.Book;
 import com.zhixing101.wechat.api.entity.BookStoragePlace;
+import com.zhixing101.wechat.api.entity.req.CreateBookStoragePlaceRequest;
+import com.zhixing101.wechat.api.entity.res.CreateBookStoragePlaceResponse;
 import com.zhixing101.wechat.api.service.BookService;
 import com.zhixing101.wechat.api.service.BookStoragePlaceService;
 import com.zhixing101.wechat.wechat.token.TokenCache;
@@ -259,22 +261,22 @@ public class WechatBusinessController {
     /**
      * 创建存书点业务
      * 
-     * @param bookStoragePlace
+     * @param req
      * @return
      */
-    @RequestMapping(value = "createBookStoragePlaceBiz", method = RequestMethod.POST)
+    @RequestMapping(value = "createBookStoragePlace", method = RequestMethod.POST)
     @ResponseBody
-    public String createBookStoragePlaceBiz(BookStoragePlace bookStoragePlace) {
+    public String createBookStoragePlace(CreateBookStoragePlaceRequest req) {
 
-        logger.debug("WechatBusinessController.createBookStoragePlaceBiz begin");
-        logger.debug("bookStoragePlace = " + bookStoragePlace);
+        logger.debug("createBookStoragePlace begin");
+        logger.debug("req = " + req);
 
-        boolean result = bookStoragePlaceService.saveBookStoragePlace(bookStoragePlace);
+        CreateBookStoragePlaceResponse res = bookStoragePlaceService.saveBookStoragePlace(req);
 
-        logger.debug("result = " + result);
-        logger.debug("WechatBusinessController.createBookStoragePlaceBiz end");
+        logger.debug("res = " + res);
+        logger.debug("createBookStoragePlace end");
 
-        return String.valueOf(result);
+        return res.toString();
     }
 
     /**
