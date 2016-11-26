@@ -39,7 +39,7 @@ function createBookStoragePlace(document) {
 	$.ajax({
 		url : requestUrl,
 		type : "post",
-		data : bookStoragePlace,
+		data : createBookStoragePlaceRequest,
 		dataType : "text",
 		success : function(res) {
 			alert(res);
