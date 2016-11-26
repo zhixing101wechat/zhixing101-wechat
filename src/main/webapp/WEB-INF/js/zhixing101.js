@@ -29,9 +29,8 @@ function createBookStoragePlace(document) {
 
 	var openidValue = document.getElementById("openid").value;
 
-	var ownerUserValue = {
-		wechatOpenId : openidValue
-	};
+	var ownerUserValue = new Object();
+	ownerUserValue.wechatOpenId = openidValue;
 
 	var bookStoragePlace = {
 		name : nameValue,
