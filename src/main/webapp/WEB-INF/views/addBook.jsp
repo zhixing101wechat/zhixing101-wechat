@@ -82,7 +82,7 @@
 				</div>
 			</div>
 
-			<div class="weui-cell">
+			<div class="weui-cell weui-cell_select">
 				<div class="weui-cell__hd">
 					<label class="weui-label">省市区</label>
 				</div>
