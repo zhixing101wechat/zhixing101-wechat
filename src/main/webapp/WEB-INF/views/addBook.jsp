@@ -25,6 +25,22 @@
 <link rel="stylesheet"
 	href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
 
+<%-- 加载SUI Mobile --%>
+<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.css">
+<script type='text/javascript'
+	src='//g.alicdn.com/sj/lib/zepto/zepto.js' charset='utf-8'></script>
+<script type='text/javascript'
+	src='//g.alicdn.com/msui/sm/0.6.2/js/sm.js' charset='utf-8'></script>
+<!-- 如果你用到了拓展包中的组件，还需要引用下面两个 -->
+<link rel="stylesheet"
+	href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.css">
+<script type='text/javascript'
+	src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.js' charset='utf-8'></script>
+<%-- 省市区选择器 --%>
+<script type="text/javascript"
+	src="//g.alicdn.com/msui/sm/0.6.2/js/sm-city-picker.min.js"
+	charset="utf-8"></script>
+
 </head>
 <body>
 
@@ -81,6 +97,19 @@
 						type="text" placeholder="请输入描述" />
 				</div>
 			</div>
+			<div class="page-group">
+				<div class="page page-current">
+					<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label class="weui-label">省市区</label>
+						</div>
+						<div class="weui-cell__bd">
+							<input id="city-picker" class="weui-input" type="text"
+								placeholder="请输入省市区" />
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="weui-btn-area">
 			<a class="weui-btn weui-btn_primary"
@@ -102,28 +131,51 @@
 	</div>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			authorityValidate(document);
+		$(document)
+				.ready(
+						function() {
+							authorityValidate(document);
 
-			$("#createBookStoragePlaceButton").click(function() {
-				$("#statisticsBar").css("display", "none");
-				$("#mapContainer").css("display", "none");
-				$("#createBookStoragePlaceDialog").css("display", "block");
-				$("#buttonBar").css("display", "none");
-			});
+							$("#city-picker")
+									.cityPicker(
+											{
+												toolbarTemplate : '<header class="bar bar-nav">\
+				    <button class="button button-link pull-right close-picker">确定</button>\
+				    <h1 class="title">选择省市区</h1>\
+				    </header>'
+											});
 
-			$("#cancelCreateBookStoragePlace").click(function() {
-				$("#statisticsBar").css("display", "block");
-				$("#mapContainer").css("display", "block");
-				$("#createBookStoragePlaceDialog").css("display", "none");
-				$("#buttonBar").css("display", "block");
-			});
+							$("#createBookStoragePlaceButton").click(
+									function() {
+										$("#statisticsBar").css("display",
+												"none");
+										$("#mapContainer").css("display",
+												"none");
+										$("#createBookStoragePlaceDialog").css(
+												"display", "block");
+										$("#buttonBar").css("display", "none");
+									});
 
-			$("#submitCreateBookStoragePlace").click(function() {
+							$("#cancelCreateBookStoragePlace")
+									.click(
+											function() {
+												$("#statisticsBar").css(
+														"display", "block");
+												$("#mapContainer").css(
+														"display", "block");
+												$(
+														"#createBookStoragePlaceDialog")
+														.css("display", "none");
+												$("#buttonBar").css("display",
+														"block");
+											});
 
-				createBookStoragePlace(document);
-			});
-		});
+							$("#submitCreateBookStoragePlace").click(
+									function() {
+
+										createBookStoragePlace(document);
+									});
+						});
 	</script>
 </body>
 </html>
