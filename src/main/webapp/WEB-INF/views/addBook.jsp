@@ -133,43 +133,41 @@
 	</div>
 
 	<script type="text/javascript">
-		window.$$ = window.Zepto = Zepto;
-
-		$(document)
+		jq(document)
 				.ready(
 						function() {
 							authorityValidate(document);
 
-							$$("#city-picker").cityPicker({
+							$("#city-picker").cityPicker({
 							    toolbarTemplate: '<header class="bar bar-nav"><button class="button button-link pull-right close-picker">确定</button><h1 class="title">选择收货地址</h1></header>'
 							      });
 
-							$("#createBookStoragePlaceButton").click(
+							jq("#createBookStoragePlaceButton").click(
 									function() {
-										$("#statisticsBar").css("display",
+										jq("#statisticsBar").css("display",
 												"none");
-										$("#mapContainer").css("display",
+										jq("#mapContainer").css("display",
 												"none");
-										$("#createBookStoragePlaceDialog").css(
+										jq("#createBookStoragePlaceDialog").css(
 												"display", "block");
-										$("#buttonBar").css("display", "none");
+										jq("#buttonBar").css("display", "none");
 									});
 
-							$("#cancelCreateBookStoragePlace")
+							jq("#cancelCreateBookStoragePlace")
 									.click(
 											function() {
-												$("#statisticsBar").css(
+												jq("#statisticsBar").css(
 														"display", "block");
-												$("#mapContainer").css(
+												jq("#mapContainer").css(
 														"display", "block");
-												$(
+												jq(
 														"#createBookStoragePlaceDialog")
 														.css("display", "none");
-												$("#buttonBar").css("display",
+												jq("#buttonBar").css("display",
 														"block");
 											});
 
-							$("#submitCreateBookStoragePlace").click(
+							jq("#submitCreateBookStoragePlace").click(
 									function() {
 
 										createBookStoragePlace(document);

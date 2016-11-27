@@ -36,7 +36,7 @@ function createBookStoragePlace(document) {
 	};
 
 	// 向后台发送请求
-	$.ajax({
+	jq.ajax({
 		url : requestUrl,
 		type : "post",
 		data : createBookStoragePlaceRequest,
