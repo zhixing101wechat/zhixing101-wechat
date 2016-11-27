@@ -87,7 +87,9 @@
 					<label class="weui-label">省市区</label>
 				</div>
 				<div id="distpicker" class="weui-cell__bd">
-					<select></select> <select></select> <select></select>
+					<select class="weui-select"></select>
+					<select class="weui-select"></select>
+					<select class="weui-select"></select>
 				</div>
 			</div>
 		</div>
