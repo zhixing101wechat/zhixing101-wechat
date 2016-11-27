@@ -16,30 +16,14 @@
 <script type="text/javascript" src="js/baidu.js"></script>
 <%-- 加载weixin.js --%>
 <script type="text/javascript" src="js/weixin.js"></script>
-<%-- 加载zhixing101.js --%>
-<script type="text/javascript" src="js/zhixing101.js"></script>
+<%-- 加载distpicker.min.js --%>
+<script type="text/javascript" src="js/distpicker.min.js"></script>
 
 <%-- 加载鼠标绘制工具 --%>
 <script type="text/javascript"
 	src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
 <link rel="stylesheet"
 	href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
-
-<%-- 加载SUI Mobile --%>
-<link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.css">
-<script type='text/javascript'
-	src='//g.alicdn.com/sj/lib/zepto/zepto.js' charset='utf-8'></script>
-<script type='text/javascript'
-	src='//g.alicdn.com/msui/sm/0.6.2/js/sm.js' charset='utf-8'></script>
-<!-- 如果你用到了拓展包中的组件，还需要引用下面两个 -->
-<link rel="stylesheet"
-	href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.css">
-<script type='text/javascript'
-	src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.js' charset='utf-8'></script>
-<%-- 省市区选择器 --%>
-<script type="text/javascript"
-	src="//g.alicdn.com/msui/sm/0.6.2/js/sm-city-picker.min.js"
-	charset="utf-8"></script>
 
 </head>
 <body>
@@ -77,46 +61,40 @@
 
 	<%-- 创建存书点对话框 --%>
 	<div id="createBookStoragePlaceDialog">
-		<div class="page-group">
-			<div class="page page-current">
-				<div class="weui-cells__title">存书点信息</div>
-				<div class="weui-cells weui-cells_form">
-					<div class="weui-cell">
-						<div class="weui-cell__hd">
-							<label class="weui-label">名称</label>
-						</div>
-						<div class="weui-cell__bd">
-							<input id="createBookStoragePlaceDialogName" class="weui-input"
-								type="text" placeholder="请输入名称" />
-						</div>
-					</div>
-					<div class="weui-cell">
-						<div class="weui-cell__hd">
-							<label class="weui-label">描述</label>
-						</div>
-						<div class="weui-cell__bd">
-							<input id="createBookStoragePlaceDialogDesc" class="weui-input"
-								type="text" placeholder="请输入描述" />
-						</div>
-					</div>
-
-					<div class="weui-cell">
-						<div class="weui-cell__hd">
-							<label class="weui-label">省市区</label>
-						</div>
-						<div class="weui-cell__bd">
-							<input id="city-picker" class="weui-input" type="text"
-								placeholder="请输入省市区" />
-						</div>
-					</div>
+		<div class="weui-cells__title">存书点信息</div>
+		<div class="weui-cells weui-cells_form">
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">名称</label>
 				</div>
-				<div class="weui-btn-area">
-					<a class="weui-btn weui-btn_primary"
-						id="submitCreateBookStoragePlace">提交</a> <a
-						class="weui-btn weui-btn_primary"
-						id="cancelCreateBookStoragePlace">取消</a>
+				<div class="weui-cell__bd">
+					<input id="createBookStoragePlaceDialogName" class="weui-input"
+						type="text" placeholder="请输入名称" />
 				</div>
 			</div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">描述</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input id="createBookStoragePlaceDialogDesc" class="weui-input"
+						type="text" placeholder="请输入描述" />
+				</div>
+			</div>
+
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">省市区</label>
+				</div>
+				<div id="distpicker" class="weui-cell__bd">
+					<select></select> <select></select> <select></select>
+				</div>
+			</div>
+		</div>
+		<div class="weui-btn-area">
+			<a class="weui-btn weui-btn_primary"
+				id="submitCreateBookStoragePlace">提交</a> <a
+				class="weui-btn weui-btn_primary" id="cancelCreateBookStoragePlace">取消</a>
 		</div>
 	</div>
 
@@ -133,46 +111,30 @@
 	</div>
 
 	<script type="text/javascript">
-		jq(document)
-				.ready(
-						function() {
-							authorityValidate(document);
+		$(document).ready(function() {
+			authorityValidate(document);
 
-							$("#city-picker").cityPicker({
-							    toolbarTemplate: '<header class="bar bar-nav"><button class="button button-link pull-right close-picker">确定</button><h1 class="title">选择收货地址</h1></header>'
-							      });
+			$("#distpicker").distpicker();
 
-							jq("#createBookStoragePlaceButton").click(
-									function() {
-										jq("#statisticsBar").css("display",
-												"none");
-										jq("#mapContainer").css("display",
-												"none");
-										jq("#createBookStoragePlaceDialog").css(
-												"display", "block");
-										jq("#buttonBar").css("display", "none");
-									});
+			$("#createBookStoragePlaceButton").click(function() {
+				$("#statisticsBar").css("display", "none");
+				$("#mapContainer").css("display", "none");
+				$("#createBookStoragePlaceDialog").css("display", "block");
+				$("#buttonBar").css("display", "none");
+			});
 
-							jq("#cancelCreateBookStoragePlace")
-									.click(
-											function() {
-												jq("#statisticsBar").css(
-														"display", "block");
-												jq("#mapContainer").css(
-														"display", "block");
-												jq(
-														"#createBookStoragePlaceDialog")
-														.css("display", "none");
-												jq("#buttonBar").css("display",
-														"block");
-											});
+			$("#cancelCreateBookStoragePlace").click(function() {
+				$("#statisticsBar").css("display", "block");
+				$("#mapContainer").css("display", "block");
+				$("#createBookStoragePlaceDialog").css("display", "none");
+				$("#buttonBar").css("display", "block");
+			});
 
-							jq("#submitCreateBookStoragePlace").click(
-									function() {
+			$("#submitCreateBookStoragePlace").click(function() {
 
-										createBookStoragePlace(document);
-									});
-						});
+				createBookStoragePlace(document);
+			});
+		});
 	</script>
 </body>
 </html>
