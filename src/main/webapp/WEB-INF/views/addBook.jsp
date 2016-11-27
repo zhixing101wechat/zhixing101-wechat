@@ -102,51 +102,28 @@
 	</div>
 
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							authorityValidate(document);
+		$(document).ready(function() {
+			authorityValidate(document);
 
-							$("#city-picker")
-									.cityPicker(
-											{
-												toolbarTemplate : '<header class="bar bar-nav">\
-				    <button class="button button-link pull-right close-picker">确定</button>\
-				    <h1 class="title">选择省市区</h1>\
-				    </header>'
-											});
+			$("#createBookStoragePlaceButton").click(function() {
+				$("#statisticsBar").css("display", "none");
+				$("#mapContainer").css("display", "none");
+				$("#createBookStoragePlaceDialog").css("display", "block");
+				$("#buttonBar").css("display", "none");
+			});
 
-							$("#createBookStoragePlaceButton").click(
-									function() {
-										$("#statisticsBar").css("display",
-												"none");
-										$("#mapContainer").css("display",
-												"none");
-										$("#createBookStoragePlaceDialog").css(
-												"display", "block");
-										$("#buttonBar").css("display", "none");
-									});
+			$("#cancelCreateBookStoragePlace").click(function() {
+				$("#statisticsBar").css("display", "block");
+				$("#mapContainer").css("display", "block");
+				$("#createBookStoragePlaceDialog").css("display", "none");
+				$("#buttonBar").css("display", "block");
+			});
 
-							$("#cancelCreateBookStoragePlace")
-									.click(
-											function() {
-												$("#statisticsBar").css(
-														"display", "block");
-												$("#mapContainer").css(
-														"display", "block");
-												$(
-														"#createBookStoragePlaceDialog")
-														.css("display", "none");
-												$("#buttonBar").css("display",
-														"block");
-											});
+			$("#submitCreateBookStoragePlace").click(function() {
 
-							$("#submitCreateBookStoragePlace").click(
-									function() {
-
-										createBookStoragePlace(document);
-									});
-						});
+				createBookStoragePlace(document);
+			});
+		});
 	</script>
 </body>
 </html>
