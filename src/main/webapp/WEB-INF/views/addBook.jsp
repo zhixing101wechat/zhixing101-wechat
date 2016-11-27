@@ -77,28 +77,29 @@
 
 	<%-- 创建存书点对话框 --%>
 	<div id="createBookStoragePlaceDialog">
-		<div class="weui-cells__title">存书点信息</div>
-		<div class="weui-cells weui-cells_form">
-			<div class="weui-cell">
-				<div class="weui-cell__hd">
-					<label class="weui-label">名称</label>
-				</div>
-				<div class="weui-cell__bd">
-					<input id="createBookStoragePlaceDialogName" class="weui-input"
-						type="text" placeholder="请输入名称" />
-				</div>
-			</div>
-			<div class="weui-cell">
-				<div class="weui-cell__hd">
-					<label class="weui-label">描述</label>
-				</div>
-				<div class="weui-cell__bd">
-					<input id="createBookStoragePlaceDialogDesc" class="weui-input"
-						type="text" placeholder="请输入描述" />
-				</div>
-			</div>
-			<div class="page-group">
-				<div class="page page-current">
+		<div class="page-group">
+			<div class="page page-current">
+				<div class="weui-cells__title">存书点信息</div>
+				<div class="weui-cells weui-cells_form">
+					<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label class="weui-label">名称</label>
+						</div>
+						<div class="weui-cell__bd">
+							<input id="createBookStoragePlaceDialogName" class="weui-input"
+								type="text" placeholder="请输入名称" />
+						</div>
+					</div>
+					<div class="weui-cell">
+						<div class="weui-cell__hd">
+							<label class="weui-label">描述</label>
+						</div>
+						<div class="weui-cell__bd">
+							<input id="createBookStoragePlaceDialogDesc" class="weui-input"
+								type="text" placeholder="请输入描述" />
+						</div>
+					</div>
+
 					<div class="weui-cell">
 						<div class="weui-cell__hd">
 							<label class="weui-label">省市区</label>
@@ -109,12 +110,13 @@
 						</div>
 					</div>
 				</div>
+				<div class="weui-btn-area">
+					<a class="weui-btn weui-btn_primary"
+						id="submitCreateBookStoragePlace">提交</a> <a
+						class="weui-btn weui-btn_primary"
+						id="cancelCreateBookStoragePlace">取消</a>
+				</div>
 			</div>
-		</div>
-		<div class="weui-btn-area">
-			<a class="weui-btn weui-btn_primary"
-				id="submitCreateBookStoragePlace">提交</a> <a
-				class="weui-btn weui-btn_primary" id="cancelCreateBookStoragePlace">取消</a>
 		</div>
 	</div>
 
@@ -131,8 +133,8 @@
 	</div>
 
 	<script type="text/javascript">
-	window.$$=window.Zepto = Zepto;
-	
+		window.$$ = window.Zepto = Zepto;
+
 		$(document)
 				.ready(
 						function() {
