@@ -116,7 +116,6 @@
 		$(document).ready(function() {
 			authorityValidate(document);
 
-			$("#distpicker").distpicker();
 			$("#distpicker").distpicker({
 				  province: "请选择所在省",
 				  city: "请选择所在市",
