@@ -81,17 +81,62 @@
 						type="text" placeholder="请输入描述" />
 				</div>
 			</div>
-
 			<div class="weui-cell weui-cell_select">
 				<div class="weui-cell__hd">
 					<label class="weui-label">省市区</label>
 				</div>
 				<div id="distpicker" class="weui-cell__bd">
-					<select class="weui-select"></select>
-					<select class="weui-select"></select>
+					<select class="weui-select"></select> <select class="weui-select"></select>
 					<select class="weui-select"></select>
 				</div>
 			</div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">详细地址</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input id="createBookStoragePlaceDialogAddress" class="weui-input"
+						type="text" placeholder="请输入详细地址" />
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">联系电话</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input id="createBookStoragePlaceDialogPhone" class="weui-input"
+						type="number" pattern="[0-9]{0,4}-?[0-9]*" placeholder="请输入联系电话" />
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">手机</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input id="createBookStoragePlaceDialogMobilePhone"
+						class="weui-input" type="number" pattern="[0-9]{11,12}"
+						placeholder="请输入手机号码" />
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">开放时间</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input id="createBookStoragePlaceDialogOpenTime" class="weui-input"
+						type="text" placeholder="请输入开放时间" />
+				</div>
+			</div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">交通</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input id="createBookStoragePlaceDialogTraffic" class="weui-input"
+						type="text" placeholder="请输入交通方式" />
+				</div>
+			</div>
+			<%-- TODO:存书点图片 --%>
 		</div>
 		<div class="weui-btn-area">
 			<a class="weui-btn weui-btn_primary"
@@ -117,10 +162,10 @@
 			authorityValidate(document);
 
 			$("#distpicker").distpicker({
-				  province: "请选择所在省",
-				  city: "请选择所在市",
-				  district: "请选择所在区"
-				});
+				province : "请选择所在省",
+				city : "请选择所在市",
+				district : "请选择所在区"
+			});
 
 			$("#createBookStoragePlaceButton").click(function() {
 				$("#statisticsBar").css("display", "none");
