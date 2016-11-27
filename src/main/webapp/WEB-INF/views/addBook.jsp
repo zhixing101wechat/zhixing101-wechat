@@ -60,26 +60,32 @@
 	<div id="mapContainer"></div>
 
 	<%-- 创建存书点对话框 --%>
-	<div id="createBookStoragePlaceDialog" class="form-group">
-		<div class="form-group">
-			<label for="createBookStoragePlaceDialogName">存书点名称</label> <input
-				id="createBookStoragePlaceDialogName" type="text"
-				class="form-control" placeholder="请输入存书点名称">
-		</div>
-		<div class="form-group">
-			<label for="createBookStoragePlaceDialogDesc">存书点描述</label> <input
-				id="createBookStoragePlaceDialogDesc" type="text"
-				class="form-control" placeholder="请输入存书点描述">
-		</div>
-		<div class="form-group">
-			<div class="col-xs-6">
-				<button id="submitCreateBookStoragePlace" type="submit"
-					class="btn btn-primary">提交</button>
+	<div id="createBookStoragePlaceDialog">
+		<div class="weui-cells__title">存书点信息</div>
+		<div class="weui-cells weui-cells_form">
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">名称</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input id="createBookStoragePlaceDialogName" class="weui-input"
+						type="text" placeholder="请输入名称" />
+				</div>
 			</div>
-			<div class="col-xs-6">
-				<button id="cancelCreateBookStoragePlace" type="submit"
-					class="btn btn-primary">取消</button>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">描述</label>
+				</div>
+				<div class="weui-cell__bd">
+					<input id="createBookStoragePlaceDialogDesc" class="weui-input"
+						type="text" placeholder="请输入描述" />
+				</div>
 			</div>
+		</div>
+		<div class="weui-btn-area">
+			<a class="weui-btn weui-btn_primary"
+				id="submitCreateBookStoragePlace">提交</a> <a
+				class="weui-btn weui-btn_primary" id="cancelCreateBookStoragePlace">取消</a>
 		</div>
 	</div>
 
@@ -96,7 +102,6 @@
 	</div>
 
 	<script type="text/javascript">
-
 		$(document).ready(function() {
 
 			authorityValidate(document);
@@ -116,7 +121,7 @@
 			});
 
 			$("#submitCreateBookStoragePlace").click(function() {
-				
+
 				createBookStoragePlace(document);
 			});
 		});
