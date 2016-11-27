@@ -10,6 +10,8 @@
 
 <%-- 加载addBook.css --%>
 <link rel="stylesheet" type="text/css" href="css/addBook.css" />
+<%-- 加载weui.css --%>
+<link rel="stylesheet" type="text/css" href="css/weui.css" />
 <%-- 加载baidu.js --%>
 <script type="text/javascript" src="js/baidu.js"></script>
 <%-- 加载weixin.js --%>
@@ -85,11 +87,11 @@
 	<div id="buttonBar" class="form-group">
 		<div class="col-xs-6">
 			<button id="createBookStoragePlaceButton" type="submit"
-				class="btn btn-primary">创建存书点</button>
+				class="weui-btn weui-btn_mini weui-btn_primary">创建存书点</button>
 		</div>
 		<div class="col-xs-6">
 			<button id="selectBookStoragePlaceButton" type="submit"
-				class="btn btn-primary">选择已有存书点</button>
+				class="weui-btn weui-btn_mini weui-btn_primary">选择已有存书点</button>
 		</div>
 	</div>
 
