@@ -120,6 +120,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+			authorityValidate(document);
 
 			  $("#city-picker").cityPicker({
 				    toolbarTemplate: '<header class="bar bar-nav">\
@@ -127,8 +128,6 @@
 				    <h1 class="title">选择省市区</h1>\
 				    </header>'
 				  });
-
-			authorityValidate(document);
 
 			$("#createBookStoragePlaceButton").click(function() {
 				$("#statisticsBar").css("display", "none");
