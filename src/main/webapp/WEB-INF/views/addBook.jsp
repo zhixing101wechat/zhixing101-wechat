@@ -131,12 +131,14 @@
 	</div>
 
 	<script type="text/javascript">
+	window.$$=window.Zepto = Zepto;
+	
 		$(document)
 				.ready(
 						function() {
 							authorityValidate(document);
 
-							$("#city-picker")
+							$$("#city-picker")
 									.cityPicker(
 											{
 												toolbarTemplate : '<header class="bar bar-nav">\
