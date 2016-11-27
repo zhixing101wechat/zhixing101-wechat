@@ -117,6 +117,11 @@
 			authorityValidate(document);
 
 			$("#distpicker").distpicker();
+			$("#distpicker").distpicker({
+				  province: "请选择所在省",
+				  city: "请选择所在市",
+				  district: "请选择所在区"
+				});
 
 			$("#createBookStoragePlaceButton").click(function() {
 				$("#statisticsBar").css("display", "none");
