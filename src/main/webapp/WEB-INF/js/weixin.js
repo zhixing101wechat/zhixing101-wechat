@@ -62,11 +62,12 @@ function authorityValidate(document) {
 			}
 		});
 
-		  var images = {
+		// 5 图片接口
+		// 5.1 拍照、本地选图
+		var images = {
 			localId : [],
 			serverId : []
 		};
-
 		document.querySelector('#chooseImage').onclick = function() {
 			wx.chooseImage({
 				success : function(res) {
@@ -74,6 +75,32 @@ function authorityValidate(document) {
 					alert('已选择 ' + res.localIds.length + ' 张图片');
 				}
 			});
+		};
+		// 5.3 上传图片
+		document.querySelector('#uploadImage').onclick = function() {
+			if (images.localId.length == 0) {
+				alert('请先使用 chooseImage 接口选择图片');
+				return;
+			}
+			var i = 0, length = images.localId.length;
+			images.serverId = [];
+			function upload() {
+				wx.uploadImage({
+					localId : images.localId[i],
+					success : function(res) {
+						i++;
+						alert('已上传：' + i + '/' + length);
+						images.serverId.push(res.serverId);
+						if (i < length) {
+							upload();
+						}
+					},
+					fail : function(res) {
+						alert(JSON.stringify(res));
+					}
+				});
+			}
+			upload();
 		};
 
 	});

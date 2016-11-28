@@ -144,6 +144,7 @@
 				</div>
 				<div class="weui-cell__bd">
 					<button class="weui-btn weui-btn_primary" id="chooseImage">选择图片</button>
+					<button class="weui-btn weui-btn_primary" id="uploadImage">上传图片</button>
 				</div>
 			</div>
 		</div>
