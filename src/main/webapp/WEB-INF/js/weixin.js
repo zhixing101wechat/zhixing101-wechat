@@ -62,7 +62,12 @@ function authorityValidate(document) {
 			}
 		});
 
-		  document.querySelector('#chooseImage').onclick = function() {
+		  var images = {
+			localId : [],
+			serverId : []
+		};
+
+		document.querySelector('#chooseImage').onclick = function() {
 			wx.chooseImage({
 				success : function(res) {
 					images.localId = res.localIds;

@@ -143,7 +143,7 @@
 					<label class="weui-label">图片</label>
 				</div>
 				<div class="weui-cell__bd">
-					<button class="btn btn_primary" id="chooseImage">选择图片</button>
+					<button class="weui-btn weui-btn_primary" id="chooseImage">选择图片</button>
 				</div>
 			</div>
 		</div>
@@ -169,11 +169,6 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 		
-		var images = {
-				localId : [],
-				serverId : []
-			};
-
 			authorityValidate(document);
 
 			$("#distpicker").distpicker({
