@@ -61,6 +61,10 @@ function authorityValidate(document) {
 				alert('用户拒绝授权获取地理位置');
 			}
 		});
+		
+		// 拍照或从手机相册中选图
+		
+		// 上传图片
 	});
 
 	// 通过error接口处理失败验证

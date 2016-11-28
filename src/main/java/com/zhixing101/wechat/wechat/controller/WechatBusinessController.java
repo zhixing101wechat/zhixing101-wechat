@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.qq.weixin.mp.api.entity.res.GetWebAccessTokenResponse;
 import com.zhixing101.wechat.api.entity.Book;
-import com.zhixing101.wechat.api.entity.BookStoragePlace;
 import com.zhixing101.wechat.api.entity.req.CreateBookStoragePlaceRequest;
 import com.zhixing101.wechat.api.entity.res.CreateBookStoragePlaceResponse;
 import com.zhixing101.wechat.api.service.BookService;

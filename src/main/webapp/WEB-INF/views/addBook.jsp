@@ -68,7 +68,7 @@
 					<label class="weui-label">名称</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="createBookStoragePlaceDialogName" class="weui-input"
+					<input id="bookStoragePlaceName" class="weui-input"
 						type="text" placeholder="请输入名称" />
 				</div>
 			</div>
@@ -77,7 +77,7 @@
 					<label class="weui-label">描述</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="createBookStoragePlaceDialogDesc" class="weui-input"
+					<input id="bookStoragePlaceDescription" class="weui-input"
 						type="text" placeholder="请输入描述" />
 				</div>
 			</div>
@@ -86,8 +86,8 @@
 					<label class="weui-label">省市区</label>
 				</div>
 				<div id="distpicker" class="weui-cell__bd">
-					<select class="weui-select"></select> <select class="weui-select"></select>
-					<select class="weui-select"></select>
+					<select id="bookStoragePlaceProvince" class="weui-select"></select> <select id="bookStoragePlaceCity" class="weui-select"></select>
+					<select id="bookStoragePlaceDistrict" class="weui-select"></select>
 				</div>
 			</div>
 			<div class="weui-cell">
@@ -95,7 +95,7 @@
 					<label class="weui-label">详细地址</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="createBookStoragePlaceDialogAddress" class="weui-input"
+					<input id="bookStoragePlaceAddress" class="weui-input"
 						type="text" placeholder="请输入详细地址" />
 				</div>
 			</div>
@@ -104,7 +104,7 @@
 					<label class="weui-label">联系电话</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="createBookStoragePlaceDialogPhone" class="weui-input"
+					<input id="bookStoragePlacePhone" class="weui-input"
 						type="number" pattern="[0-9]{0,4}-?[0-9]*" placeholder="请输入联系电话" />
 				</div>
 			</div>
@@ -113,7 +113,7 @@
 					<label class="weui-label">手机</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="createBookStoragePlaceDialogMobilePhone"
+					<input id="bookStoragePlaceMobilePhone"
 						class="weui-input" type="number" pattern="[0-9]{11,12}"
 						placeholder="请输入手机号码" />
 				</div>
@@ -123,7 +123,7 @@
 					<label class="weui-label">开放时间</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="createBookStoragePlaceDialogOpenTime" class="weui-input"
+					<input id="bookStoragePlaceOpenTime" class="weui-input"
 						type="text" placeholder="请输入开放时间" />
 				</div>
 			</div>
@@ -132,7 +132,7 @@
 					<label class="weui-label">交通</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="createBookStoragePlaceDialogTraffic" class="weui-input"
+					<input id="bookStoragePlaceTraffic" class="weui-input"
 						type="text" placeholder="请输入交通方式" />
 				</div>
 			</div>

@@ -8,31 +8,49 @@ function createBookStoragePlace(document) {
 	var rootUrlValue = document.getElementById("rootUrl").value;
 	var requestUrl = rootUrlValue + "/createBookStoragePlace";
 
-	// 从创建存书点输入框获取参数
-	var nameValue = document.getElementById("createBookStoragePlaceDialogName").value;
-	var descriptionValue = document
-			.getElementById("createBookStoragePlaceDialogDesc").value;
-	var longtitudeValue = document.getElementById("globalLongtitude").value;
-	var latitudeValue = document.getElementById("globalLatitude").value;
-	var openidValue = document.getElementById("openid").value;
+	// 获取存书点经纬度
+	var globalLongtitude = document.getElementById("globalLongtitude").value;
+	var globalLatitude = document.getElementById("globalLatitude").value;
 
-	// 检查输入项
-	// TODO:检查无效
-	if (nameValue == null || nameValue == undefined || nameValue == "") {
-		alert("存书点名称为必填项");
-		return;
-	}
-	if (descriptionValue == null || descriptionValue == undefined || descriptionValue == "") {
-		alert("存书点描述为必填项");
-		return;
-	}
+	// 获取存书点所有人微信OpenID
+	var openid = document.getElementById("openid").value;
+
+	// 从创建存书点表单获取输入值
+	var bookStoragePlaceName = document.getElementById("bookStoragePlaceName").value;
+	var bookStoragePlaceDescription = document
+			.getElementById("bookStoragePlaceDescription").value;
+	var bookStoragePlaceProvince = document
+			.getElementById("bookStoragePlaceProvince").value;
+	var bookStoragePlaceCity = document.getElementById("bookStoragePlaceCity").value;
+	var bookStoragePlaceDistrict = document
+			.getElementById("bookStoragePlaceDistrict").value;
+	var bookStoragePlaceAddress = document
+			.getElementById("bookStoragePlaceAddress").value;
+	var bookStoragePlacePhone = document
+			.getElementById("bookStoragePlacePhone").value;
+	var bookStoragePlaceMobilePhone = document
+			.getElementById("bookStoragePlaceMobilePhone").value;
+	var bookStoragePlaceOpenTime = document
+			.getElementById("bookStoragePlaceOpenTime").value;
+	var bookStoragePlaceTraffic = document
+			.getElementById("bookStoragePlaceTraffic").value;
+
+	// TODO:输入值检查
 
 	var createBookStoragePlaceRequest = {
-		name : nameValue,
-		description : descriptionValue,
-		longtitude : longtitudeValue,
-		latitude : latitudeValue,
-		wechatOpenId : openidValue
+		name : bookStoragePlaceName,
+		description : bookStoragePlaceDescription,
+		longtitude : globalLongtitude,
+		latitude : globalLatitude,
+		province : bookStoragePlaceProvince,
+		city : bookStoragePlaceCity,
+		district : bookStoragePlaceDistrict,
+		address : bookStoragePlaceAddress,
+		phone : bookStoragePlacePhone,
+		mobilePhone : bookStoragePlaceMobilePhone,
+		wechatOpenId : openid,
+		open_time : bookStoragePlaceOpenTime,
+		traffic : bookStoragePlaceTraffic
 	};
 
 	// 向后台发送请求
