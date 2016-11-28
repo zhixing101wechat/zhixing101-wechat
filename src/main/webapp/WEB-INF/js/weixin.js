@@ -71,35 +71,6 @@ function authorityValidate(document) {
 			});
 		};
 
-		// // 上传图片
-// var syncUpload = function(localIds) {
-//			var localId = localIds.pop();
-//			wx.uploadImage({
-//				localId : localId,
-//				isShowProgressTips : 1,
-//				success : function(res) {
-//					var serverId = res.serverId; // 返回图片的服务器端ID
-//					alert('serverId = ' + serverId);
-//					// 其他对serverId做处理的代码
-//					if (localIds.length > 0) {
-//						syncUpload(localIds);
-//					}
-//				}
-//			});
-//		};
-//
-//		// 拍照或从手机相册中选图
-//		$('#uploaderInput').on('click', function() {
-//			wx.chooseImage({
-//				count : 1, // 默认9
-//				sizeType : [ 'original', 'compressed' ], // 可以指定是原图还是压缩图，默认二者都有
-//				sourceType : [ 'album', 'camera' ], // 可以指定来源是相册还是相机，默认二者都有
-//				success : function(res) {
-//					var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-//					syncUpload(localIds);
-//				}
-//			});
-//		});
 	});
 
 	// 通过error接口处理失败验证

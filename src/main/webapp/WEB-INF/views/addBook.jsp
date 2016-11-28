@@ -70,8 +70,8 @@
 					<label class="weui-label">名称</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="bookStoragePlaceName" class="weui-input"
-						type="text" placeholder="请输入名称" />
+					<input id="bookStoragePlaceName" class="weui-input" type="text"
+						placeholder="请输入名称" />
 				</div>
 			</div>
 			<div class="weui-cell">
@@ -88,8 +88,9 @@
 					<label class="weui-label">省市区</label>
 				</div>
 				<div id="distpicker" class="weui-cell__bd">
-					<select id="bookStoragePlaceProvince" class="weui-select"></select> <select id="bookStoragePlaceCity" class="weui-select"></select>
-					<select id="bookStoragePlaceDistrict" class="weui-select"></select>
+					<select id="bookStoragePlaceProvince" class="weui-select"></select>
+					<select id="bookStoragePlaceCity" class="weui-select"></select> <select
+						id="bookStoragePlaceDistrict" class="weui-select"></select>
 				</div>
 			</div>
 			<div class="weui-cell">
@@ -97,8 +98,8 @@
 					<label class="weui-label">详细地址</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="bookStoragePlaceAddress" class="weui-input"
-						type="text" placeholder="请输入详细地址" />
+					<input id="bookStoragePlaceAddress" class="weui-input" type="text"
+						placeholder="请输入详细地址" />
 				</div>
 			</div>
 			<div class="weui-cell">
@@ -106,8 +107,8 @@
 					<label class="weui-label">联系电话</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="bookStoragePlacePhone" class="weui-input"
-						type="number" pattern="[0-9]{0,4}-?[0-9]*" placeholder="请输入联系电话" />
+					<input id="bookStoragePlacePhone" class="weui-input" type="number"
+						pattern="[0-9]{0,4}-?[0-9]*" placeholder="请输入联系电话" />
 				</div>
 			</div>
 			<div class="weui-cell">
@@ -115,9 +116,8 @@
 					<label class="weui-label">手机</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="bookStoragePlaceMobilePhone"
-						class="weui-input" type="number" pattern="[0-9]{11,12}"
-						placeholder="请输入手机号码" />
+					<input id="bookStoragePlaceMobilePhone" class="weui-input"
+						type="number" pattern="[0-9]{11,12}" placeholder="请输入手机号码" />
 				</div>
 			</div>
 			<div class="weui-cell">
@@ -125,8 +125,8 @@
 					<label class="weui-label">开放时间</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="bookStoragePlaceOpenTime" class="weui-input"
-						type="text" placeholder="请输入开放时间" />
+					<input id="bookStoragePlaceOpenTime" class="weui-input" type="text"
+						placeholder="请输入开放时间" />
 				</div>
 			</div>
 			<div class="weui-cell">
@@ -134,40 +134,18 @@
 					<label class="weui-label">交通</label>
 				</div>
 				<div class="weui-cell__bd">
-					<input id="bookStoragePlaceTraffic" class="weui-input"
-						type="text" placeholder="请输入交通方式" />
+					<input id="bookStoragePlaceTraffic" class="weui-input" type="text"
+						placeholder="请输入交通方式" />
 				</div>
 			</div>
-			<%-- TODO:存书点图片 --%>
-            <div class="weui-cell">
-                <div class="weui-cell__bd">
-                    <div class="weui-uploader">
-                        <div class="weui-uploader__hd">
-                            <p class="weui-uploader__title">图片上传</p>
-                        </div>
-                        <div class="weui-uploader__bd">
-                        <!-- 
-                            <ul class="weui-uploader__files" id="uploaderFiles">
-                                <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
-                                <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
-                                <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
-                                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
-                                    <div class="weui-uploader__file-content">
-                                        <i class="weui-icon-warn"></i>
-                                    </div>
-                                </li>
-                                <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
-                                    <div class="weui-uploader__file-content">50%</div>
-                                </li>
-                            </ul>
-                             -->
-                            <div class="weui-uploader__input-box">
-                                <input id="chooseImage" class="weui-uploader__input" type="file" accept="image/*" multiple />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+			<div class="weui-cell">
+				<div class="weui-cell__hd">
+					<label class="weui-label">图片</label>
+				</div>
+				<div class="weui-cell__bd">
+					<button class="btn btn_primary" id="chooseImage">选择图片</button>
+				</div>
+			</div>
 		</div>
 		<div class="weui-btn-area">
 			<a class="weui-btn weui-btn_primary"
