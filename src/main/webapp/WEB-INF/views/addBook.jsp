@@ -16,6 +16,8 @@
 <script type="text/javascript" src="js/baidu.js"></script>
 <%-- 加载weixin.js --%>
 <script type="text/javascript" src="js/weixin.js"></script>
+<%-- 加载zhixing101.js --%>
+<script type="text/javascript" src="js/zhixing101.js"></script>
 <%-- 加载distpicker.min.js --%>
 <script type="text/javascript" src="js/distpicker.min.js"></script>
 
