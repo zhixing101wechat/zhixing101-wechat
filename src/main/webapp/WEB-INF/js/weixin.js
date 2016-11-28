@@ -30,7 +30,7 @@ function authorityValidate(document) {
 		// 必填，签名，见附录1
 		signature : signatureValue,
 		// 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-		jsApiList : [ 'getLocation', 'chooseImage', 'uploadImage' ]
+		jsApiList : [ 'getLocation', 'chooseImage', 'previewImage', 'uploadImage' ]
 
 	});
 
@@ -62,35 +62,44 @@ function authorityValidate(document) {
 			}
 		});
 
-		// 上传图片
-		var syncUpload = function(localIds) {
-			var localId = localIds.pop();
-			wx.uploadImage({
-				localId : localId,
-				isShowProgressTips : 1,
+		  document.querySelector('#chooseImage').onclick = function() {
+			wx.chooseImage({
 				success : function(res) {
-					var serverId = res.serverId; // 返回图片的服务器端ID
-					alert('serverId = ' + serverId);
-					// 其他对serverId做处理的代码
-					if (localIds.length > 0) {
-						syncUpload(localIds);
-					}
+					images.localId = res.localIds;
+					alert('已选择 ' + res.localIds.length + ' 张图片');
 				}
 			});
 		};
 
-		// 拍照或从手机相册中选图
-		$('#uploaderInput').on('click', function() {
-			wx.chooseImage({
-				count : 1, // 默认9
-				sizeType : [ 'original', 'compressed' ], // 可以指定是原图还是压缩图，默认二者都有
-				sourceType : [ 'album', 'camera' ], // 可以指定来源是相册还是相机，默认二者都有
-				success : function(res) {
-					var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
-					syncUpload(localIds);
-				}
-			});
-		});
+		// // 上传图片
+// var syncUpload = function(localIds) {
+//			var localId = localIds.pop();
+//			wx.uploadImage({
+//				localId : localId,
+//				isShowProgressTips : 1,
+//				success : function(res) {
+//					var serverId = res.serverId; // 返回图片的服务器端ID
+//					alert('serverId = ' + serverId);
+//					// 其他对serverId做处理的代码
+//					if (localIds.length > 0) {
+//						syncUpload(localIds);
+//					}
+//				}
+//			});
+//		};
+//
+//		// 拍照或从手机相册中选图
+//		$('#uploaderInput').on('click', function() {
+//			wx.chooseImage({
+//				count : 1, // 默认9
+//				sizeType : [ 'original', 'compressed' ], // 可以指定是原图还是压缩图，默认二者都有
+//				sourceType : [ 'album', 'camera' ], // 可以指定来源是相册还是相机，默认二者都有
+//				success : function(res) {
+//					var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+//					syncUpload(localIds);
+//				}
+//			});
+//		});
 	});
 
 	// 通过error接口处理失败验证

@@ -162,7 +162,7 @@
                             </ul>
                              -->
                             <div class="weui-uploader__input-box">
-                                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                                <input id="chooseImage" class="weui-uploader__input" type="file" accept="image/*" multiple />
                             </div>
                         </div>
                     </div>
@@ -190,6 +190,12 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
+		
+		var images = {
+				localId : [],
+				serverId : []
+			};
+
 			authorityValidate(document);
 
 			$("#distpicker").distpicker({
